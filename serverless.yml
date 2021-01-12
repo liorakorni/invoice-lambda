@@ -1,0 +1,100 @@
+service: invoice-application2
+
+custom:
+  tableName: 'invoices-raw-table-${self:provider.stage}'
+  logTableName: 'invoices-pdf-table-${self:provider.stage}'
+  dynamodb:
+    start:
+      migrate: true
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  environment:
+    USERS_TABLE: ${self:custom.tableName}
+    LOG_TABLE: ${self:custom.logTableName}
+    IS_OFFLINE: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+      Resource:
+      - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
+      - { "Fn::GetAtt": ["LogDynamoDBTable", "Arn" ] }
+
+functions:
+  app:
+    handler: index.handler
+    events:
+    - http: ANY /
+    - http: 'ANY /{proxy+}'
+  getUser:
+    handler: index.handler
+    events:
+    - http: 'GET /users/{proxy+}'
+  createUser:
+    handler: index.handler
+    events:
+    - http: 'POST /users'
+  createInvoice:
+    handler: index.handler
+    events:
+    - http: 'POST /invoices'
+  createInvoicePdf:
+    handler: index.handler
+    events:
+    - http: 'POST /invoices-pdf'
+
+#screenshot:
+#  description: Headless Chrome Serverless-framework screenshot example
+#  memorySize: 1536
+#  timeout: 30
+#  handler: src/handlers/screenshot.default
+#  events:
+#  - http:
+#      path: screenshot
+#      method: get
+
+resources:
+  Resources:
+    UsersDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+        -
+          AttributeName: userId
+          AttributeType: S
+        KeySchema:
+        -
+          AttributeName: userId
+          KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}
+    LogDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+        -
+          AttributeName: userId
+          AttributeType: S
+        KeySchema:
+        -
+          AttributeName: userId
+          KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.logTableName}
