@@ -125,18 +125,35 @@ function cgDataToEZC(jsonData) {
 // Create invoices endpoint
 app.post('/invoices', function (req, res) {
 
-    const userId = Math.random().toString(36).substring(5);
     const reqbody = req.body;
     if(reqbody && reqbody.subscription && reqbody.subscription.invoice && reqbody.subscription.invoice.transaction.amount === "0.00")
     {
         res.status(200).json({ msg: 'empty transaction amount', body: reqbody });
     }
+    const id = Math.random().toString(36).substring(5);
+    const invoiceData= cgDataToEZC(reqbody);
+    let docData ='';
+
+    request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body) // Print the shortened url.
+            docData = body;
+
+        } else {
+            console.error("Failed");
+            console.error(error, response);
+        }
+    });
+
 
     const params = {
         TableName: USERS_TABLE,
         Item: {
-            userId: userId,
-            jsonData: cgDataToEZC(reqbody),
+            id: id,
+            customerCode: reqbody && reqbody.customer && reqbody.customer.code,
+            transaction: reqbody,
+            invoice: invoiceData,
+            doc: docData,
         },
     };
 
@@ -145,13 +162,13 @@ app.post('/invoices', function (req, res) {
             console.log(error);
             res.status(400).json({ error: 'Could not create invoice' });
         }
-        res.json({ userId, reqbody });
+        res.json({ id, reqbody });
     });
 })
 
 app.post('/invoices-pdf', function (req, res) {
 
-    const userId = Math.random().toString(36).substring(5);
+    const id = Math.random().toString(36).substring(5);
 
     request.post(url, { form: data, json: true }, function(error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -159,7 +176,7 @@ app.post('/invoices-pdf', function (req, res) {
             const params = {
                 TableName: LOG_TABLE,
                 Item: {
-                    userId: userId,
+                    id: id,
                     logData: body,
                 },
             };
@@ -169,7 +186,7 @@ app.post('/invoices-pdf', function (req, res) {
                     console.log(error);
                     res.status(400).json({ error: 'Could not create invoice' });
                 }
-                res.json({ userId, body });
+                res.json({ id, body });
             });
         } else {
             console.error("Failed");
@@ -177,43 +194,16 @@ app.post('/invoices-pdf', function (req, res) {
         }
     });
 
-
-
 })
 
 
-// Create User endpoint
-app.post('/users', function (req, res) {
-    const { userId, name } = req.body;
-    if (typeof userId !== 'string') {
-        res.status(400).json({ error: '"userId" must be a string' });
-    } else if (typeof name !== 'string') {
-        res.status(400).json({ error: '"name" must be a string' });
-    }
-
-    const params = {
-        TableName: USERS_TABLE,
-        Item: {
-            userId: userId,
-            name: name,
-        },
-    };
-
-    dynamoDb.put(params, (error) => {
-        if (error) {
-            console.log(error);
-            res.status(400).json({ error: 'Could not create user' });
-        }
-        res.json({ userId, name });
-    });
-})
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
 })
 
 // Get User endpoint
-app.get('/users/:userId', function (req, res) {
+app.get('/invoices/:userId', function (req, res) {
     const params = {
         TableName: USERS_TABLE,
         Key: {

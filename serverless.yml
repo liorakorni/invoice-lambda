@@ -1,8 +1,8 @@
 service: invoice-application2
 
 custom:
-  tableName: 'invoices-raw-table-${self:provider.stage}'
-  logTableName: 'invoices-pdf-table-${self:provider.stage}'
+  tableName: 'invoices-doc-table-${self:provider.stage}'
+  logTableName: 'invoice-pdf-table-${self:provider.stage}'
   dynamodb:
     start:
       migrate: true
@@ -42,11 +42,7 @@ functions:
   getUser:
     handler: index.handler
     events:
-    - http: 'GET /users/{proxy+}'
-  createUser:
-    handler: index.handler
-    events:
-    - http: 'POST /users'
+    - http: 'GET /invoices/{proxy+}'
   createInvoice:
     handler: index.handler
     events:
@@ -56,16 +52,6 @@ functions:
     events:
     - http: 'POST /invoices-pdf'
 
-#screenshot:
-#  description: Headless Chrome Serverless-framework screenshot example
-#  memorySize: 1536
-#  timeout: 30
-#  handler: src/handlers/screenshot.default
-#  events:
-#  - http:
-#      path: screenshot
-#      method: get
-
 resources:
   Resources:
     UsersDynamoDBTable:
@@ -73,11 +59,11 @@ resources:
       Properties:
         AttributeDefinitions:
         -
-          AttributeName: userId
+          AttributeName: id
           AttributeType: S
         KeySchema:
         -
-          AttributeName: userId
+          AttributeName: id
           KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
@@ -88,11 +74,11 @@ resources:
       Properties:
         AttributeDefinitions:
         -
-          AttributeName: userId
+          AttributeName: id
           AttributeType: S
         KeySchema:
         -
-          AttributeName: userId
+          AttributeName: id
           KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
