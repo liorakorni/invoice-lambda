@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const express = require('express')
 const app = express()
 const AWS = require('aws-sdk');
-var request = require('request');
-
+const request = require('request');
+const cgDataToEZC = require('./utils');
 
 const USERS_TABLE = process.env.USERS_TABLE;
 const LOG_TABLE = process.env.LOG_TABLE;
@@ -63,106 +63,50 @@ var data = {
 }
 
 
-
-function cgDataToEZC(jsonData) {
-
-    try {
-
-        var invoice = jsonData.subscription.invoice;
-        var charges = invoice.charges;
-        var running_total = 0,recurring = false;
-        var items = [];
-
-        for (var i in charges) {
-
-            var item = charges[i];
-
-            if (item.type == 'recurring') {
-                running_total = running_total + parseFloat(item.eachAmount);
-                items.push({details: jsonData.subscription.plan.name, amount: 1, price: item.eachAmount});
-                recurring = true;
-                continue;
-            }
-
-            if (item.type == 'item') {
-                running_total = running_total + parseFloat(item.eachAmount) * parseInt(item.quantity);
-                items.push({details: item.description, amount: item.quantity, price: item.eachAmount})
-                continue;
-            }
-
-            if (item.type == 'custom') {
-                running_total = running_total + parseFloat(item.eachAmount) * parseInt(item.quantity);
-                var credit = 'הנחה - ' + item.description;
-                items.push({details:credit , amount: item.quantity, price: item.eachAmount})
-                continue;
-            }
-
-        }
-
-
-        var data = {
-            type: 320 /* HESHBONIT MAS*/,
-            customer_name: jsonData.customer.company,
-            items:items,
-            price_total:parseFloat(invoice.transaction.amount)-parseFloat(invoice.transaction.taxAmount)
-        }
-
-        if (recurring){
-            var  monthly_str = 'חיוב חודשי למסלול ברודקאסט'
-            var  one_time = 'חיוב חד פעמי'
-            invoice['description'] = recurring?monthly_str:one_time;
-        }
-
-        return data;
-
-    } catch (e) {
-        console.error(e, "error parsing");
-        return jsonData;
-    }
-}
-
-
 // Create invoices endpoint
 app.post('/invoices', function (req, res) {
 
     const reqbody = req.body;
-    if(reqbody && reqbody.subscription && reqbody.subscription.invoice && reqbody.subscription.invoice.transaction.amount === "0.00")
+    if(reqbody && reqbody.subscription && reqbody.subscription.invoice && parseInt(reqbody.subscription.invoice.transaction.amount) === 0)
     {
+        console.log('empty transaction amount')
         res.status(200).json({ msg: 'empty transaction amount', body: reqbody });
     }
     const id = Math.random().toString(36).substring(5);
     const invoiceData= cgDataToEZC(reqbody);
-    let docData ='';
+    console.log('reqbody ', reqbody) // Print the shortened url.
 
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log(body) // Print the shortened url.
-            docData = body;
+            console.log('body', body) // Print the shortened url.
+            const docData = body;
+
+            console.log('docData ', docData) // Print the shortened url.
+
+            const params = {
+                TableName: USERS_TABLE,
+                Item: {
+                    id: id,
+                    customerCode: reqbody && reqbody.customer && reqbody.customer.code,
+                    transaction: reqbody,
+                    activityDataTime: reqbody && reqbody.activityDatetime,
+                    invoice: invoiceData,
+                    doc: docData,
+                },
+            };
+
+            dynamoDb.put(params, (error) => {
+                if (error) {
+                    console.log(error);
+                    res.status(400).json({ error: 'Could not create invoice' });
+                }
+                res.json({ id, reqbody });
+            });
 
         } else {
             console.error("Failed");
             console.error(error, response);
         }
-    });
-
-
-    const params = {
-        TableName: USERS_TABLE,
-        Item: {
-            id: id,
-            customerCode: reqbody && reqbody.customer && reqbody.customer.code,
-            transaction: reqbody,
-            invoice: invoiceData,
-            doc: docData,
-        },
-    };
-
-    dynamoDb.put(params, (error) => {
-        if (error) {
-            console.log(error);
-            res.status(400).json({ error: 'Could not create invoice' });
-        }
-        res.json({ id, reqbody });
     });
 })
 
