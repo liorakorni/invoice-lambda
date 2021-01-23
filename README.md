@@ -21,3 +21,12 @@ RUN:
 
 /*To run locally:*/     
 >sls offline start
+
+
+/* Commiting */
+>git status
+>git add package-lock.json | git add .
+>git commit -m "update README"\
+>git push
+
+
