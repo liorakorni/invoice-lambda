@@ -67,6 +67,11 @@ var data = {
 app.post('/invoices', function (req, res) {
 
     const reqbody = req.body;
+    if(!reqbody || !reqbody.subscription || !reqbody.subscription.invoice )
+    {
+        console.log('empty transaction ')
+        res.status(200).json({ msg: 'empty transaction ', body: reqbody });
+    }
     if(reqbody && reqbody.subscription && reqbody.subscription.invoice && parseInt(reqbody.subscription.invoice.transaction.amount) === 0)
     {
         console.log('empty transaction amount')
