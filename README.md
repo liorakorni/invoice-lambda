@@ -2,18 +2,22 @@
 
 Install node v 12
 
-Setup aws credentials
+//Setup aws credentials (Make sure it exists on WINDOWS Enviromen Variables)
+>AWS_ACCESS_KEY_ID
+>AWS_SECRET_ACCESS_KEY
 
-run:
+/* Open Program Files->Nod.js->Install Additional Tools... CMD */
+//( install all packages from package.json) 
+> run npm install 
 
-npm install -g serverless
+RUN:
+
+//npm install -g serverless
+>-g is running globaly on my maching 
+
+//To deploy:
+>sls deploy
 
 
-To deploy:
-
-sls deploy
-
-
-To run locally:     
-
-sls offline start
+/*To run locally:*/     
+>sls offline start
