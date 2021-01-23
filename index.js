@@ -1,6 +1,8 @@
 const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
-const express = require('express')
+const express = require('express');
+const moment = require('moment');
+
 const app = express()
 const AWS = require('aws-sdk');
 const request = require('request');
@@ -26,7 +28,7 @@ var developer_phone = '0528549758';
 // before deploying to production, please contact support and ask for your own unique dev_master_ke
 var dev_master_key = '4146fe70-01bd-11e7-965d-04011c5ad201';
 
-var url = 'https://demo.ezcount.co.il/api/createDoc'
+var url = 'https://demo.ezcount.co.il/api/createDoc';
 
 var data = {
     // CUSTOMER credentials
@@ -82,13 +84,16 @@ app.post('/invoices', function (req, res) {
     console.log('reqbody ', reqbody) // Print the shortened url.
 
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
+
         if (!error && response.statusCode == 200) {
+
             console.log('body', body) // Print the shortened url.
             const docData = body;
 
             console.log('docData ', docData) // Print the shortened url.
 
             const params = {
+
                 TableName: USERS_TABLE,
                 Item: {
                     id: id,
@@ -120,7 +125,9 @@ app.post('/invoices-pdf', function (req, res) {
     const id = Math.random().toString(36).substring(5);
 
     request.post(url, { form: data, json: true }, function(error, response, body) {
+
         if (!error && response.statusCode == 200) {
+
             console.log(body) // Print the shortened url.
             const params = {
                 TableName: LOG_TABLE,
@@ -144,8 +151,6 @@ app.post('/invoices-pdf', function (req, res) {
     });
 
 })
-
-
 
 app.get('/', function (req, res) {
     res.send('Hello World!')

@@ -2,7 +2,7 @@
 
 Install node v 12
 
-//Setup aws credentials (Make sure it exists on WINDOWS Enviromen Variables)
+// Setup aws credentials (Make sure it exists on WINDOWS Enviromen Variables)
 >AWS_ACCESS_KEY_ID
 >AWS_SECRET_ACCESS_KEY
 
