@@ -73,14 +73,14 @@ app.post('/invoices', function (req, res) {
     if(!reqbody || !reqbody.subscription || !reqbody.subscription.invoice )
     {
         console.log('empty transaction ');
-        res.status(404).json({ msg: 'empty transaction ', body: reqbody });
+        res.status(200).json({ msg: 'empty transaction ', body: reqbody });
 
     }
 
-    if(reqbody && reqbody.subscription && reqbody.subscription.invoice && parseInt(reqbody.subscription.invoice.transaction.amount) == 0)
+    if(reqbody && reqbody.subscription && reqbody.subscription.invoice && parseInt(reqbody.subscription.invoice.transaction.amount) === 0)
     {
         console.log('empty transaction amount');
-        res.status(406).json({ msg: 'empty transaction amount', body: reqbody });
+        res.status(200).json({ msg: 'empty transaction amount', body: reqbody });
     }
 
     const id = Math.random().toString(36).substring(5);
