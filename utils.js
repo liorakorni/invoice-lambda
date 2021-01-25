@@ -23,31 +23,31 @@ function cgDataToEZC(jsonData) {
 
             var item = charges[i];
 
-            if (item.type == 'recurring') {
-                running_total = running_total + parseFloat(item.eachAmount);
+            if (item.type === 'recurring') {
                 items.push({details: jsonData.subscription.plan.name, amount: 1, price: item.eachAmount});
+                running_total = running_total + parseFloat(item.eachAmount);
                 recurring = true;
                 continue;
             }
 
-            if (item.type == 'item') {
+            if (item.type === 'item') {
+                if(item.code !== '100'){
+                    item.eachAmount = item.quantity;
+                    item.quantity = 1;
+                }
                 running_total = running_total + parseFloat(item.eachAmount) * parseInt(item.quantity);
-                items.push({details: item.description, amount: item.quantity, price: item.eachAmount})
+                items.push({details: item.description, amount:item.eachAmount,price: item.quantity});
                 continue;
             }
 
-            if (item.type == 'custom' && !(invoice.couponCode === undefined)) {
-                running_total = running_total + parseFloat(item.eachAmount) * parseInt(item.quantity);
-                var credit = item.description;
-                items.push({details:credit , amount: item.quantity, price: item.eachAmount})
-                continue;
-            }
-
-            if(item.type == 'custom' && invoice.couponCode === undefined) {
-                var item_amount = parseFloat(item.eachAmount) * parseInt(item.quantity);
-                var dtls = ((item_amount < 0)?'הנחה - ':'') + item.description;
-                running_total = running_total + item_amount;
-                items.push({details: dtls, amount: item.quantity, price: item.eachAmount});
+            if(item.type === 'custom') {
+                var amount = parseFloat(item.eachAmount) * parseInt(item.quantity);
+                if (amount < 0) {
+                    item.eachAmount = amount;
+                    item.quantity = 1;
+                }
+                items.push({details: item.description, amount: item.quantity, price: item.eachAmount});
+                running_total = running_total + amount;
                 continue;
             }
 

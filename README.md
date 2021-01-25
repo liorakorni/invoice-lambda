@@ -2,31 +2,37 @@
 
 Install node v 12
 
-// Setup aws credentials (Make sure it exists on WINDOWS Enviromen Variables)
->AWS_ACCESS_KEY_ID
->AWS_SECRET_ACCESS_KEY
+##### AWS Setup (Make sure it exists on WINDOWS Enviromen Variables)
+`AWS_ACCESS_KEY_ID`
 
-/* Open Program Files->Nod.js->Install Additional Tools... CMD */
-//( install all packages from package.json) 
-> run npm install 
+`AWS_SECRET_ACCESS_KEY`
 
-RUN:
+###### Open Program Files->Nod.js->Install Additional Tools... CMD ( install all packages from package.json) 
+`> run npm install` 
 
-//npm install -g serverless
->-g is running globaly on my maching 
+#####Run:
 
-//To deploy:
->sls deploy
+`>npm install -g serverless`
+######-g is running globaly on my maching` 
 
-
-/*To run locally:*/     
->sls offline start
+#####To deploy:
+`>sls deploy`
 
 
-/* Commiting */
->git status
->git add package-lock.json | git add .
->git commit -m "update README"\
->git push
+#####To run locally:     
+`>sls offline start`
 
 
+##### Commit Process
+`>git status`  
+
+`>git add package-lock.json | git add .`
+
+`>git commit -m "update README"\`
+ 
+`>git push`
+
+
+
+
+https://www.markdownguide.org/cheat-sheet/
