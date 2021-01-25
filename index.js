@@ -77,7 +77,7 @@ app.post('/invoices', function (req, res) {
 
     }
 
-    if(reqbody && reqbody.subscription && reqbody.subscription.invoice && parseInt(reqbody.subscription.invoice.transaction.amount) === 0)
+    if(reqbody && reqbody.subscription && reqbody.subscription.invoice && parseInt(reqbody.subscription.invoice.transaction.amount) == 0)
     {
         console.log('empty transaction amount');
         res.status(200).json({ msg: 'empty transaction amount', body: reqbody });

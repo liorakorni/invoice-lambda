@@ -227,7 +227,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1611560867451-2021-01-25T07:47:47.451Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1611561102169-2021-01-25T07:51:42.169Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs12.x",
@@ -259,7 +259,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1611560867451-2021-01-25T07:47:47.451Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1611561102169-2021-01-25T07:51:42.169Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs12.x",
@@ -291,7 +291,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1611560867451-2021-01-25T07:47:47.451Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1611561102169-2021-01-25T07:51:42.169Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs12.x",
@@ -323,7 +323,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1611560867451-2021-01-25T07:47:47.451Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1611561102169-2021-01-25T07:51:42.169Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs12.x",
@@ -348,44 +348,44 @@
               "CreateInvoicePdfLogGroup"
             ]
           },
-          "GetUserLambdaVersionxtP19ofTbFDmxLY4sgz9PAFwRDaPAZD19vCh9QVCEzc": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetUserLambdaFunction"
-              },
-              "CodeSha256": "7iZC0pwkq7Ftc1PgYf5iXmdvohZpChYD84WOfmmFWmM="
-            }
-          },
-          "CreateInvoicePdfLambdaVersion0nUKm6nLrDRaq2nBQMw2hIA2UmES2WJ1cscKLYAwRg": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CreateInvoicePdfLambdaFunction"
-              },
-              "CodeSha256": "7iZC0pwkq7Ftc1PgYf5iXmdvohZpChYD84WOfmmFWmM="
-            }
-          },
-          "AppLambdaVersioneX3Y12frTFzw0QJjRFAnTrAaKDU3njHKhcwv06xyHU": {
+          "AppLambdaVersionzh17zCrEeFgal2mtSChlzNtQETENlVDW8HbwC4tJlz0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "7iZC0pwkq7Ftc1PgYf5iXmdvohZpChYD84WOfmmFWmM="
+              "CodeSha256": "/s+MFYbhjcxRxhU/q2NiSn7C2spl93nb87+oElFbfso="
             }
           },
-          "CreateInvoiceLambdaVersionZLDO8hkx7cHN4476PkUlpZ6XXsiUoNG1X4bVRifz9w": {
+          "GetUserLambdaVersionwuZP10poofOwCl0t9Qa2wuWLR98u7DZGzrGHhXbMbVU": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUserLambdaFunction"
+              },
+              "CodeSha256": "/s+MFYbhjcxRxhU/q2NiSn7C2spl93nb87+oElFbfso="
+            }
+          },
+          "CreateInvoiceLambdaVersion2onXR9I07Z3oQ2FvkGy6h4EmZxLb2e4dxo8gna7I": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateInvoiceLambdaFunction"
               },
-              "CodeSha256": "7iZC0pwkq7Ftc1PgYf5iXmdvohZpChYD84WOfmmFWmM="
+              "CodeSha256": "/s+MFYbhjcxRxhU/q2NiSn7C2spl93nb87+oElFbfso="
+            }
+          },
+          "CreateInvoicePdfLambdaVersionpEHAiQj1XWaJFwYFgDnsGR8iRQ3uYKjO3Cv0rioXEE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreateInvoicePdfLambdaFunction"
+              },
+              "CodeSha256": "/s+MFYbhjcxRxhU/q2NiSn7C2spl93nb87+oElFbfso="
             }
           },
           "ApiGatewayRestApi": {
@@ -675,7 +675,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1611560859671": {
+          "ApiGatewayDeployment1611561095496": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -890,28 +890,28 @@
               "Ref": "ServerlessDeploymentBucket"
             }
           },
-          "GetUserLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GetUserLambdaVersionxtP19ofTbFDmxLY4sgz9PAFwRDaPAZD19vCh9QVCEzc"
-            }
-          },
-          "CreateInvoicePdfLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CreateInvoicePdfLambdaVersion0nUKm6nLrDRaq2nBQMw2hIA2UmES2WJ1cscKLYAwRg"
-            }
-          },
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersioneX3Y12frTFzw0QJjRFAnTrAaKDU3njHKhcwv06xyHU"
+              "Ref": "AppLambdaVersionzh17zCrEeFgal2mtSChlzNtQETENlVDW8HbwC4tJlz0"
+            }
+          },
+          "GetUserLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUserLambdaVersionwuZP10poofOwCl0t9Qa2wuWLR98u7DZGzrGHhXbMbVU"
             }
           },
           "CreateInvoiceLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateInvoiceLambdaVersionZLDO8hkx7cHN4476PkUlpZ6XXsiUoNG1X4bVRifz9w"
+              "Ref": "CreateInvoiceLambdaVersion2onXR9I07Z3oQ2FvkGy6h4EmZxLb2e4dxo8gna7I"
+            }
+          },
+          "CreateInvoicePdfLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreateInvoicePdfLambdaVersionpEHAiQj1XWaJFwYFgDnsGR8iRQ3uYKjO3Cv0rioXEE"
             }
           },
           "ServiceEndpoint": {
@@ -1054,7 +1054,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersioneX3Y12frTFzw0QJjRFAnTrAaKDU3njHKhcwv06xyHU"
+        "versionLogicalId": "AppLambdaVersionzh17zCrEeFgal2mtSChlzNtQETENlVDW8HbwC4tJlz0"
       },
       "getUser": {
         "handler": "index.handler",
@@ -1069,7 +1069,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetUserLambdaVersionxtP19ofTbFDmxLY4sgz9PAFwRDaPAZD19vCh9QVCEzc"
+        "versionLogicalId": "GetUserLambdaVersionwuZP10poofOwCl0t9Qa2wuWLR98u7DZGzrGHhXbMbVU"
       },
       "createInvoice": {
         "handler": "index.handler",
@@ -1084,7 +1084,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CreateInvoiceLambdaVersionZLDO8hkx7cHN4476PkUlpZ6XXsiUoNG1X4bVRifz9w"
+        "versionLogicalId": "CreateInvoiceLambdaVersion2onXR9I07Z3oQ2FvkGy6h4EmZxLb2e4dxo8gna7I"
       },
       "createInvoicePdf": {
         "handler": "index.handler",
@@ -1099,7 +1099,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CreateInvoicePdfLambdaVersion0nUKm6nLrDRaq2nBQMw2hIA2UmES2WJ1cscKLYAwRg"
+        "versionLogicalId": "CreateInvoicePdfLambdaVersionpEHAiQj1XWaJFwYFgDnsGR8iRQ3uYKjO3Cv0rioXEE"
       }
     },
     "resources": {
@@ -1178,7 +1178,7 @@
     "artifact": "C:\\Users\\ranco\\Sandbox\\invoice-lambda\\.serverless\\invoice-application2.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/invoice-application2/dev/1611560867451-2021-01-25T07:47:47.451Z",
+    "artifactDirectoryName": "serverless/invoice-application2/dev/1611561102169-2021-01-25T07:51:42.169Z",
     "artifact": "invoice-application2.zip"
   }
 }
