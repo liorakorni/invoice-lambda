@@ -1,0 +1,2170 @@
+{
+  "product": {
+    "code": {
+      "type": "String",
+      "stringValue": "BROADCUST",
+      "name": "code"
+    },
+    "name": {
+      "type": "String",
+      "stringValue": "Broadcust",
+      "name": "name"
+    },
+    "subdomain": {
+      "type": "String",
+      "stringValue": "broadcust",
+      "name": "subdomain"
+    },
+    "id": {
+      "type": "String",
+      "stringValue": "e49c39ac-adc3-11e3-a374-bc764e04674e",
+      "name": "id"
+    }
+  },
+  "activityDatetime": {
+    "type": "String",
+    "stringValue": "2021-01-26T07:11:13+00:00",
+    "name": "activityDatetime"
+  },
+  "activityActor": {
+    "type": "String",
+    "stringValue": "",
+    "name": "activityActor"
+  },
+  "subscription": {
+    "ccZip": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccZip"
+    },
+    "method": {
+      "type": "String",
+      "stringValue": "external",
+      "name": "method"
+    },
+    "ccEmail": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccEmail"
+    },
+    "cancelType": {
+      "type": "String",
+      "stringValue": "",
+      "name": "cancelType"
+    },
+    "ccLastFour": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccLastFour"
+    },
+    "ccCity": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccCity"
+    },
+    "gatewayToken": {
+      "type": "String",
+      "stringValue": "LOCAL_CARD",
+      "name": "gatewayToken"
+    },
+    "ccCountry": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccCountry"
+    },
+    "ccFirstName": {
+      "type": "String",
+      "stringValue": "חיים",
+      "name": "ccFirstName"
+    },
+    "ccAddress": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccAddress"
+    },
+    "ccType": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccType"
+    },
+    "ccExpirationDate": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccExpirationDate"
+    },
+    "ccState": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccState"
+    },
+    "ccCompany": {
+      "type": "String",
+      "stringValue": "",
+      "name": "ccCompany"
+    },
+    "ccLastName": {
+      "type": "String",
+      "stringValue": "בכר",
+      "name": "ccLastName"
+    },
+    "paymentMethod": {
+      "type": "Map",
+      "mapValues": {
+        "lastName": {
+          "type": "String",
+          "stringValue": "בכר",
+          "name": "lastName"
+        },
+        "country": {
+          "type": "String",
+          "stringValue": "",
+          "name": "country"
+        },
+        "method": {
+          "type": "String",
+          "stringValue": "external",
+          "name": "method"
+        },
+        "city": {
+          "type": "String",
+          "stringValue": "",
+          "name": "city"
+        },
+        "gatewayToken": {
+          "type": "String",
+          "stringValue": "LOCAL_CARD",
+          "name": "gatewayToken"
+        },
+        "type": {
+          "type": "String",
+          "stringValue": "External",
+          "name": "type"
+        },
+        "firstName": {
+          "type": "String",
+          "stringValue": "חיים",
+          "name": "firstName"
+        },
+        "external": {
+          "type": "Map",
+          "mapValues": {
+            "externalDescription": {
+              "type": "String",
+              "stringValue": "",
+              "name": "externalDescription"
+            }
+          },
+          "name": "external"
+        },
+        "street": {
+          "type": "String",
+          "stringValue": "",
+          "name": "street"
+        },
+        "company": {
+          "type": "String",
+          "stringValue": "",
+          "name": "company"
+        },
+        "postCode": {
+          "type": "String",
+          "stringValue": "",
+          "name": "postCode"
+        },
+        "createdDatetime": {
+          "type": "String",
+          "stringValue": "2020-08-26T06:39:00+00:00",
+          "name": "createdDatetime"
+        },
+        "id": {
+          "type": "String",
+          "stringValue": "11eae766-d2fd-398b-bed7-0eff6b8b8fd3",
+          "name": "id"
+        },
+        "state": {
+          "type": "String",
+          "stringValue": "",
+          "name": "state"
+        },
+        "gatewayTokenAux": {
+          "type": "String",
+          "stringValue": "",
+          "name": "gatewayTokenAux"
+        },
+        "email": {
+          "type": "String",
+          "stringValue": "",
+          "name": "email"
+        },
+        "expirationDate": {
+          "type": "String",
+          "stringValue": "",
+          "name": "expirationDate"
+        }
+      },
+      "name": "paymentMethod"
+    },
+    "canceledDatetime": {
+      "type": "String",
+      "stringValue": "",
+      "name": "canceledDatetime"
+    },
+    "createdDatetime": {
+      "type": "String",
+      "stringValue": "2020-08-26T06:38:59+00:00",
+      "name": "createdDatetime"
+    },
+    "id": {
+      "type": "String",
+      "stringValue": "d2e81612-e766-11ea-bed7-0eff6b8b8fd3",
+      "name": "id"
+    },
+    "invoice": {
+      "billingDatetime": {
+        "type": "String",
+        "stringValue": "2021-01-26T06:39:58+00:00",
+        "name": "billingDatetime"
+      },
+      "taxRate": {
+        "type": "String",
+        "stringValue": "0.1700",
+        "name": "taxRate"
+      },
+      "charges": [
+        {
+          "code": "300_RECURRING",
+          "quantity": "1.00000",
+          "description": "",
+          "eachAmount": "99.0000",
+          "createdDatetime": "2021-01-26T07:11:10+00:00",
+          "type": "recurring"
+        },
+        {
+          "code": "1000",
+          "quantity": "1.00000",
+          "description": "תפעול מערכת",
+          "eachAmount": "199.0000",
+          "createdDatetime": "2021-01-26T07:11:10+00:00",
+          "type": "item"
+        },
+        {
+          "code": "100",
+          "quantity": "500",
+          "description": "לקוחות",
+          "eachAmount": "0.5",
+          "createdDatetime": "2021-01-26T07:11:10+00:00",
+          "type": "item"
+        }
+      ],
+      "paidTransactionId": {
+        "type": "String",
+        "stringValue": "ab264067-5fa5-11eb-bed7-0eff6b8b8fd3",
+        "name": "paidTransactionId"
+      },
+      "previousBillingDatetime": {
+        "type": "String",
+        "stringValue": "2020-12-26T06:39:58+00:00",
+        "name": "previousBillingDatetime"
+      },
+      "invoiceNumber": {
+        "type": "String",
+        "stringValue": "416362",
+        "name": "invoiceNumber"
+      },
+      "isInitial": {
+        "type": "Number",
+        "numberValue": "0",
+        "name": "isInitial"
+      },
+      "createdDatetime": {
+        "type": "String",
+        "stringValue": "2020-12-26T07:10:58+00:00",
+        "name": "createdDatetime"
+      },
+      "id": {
+        "type": "String",
+        "stringValue": "80cd6a38-4749-11eb-bed7-0eff6b8b8fd3",
+        "name": "id"
+      },
+      "type": {
+        "type": "String",
+        "stringValue": "subscription",
+        "name": "type"
+      },
+      "items": {
+        "type": "List",
+        "listValues": [
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "200",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "כמות הודעות טקסט מעבר לחבילה",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "18458a5e-bfc8-11e3-8d40-bc764e057bd1",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "400",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "show grace",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "544a946f-83c1-11e4-bc8a-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "300",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "2",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "קמפיינים",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "92994429-f064-11e3-9d06-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "100",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "לקוחות",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "add9191c-bfc7-11e3-8d40-bc764e057bd1",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "250",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "text messages grace",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "da341e06-2466-11e4-a014-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "350",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "campaigns grace",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "e41bbb89-2466-11e4-a014-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "150",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "customers grace",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "ef8725d3-2466-11e4-a014-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "500",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "קמפיינים לפייסבוק",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "6eab8e5a-c1df-11e4-8afd-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "550",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "FB campaigns grace",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "6ec21f85-c1df-11e4-8afd-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "410",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "allow premium content",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "78d39400-d658-11e4-8afd-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "420",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "enable advanced options",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "cf4c1ff0-ec4a-11e4-b055-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "220",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "text messages package limit",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "19f72046-0372-11e5-b055-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "210",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "text messages package usage",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "22d4c258-0372-11e5-b055-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "600",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "referral shares",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "ed522c13-c4d4-11e5-ae4b-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "310",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "campaigns package usage",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "0b8ef705-c4d5-11e5-ae4b-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "320",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "33",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "campaigns package limit",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "15e61594-c4d5-11e5-ae4b-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "710",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "email package usage",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "49b3a938-057c-11e6-8d5b-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "720",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "email package limit",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "5588ec28-057c-11e6-8d5b-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "700",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "כמות הודעות אמייל מעבר לחבילה",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "6c9ddd3f-05fd-11e6-8d5b-005056a548e6",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "1000",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "199",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "תפעול מערכת",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "3711e782-c593-11e7-be8b-0050560134d5",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "1100",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "ליווי אישי על ידי נציג",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "3c3c6cad-c593-11e7-be8b-0050560134d5",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "2000",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "חשבון מנהל מותג",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "ebbba60c-c59b-11e7-be8b-0050560134d5",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "1200",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "דף עסקי",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "40614a81-4336-11ea-9cad-0050560134d5",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "10",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "yearly plan",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "990ba524-74b6-11ea-af1a-0050560134d5",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "110",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "crm pro enable",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "b4ab5592-74b7-11ea-af1a-0050560134d5",
+                "name": "id"
+              }
+            }
+          },
+          {
+            "type": "Map",
+            "mapValues": {
+              "code": {
+                "type": "String",
+                "stringValue": "1300",
+                "name": "code"
+              },
+              "quantity": {
+                "type": "Number",
+                "numberValue": "0",
+                "name": "quantity"
+              },
+              "name": {
+                "type": "String",
+                "stringValue": "ניהול לקוחות מתקדם",
+                "name": "name"
+              },
+              "id": {
+                "type": "String",
+                "stringValue": "5bbefe3d-74b8-11ea-af1a-0050560134d5",
+                "name": "id"
+              }
+            }
+          }
+        ],
+        "name": "items"
+      },
+      "transaction": {
+        "amount": "348.66",
+        "responseReason": {
+          "type": "String",
+          "stringValue": "External transaction recorded",
+          "name": "responseReason"
+        },
+        "transactedDatetime": {
+          "type": "String",
+          "stringValue": "2021-01-26T07:11:11+00:00",
+          "name": "transactedDatetime"
+        },
+        "response": "approved",
+        "memo": {
+          "type": "String",
+          "stringValue": "",
+          "name": "memo"
+        },
+        "paymentMethod": {
+          "type": "Map",
+          "mapValues": {
+            "lastName": {
+              "type": "String",
+              "stringValue": "בכר",
+              "name": "lastName"
+            },
+            "country": {
+              "type": "String",
+              "stringValue": "",
+              "name": "country"
+            },
+            "method": {
+              "type": "String",
+              "stringValue": "external",
+              "name": "method"
+            },
+            "city": {
+              "type": "String",
+              "stringValue": "",
+              "name": "city"
+            },
+            "gatewayToken": "LOCAL_CARD",
+            "type": {
+              "type": "String",
+              "stringValue": "External",
+              "name": "type"
+            },
+            "firstName": {
+              "type": "String",
+              "stringValue": "חיים",
+              "name": "firstName"
+            },
+            "external": {
+              "type": "Map",
+              "mapValues": {
+                "externalDescription": {
+                  "type": "String",
+                  "stringValue": "",
+                  "name": "externalDescription"
+                }
+              },
+              "name": "external"
+            },
+            "street": {
+              "type": "String",
+              "stringValue": "",
+              "name": "street"
+            },
+            "company": {
+              "type": "String",
+              "stringValue": "",
+              "name": "company"
+            },
+            "postCode": {
+              "type": "String",
+              "stringValue": "",
+              "name": "postCode"
+            },
+            "createdDatetime": {
+              "type": "String",
+              "stringValue": "2020-08-26T06:39:00+00:00",
+              "name": "createdDatetime"
+            },
+            "id": {
+              "type": "String",
+              "stringValue": "11eae766-d2fd-398b-bed7-0eff6b8b8fd3",
+              "name": "id"
+            },
+            "state": {
+              "type": "String",
+              "stringValue": "",
+              "name": "state"
+            },
+            "gatewayTokenAux": {
+              "type": "String",
+              "stringValue": "",
+              "name": "gatewayTokenAux"
+            },
+            "email": {
+              "type": "String",
+              "stringValue": "",
+              "name": "email"
+            },
+            "expirationDate": {
+              "type": "String",
+              "stringValue": "",
+              "name": "expirationDate"
+            }
+          },
+          "name": "paymentMethod"
+        },
+        "id": {
+          "type": "String",
+          "stringValue": "ab264067-5fa5-11eb-bed7-0eff6b8b8fd3",
+          "name": "id"
+        },
+        "gatewayToken": "LOCAL_CARD",
+        "taxAmount": {
+          "type": "String",
+          "stringValue": "50.66",
+          "name": "taxAmount"
+        },
+        "parentId": {
+          "type": "String",
+          "stringValue": "",
+          "name": "parentId"
+        }
+      }
+    },
+    "cancelReason": {
+      "type": "String",
+      "stringValue": "",
+      "name": "cancelReason"
+    },
+    "plan": {
+      "type": "Map",
+      "mapValues": {
+        "setupChargeCode": {
+          "type": "String",
+          "stringValue": "",
+          "name": "setupChargeCode"
+        },
+        "code": {
+          "type": "String",
+          "stringValue": "300",
+          "name": "code"
+        },
+        "billingFrequencyQuantity": {
+          "type": "String",
+          "stringValue": "1",
+          "name": "billingFrequencyQuantity"
+        },
+        "billingFrequencyUnit": {
+          "type": "String",
+          "stringValue": "months",
+          "name": "billingFrequencyUnit"
+        },
+        "description": {
+          "type": "String",
+          "stringValue": "4 קמפיינים בחודש, הודעות טקסט ללא הגבלה, אימייל ותוכן פייסבוק ללא הגבלה",
+          "name": "description"
+        },
+        "isActive": {
+          "type": "String",
+          "stringValue": "1",
+          "name": "isActive"
+        },
+        "recurringChargeAmount": {
+          "type": "String",
+          "stringValue": "99.00",
+          "name": "recurringChargeAmount"
+        },
+        "setupChargeAmount": {
+          "type": "String",
+          "stringValue": "0.00",
+          "name": "setupChargeAmount"
+        },
+        "isFree": {
+          "type": "Boolean",
+          "booleanValue": false,
+          "name": "isFree"
+        },
+        "recurringChargeCode": {
+          "type": "String",
+          "stringValue": "300_RECURRING",
+          "name": "recurringChargeCode"
+        },
+        "name": {
+          "type": "String",
+          "stringValue": "עסק מתחיל   (code 300)",
+          "name": "name"
+        },
+        "createdDatetime": {
+          "type": "String",
+          "stringValue": "2016-04-18T16:08:07+00:00",
+          "name": "createdDatetime"
+        },
+        "id": {
+          "type": "String",
+          "stringValue": "bd0112c1-057f-11e6-8d5b-005056a548e6",
+          "name": "id"
+        },
+        "items": {
+          "type": "List",
+          "listValues": [
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "200",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "כמות הודעות טקסט מעבר לחבילה",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "18458a5e-bfc8-11e3-8d40-bc764e057bd1",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "400",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "show grace",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "544a946f-83c1-11e4-bc8a-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "1",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "300",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "קמפיינים",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "92994429-f064-11e3-9d06-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "15",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "100",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "לקוחות",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "add9191c-bfc7-11e3-8d40-bc764e057bd1",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "150",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.50",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "250",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "text messages grace",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "da341e06-2466-11e4-a014-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "350",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "campaigns grace",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "e41bbb89-2466-11e4-a014-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "7",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "150",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "customers grace",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "ef8725d3-2466-11e4-a014-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "500",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "קמפיינים לפייסבוק",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "6eab8e5a-c1df-11e4-8afd-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "550",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "FB campaigns grace",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "6ec21f85-c1df-11e4-8afd-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "410",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "allow premium content",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "78d39400-d658-11e4-8afd-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "420",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "enable advanced options",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "cf4c1ff0-ec4a-11e4-b055-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "220",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "text messages package limit",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "19f72046-0372-11e5-b055-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "210",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "text messages package usage",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "22d4c258-0372-11e5-b055-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "600",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "referral shares",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "ed522c13-c4d4-11e5-ae4b-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "310",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "campaigns package usage",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "0b8ef705-c4d5-11e5-ae4b-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "320",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "campaigns package limit",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "15e61594-c4d5-11e5-ae4b-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "710",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "email package usage",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "49b3a938-057c-11e6-8d5b-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "720",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "email package limit",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "5588ec28-057c-11e6-8d5b-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "700",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "כמות הודעות אמייל מעבר לחבילה",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "6c9ddd3f-05fd-11e6-8d5b-005056a548e6",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1000000",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "1000",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "תפעול מערכת",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "3711e782-c593-11e7-be8b-0050560134d5",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "1.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "1100",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "ליווי אישי על ידי נציג",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "3c3c6cad-c593-11e7-be8b-0050560134d5",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "1.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "2000",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "חשבון מנהל מותג",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "ebbba60c-c59b-11e7-be8b-0050560134d5",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "1200",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "דף עסקי",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "40614a81-4336-11ea-9cad-0050560134d5",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "1.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "10",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "yearly plan",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "990ba524-74b6-11ea-af1a-0050560134d5",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "1",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "110",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "crm pro enable",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "b4ab5592-74b7-11ea-af1a-0050560134d5",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "10",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "0.00",
+                  "name": "overageAmount"
+                }
+              }
+            },
+            {
+              "type": "Map",
+              "mapValues": {
+                "isPeriodic": {
+                  "type": "String",
+                  "stringValue": "0",
+                  "name": "isPeriodic"
+                },
+                "code": {
+                  "type": "String",
+                  "stringValue": "1300",
+                  "name": "code"
+                },
+                "name": {
+                  "type": "String",
+                  "stringValue": "ניהול לקוחות מתקדם",
+                  "name": "name"
+                },
+                "id": {
+                  "type": "String",
+                  "stringValue": "5bbefe3d-74b8-11ea-af1a-0050560134d5",
+                  "name": "id"
+                },
+                "quantityIncluded": {
+                  "type": "Number",
+                  "numberValue": "0",
+                  "name": "quantityIncluded"
+                },
+                "overageAmount": {
+                  "type": "String",
+                  "stringValue": "1.00",
+                  "name": "overageAmount"
+                }
+              }
+            }
+          ],
+          "name": "items"
+        }
+      },
+      "name": "plan"
+    }
+  },
+  "activityType": {
+    "type": "String",
+    "stringValue": "transaction",
+    "name": "activityType"
+  },
+  "customer": {
+    "lastName": {
+      "type": "String",
+      "stringValue": "בכר",
+      "name": "lastName"
+    },
+    "referer": {
+      "type": "String",
+      "stringValue": "",
+      "name": "referer"
+    },
+    "code": {
+      "type": "String",
+      "stringValue": "13182",
+      "name": "code"
+    },
+    "notes": {
+      "type": "String",
+      "stringValue": "",
+      "name": "notes"
+    },
+    "isTaxExempt": {
+      "type": "String",
+      "stringValue": "0",
+      "name": "isTaxExempt"
+    },
+    "taxNumber": {
+      "type": "String",
+      "stringValue": "",
+      "name": "taxNumber"
+    },
+    "gatewayToken": {
+      "type": "String",
+      "stringValue": "",
+      "name": "gatewayToken"
+    },
+    "campaignMedium": {
+      "type": "String",
+      "stringValue": "",
+      "name": "campaignMedium"
+    },
+    "campaignContent": {
+      "type": "String",
+      "stringValue": "",
+      "name": "campaignContent"
+    },
+    "firstName": {
+      "type": "String",
+      "stringValue": "חיים",
+      "name": "firstName"
+    },
+    "campaignTerm": {
+      "type": "String",
+      "stringValue": "",
+      "name": "campaignTerm"
+    },
+    "campaignSource": {
+      "type": "String",
+      "stringValue": "",
+      "name": "campaignSource"
+    },
+    "firstContactDatetime": {
+      "type": "String",
+      "stringValue": "",
+      "name": "firstContactDatetime"
+    },
+    "company": "קבוצת ישראל",
+    "createdDatetime": {
+      "type": "String",
+      "stringValue": "2020-08-16T05:50:01+00:00",
+      "name": "createdDatetime"
+    },
+    "id": {
+      "type": "String",
+      "stringValue": "5396cf2f-df84-11ea-bed7-0eff6b8b8fd3",
+      "name": "id"
+    },
+    "campaignName": {
+      "type": "String",
+      "stringValue": "",
+      "name": "campaignName"
+    },
+    "key": {
+      "type": "String",
+      "stringValue": "d502992955",
+      "name": "key"
+    },
+    "email": {
+      "type": "String",
+      "stringValue": "haim@israelgroup.co.il",
+      "name": "email"
+    }
+  }
+}
