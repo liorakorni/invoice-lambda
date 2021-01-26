@@ -72,29 +72,31 @@ app.post('/invoices', function (req, res) {
 
     if(!reqbody || !reqbody.subscription || !reqbody.subscription.invoice )
     {
-        console.log('empty transaction ');
-        res.status(404).json({ msg: 'empty transaction ', body: reqbody });
-
+        console.log('empty transaction ',reqbody);
+        res.status(406).json({ msg: 'empty transaction ', body: reqbody });
+        return;
     }
 
     if(reqbody && reqbody.subscription && reqbody.subscription.invoice && parseInt(reqbody.subscription.invoice.transaction.amount) == 0)
     {
-        console.log('empty transaction amount');
-        res.status(406).json({ msg: 'empty transaction amount', body: reqbody });
+        console.log('zero transaction amount');
+        res.status(200).json({ msg: 'zero transaction amount', body: reqbody });
+        return;
     }
 
     const id = Math.random().toString(36).substring(5);
     const invoiceData= cgDataToEZC(reqbody);
-    console.log('reqbody ', reqbody) // Print the shortened url.
+
+    console.log('reqbody ', reqbody);
+    console.log('invData', invoiceData);
 
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
 
         if (!error && response.statusCode == 200) {
 
-            console.log('body', body) // Print the shortened url.
-            const docData = body;
+            console.log('resdata', body);
 
-            console.log('docData ', docData) // Print the shortened url.
+            const docData = body;
 
             const params = {
 

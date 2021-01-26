@@ -31,12 +31,8 @@ function cgDataToEZC(jsonData) {
             }
 
             if (item.type === 'item') {
-                if(item.code !== '100'){
-                    item.eachAmount = item.quantity;
-                    item.quantity = 1;
-                }
                 running_total = running_total + parseFloat(item.eachAmount) * parseInt(item.quantity);
-                items.push({details: item.description, amount:item.eachAmount,price: item.quantity});
+                items.push({details: item.description, amount:item.quantity,price: item.eachAmount});
                 continue;
             }
 
@@ -54,7 +50,7 @@ function cgDataToEZC(jsonData) {
         }
 
 
-        var inv_type = extractInvoiceType(invoice,invoice_types);
+        var inv_type = extractInvoiceType(invoice,invoice,invoice_types);
 
         var data = {
             api_key: api_key,
@@ -62,7 +58,7 @@ function cgDataToEZC(jsonData) {
             developer_email: developer_email,
             developer_phone: developer_phone,
             type: inv_type,
-            description: extractInvoiceDescription(recurring,inv_type),
+            description: extractInvoiceDescription(inv_type,invoice_types,recurring),
             customer_name: jsonData.customer.company,
             item:items,
             price_total: invoice.transaction.amount,
