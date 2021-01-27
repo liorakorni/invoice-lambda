@@ -29,7 +29,7 @@ function cgDataToEZC(jsonData) {
 
             if (item.type === 'item') {
                 running_total = running_total + parseFloat(item.eachAmount) * parseInt(item.quantity);
-                items.push({details: item.description, amount:item.quantity,price: item.eachAmount});
+                items.push({details: item.description, amount:item.eachAmount,price:item.quantity});
                 continue;
             }
 
