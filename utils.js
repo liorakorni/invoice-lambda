@@ -1,11 +1,8 @@
 
-
-
-const api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345'
-const api_email = 'demo@ezcount.co.il'
-const developer_email = 'ran@broadcust.com'
+const api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345';
+const api_email = 'demo@ezcount.co.il';
+const developer_email = 'ran@broadcust.com';
 const developer_phone = '0528549758';
-
 
 
 function cgDataToEZC(jsonData) {
@@ -50,7 +47,7 @@ function cgDataToEZC(jsonData) {
         }
 
 
-        var inv_type = extractInvoiceType(invoice,invoice,invoice_types);
+        var inv_type = extractInvoiceType(invoice,invoice_types);
 
         var data = {
             api_key: api_key,
