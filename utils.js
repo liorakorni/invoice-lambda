@@ -9,7 +9,7 @@ function cgDataToEZC(jsonData) {
 
     try {
         const pay_types = {WIRE_TRANS:4,CREDIT_CARD:3};
-        const invoice_types = {voided:330,approved:320};
+        const invoice_types = {voided:330,approved:320,declined:-100};
 
         var invoice = jsonData.subscription.invoice;
         var charges = invoice.charges;

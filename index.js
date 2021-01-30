@@ -20,8 +20,8 @@ app.use(bodyParser.json({ strict: false }));
 
 // register to demo.ezcount.co.il to get your own test keys
 var api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345'
-var api_email = 'demo@ezcount.co.il'
-var developer_email = 'ran@broadcust.com'
+var api_email = 'demo@ezcount.co.il';
+var developer_email = 'ran@broadcust.com';
 var developer_phone = '0528549758';
 
 
@@ -86,6 +86,11 @@ app.post('/invoices', function (req, res) {
 
     const id = Math.random().toString(36).substring(5);
     const invoiceData= cgDataToEZC(reqbody);
+
+    if (invoiceData && invoiceData.type < 0){
+        console.log('declined transaction reqbody', reqbody);
+        return;
+    }
 
     console.log('reqbody ', reqbody);
     console.log('invData', invoiceData);
