@@ -55,7 +55,7 @@ function cgDataToEZC(jsonData) {
             developer_email: developer_email,
             developer_phone: developer_phone,
             type: inv_type,
-            description: extractInvoiceDescription(inv_type,invoice_types,recurring),
+            description: extractInvoiceDescription(inv_type,invoice_types,invoice,recurring),
             customer_name: jsonData.customer.company,
             item:items,
             price_total: invoice.transaction.amount,
