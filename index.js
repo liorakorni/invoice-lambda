@@ -12,27 +12,73 @@ const USERS_TABLE = process.env.USERS_TABLE;
 const LOG_TABLE = process.env.LOG_TABLE;
 
 
-let dynamoDb;
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const region = "us-east-1";
+const secretName = "ezcount_api_key";
+let   secret;
+let   decodedBinarySecret;
 
-dynamoDb = new AWS.DynamoDB.DocumentClient();
+// Create a Secrets Manager client
+const client = new AWS.SecretsManager({
+    region: region
+});
+
+client.getSecretValue({SecretId: secretName}, function(err, data) {
+    if (err) {
+        if (err.code === 'DecryptionFailureException')
+        // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
+        // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+        else if (err.code === 'InternalServiceErrorException')
+        // An error occurred on the server side.
+        // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+        else if (err.code === 'InvalidParameterException')
+        // You provided an invalid value for a parameter.
+        // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+        else if (err.code === 'InvalidRequestException')
+        // You provided a parameter value that is not valid for the current state of the resource.
+        // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+        else if (err.code === 'ResourceNotFoundException')
+        // We can't find the resource that you asked for.
+        // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+    }
+    else {
+        // Decrypts secret using the associated KMS CMK.
+        // Depending on whether the secret is a string or binary, one of these fields will be populated.
+        if ('SecretString' in data) {
+            secret = data.SecretString;
+        } else {
+            let buff = new Buffer(data.SecretBinary, 'base64');
+            decodedBinarySecret = buff.toString('ascii');
+        }
+    }
+
+    // Your code goes here.
+});
+
+
 
 app.use(bodyParser.json({ strict: false }));
 
 // register to demo.ezcount.co.il to get your own test keys
-var api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345'
-var api_email = 'demo@ezcount.co.il';
-var developer_email = 'ran@broadcust.com';
-var developer_phone = '0528549758';
+const ezcount_api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345'
+const api_email = 'demo@ezcount.co.il';
+const developer_email = 'ran@broadcust.com';
+const developer_phone = '0528549758';
 
 
 // before deploying to production, please contact support and ask for your own unique dev_master_ke
-var dev_master_key = '4146fe70-01bd-11e7-965d-04011c5ad201';
+const dev_master_key = '4146fe70-01bd-11e7-965d-04011c5ad201';
 
-var url = 'https://demo.ezcount.co.il/api/createDoc';
+const url = 'https://demo.ezcount.co.il/api/createDoc';
 
-var data = {
+const data = {
     // CUSTOMER credentials
-    api_key: api_key,
+    api_key: ezcount_api_key,
     api_email: api_email,
     // developer data
     developer_email: developer_email,
@@ -92,14 +138,15 @@ app.post('/invoices', function (req, res) {
         return;
     }
 
-    console.log('reqbody ', reqbody);
-    console.log('invData', invoiceData);
+  //  console.log('reqbody ', reqbody);
+  //  console.log('invData', invoiceData);
+    console.log('req headers: ', req.headers);
 
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
 
         if (!error && response.statusCode == 200) {
 
-            console.log('resdata', body);
+          //  console.log('resdata', body);
 
             const docData = body;
 
