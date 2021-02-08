@@ -119,6 +119,7 @@ app.post('/invoices', function (req, res) {
     if(!reqbody || !reqbody.subscription || !reqbody.subscription.invoice )
     {
         console.log('empty transaction ',reqbody);
+        console.log('empty req headers: ', req.headers);
         res.status(406).json({ msg: 'empty transaction ', body: reqbody });
         return;
     }
