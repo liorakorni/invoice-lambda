@@ -1,8 +1,8 @@
 service: invoice-application2
 
 custom:
-  tableName: 'invoices-doc-table-${self:provider.stage}'
-  logTableName: 'invoice-pdf-table-${self:provider.stage}'
+  tableName: 'invoices-users-table-${self:provider.stage}'
+  invoiceTypeTableName: 'invoice-types-table-${self:provider.stage}'
   dynamodb:
     start:
       migrate: true
@@ -18,7 +18,7 @@ provider:
   region: us-east-1
   environment:
     USERS_TABLE: ${self:custom.tableName}
-    LOG_TABLE: ${self:custom.logTableName}
+    TYPE_TABLE: ${self:custom.invoiceTypeTableName}
     IS_OFFLINE: true
   iamRoleStatements:
     - Effect: Allow
@@ -31,7 +31,7 @@ provider:
       - dynamodb:DeleteItem
       Resource:
       - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
-      - { "Fn::GetAtt": ["LogDynamoDBTable", "Arn" ] }
+      - { "Fn::GetAtt": ["InvoiceTypeDynamoDBTable", "Arn" ] }
 
 functions:
   app:
@@ -58,29 +58,33 @@ resources:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
-        -
-          AttributeName: id
+        - AttributeName: user_id
+          AttributeType: S
+        - AttributeName: ec_number
           AttributeType: S
         KeySchema:
-        -
-          AttributeName: id
+        - AttributeName: user_id
           KeyType: HASH
+        - AttributeName: ec_number
+          KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:custom.tableName}
-    LogDynamoDBTable:
+    InvoiceTypeDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
-        -
-          AttributeName: id
+        - AttributeName: type
+          AttributeType: N
+        - AttributeName: ec_number
           AttributeType: S
         KeySchema:
-        -
-          AttributeName: id
+        - AttributeName: type
           KeyType: HASH
+        - AttributeName: ec_number
+          KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:custom.logTableName}
+        TableName: ${self:custom.invoiceTypeTableName}

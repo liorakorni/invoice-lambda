@@ -9,7 +9,7 @@ const request = require('request');
 const cgDataToEZC = require('./utils');
 
 const USERS_TABLE = process.env.USERS_TABLE;
-const LOG_TABLE = process.env.LOG_TABLE;
+const TYPE_TABLE = process.env.TYPE_TABLE;
 
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
@@ -139,38 +139,58 @@ app.post('/invoices', function (req, res) {
         return;
     }
 
-  //  console.log('reqbody ', reqbody);
-  //  console.log('invData', invoiceData);
-    console.log('req headers: ', req.headers);
 
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
 
         if (!error && response.statusCode == 200) {
 
-          //  console.log('resdata', body);
-
             const docData = body;
+            const activityDate = reqbody && reqbody.activityDatetime;
+            const unixTimeStampActivityDate = activityDate && new Date(activityDate.split(' ').join('T')).getTime();
+            const ecNumber  = docData && docData.doc_number;
+            const finalEcNumber = unixTimeStampActivityDate + '-' + ecNumber;
+
+            console.log('activityDate is ', activityDate, ' unixTimeStampActivityDate ', unixTimeStampActivityDate);
+            console.log('finalEcNumber is ', finalEcNumber);
+
 
             const params = {
 
                 TableName: USERS_TABLE,
                 Item: {
                     id: id,
-                    customerCode: reqbody && reqbody.customer && reqbody.customer.code,
-                    transaction: reqbody,
-                    activityDataTime: reqbody && reqbody.activityDatetime,
-                    invoice: invoiceData,
+                    user_id: reqbody && reqbody.customer && reqbody.customer.code,
+                    type: invoiceData && invoiceData.type,
+                    cg_number: reqbody && reqbody.subscription && reqbody.subscription.invoice  && reqbody.subscription.invoice.invoiceNumber,
+                    ec_number: finalEcNumber,
+                    trans_id: reqbody && reqbody.subscription && reqbody.subscription.invoice  && reqbody.subscription.invoice.transaction && reqbody.subscription.invoice.transaction.id,
                     doc: docData,
+                    transaction: reqbody,
+                    activityDateTime: activityDate,
+                    unixTimeStampActivityDateTime: unixTimeStampActivityDate,
+                    invoice: invoiceData,
                 },
             };
+
+            console.log('params 1', params);
 
             dynamoDb.put(params, (error) => {
                 if (error) {
                     console.log(error);
-                    res.status(400).json({ error: 'Could not create invoice' });
+                    res.status(400).json({ error: 'Could not insert invoice in users table' });
                 }
-                res.json({ id, reqbody });
             });
+
+            params.TableName = TYPE_TABLE
+
+            dynamoDb.put(params, (error) => {
+                if (error) {
+                    console.log(error);
+                    res.status(400).json({ error: 'Could not insert invoice in type table' });
+                }
+            });
+            res.json({ id, reqbody });
+
 
         } else {
             console.error("Failed");
@@ -179,63 +199,42 @@ app.post('/invoices', function (req, res) {
     });
 })
 
-app.post('/invoices-pdf', function (req, res) {
-
-    const id = Math.random().toString(36).substring(5);
-
-    request.post(url, { form: data, json: true }, function(error, response, body) {
-
-        if (!error && response.statusCode == 200) {
-
-            console.log(body) // Print the shortened url.
-            const params = {
-                TableName: LOG_TABLE,
-                Item: {
-                    id: id,
-                    logData: body,
-                },
-            };
-
-            dynamoDb.put(params, (error) => {
-                if (error) {
-                    console.log(error);
-                    res.status(400).json({ error: 'Could not create invoice' });
-                }
-                res.json({ id, body });
-            });
-        } else {
-            console.error("Failed");
-            console.error(error, response);
-        }
-    });
-
-})
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
 })
 
+
 // Get User endpoint
 app.get('/invoices/:userId', function (req, res) {
     const params = {
         TableName: USERS_TABLE,
-        Key: {
-            userId: req.params.userId,
-        },
+        KeyConditionExpression: "user_id = :id and ec_number between :startDate and :endDate",
+        ExpressionAttributeValues: {
+            ":id": req.params.userId,
+            ":startDate": "33981",
+            ":endDate": "33984"
+        }
     }
 
-    dynamoDb.get(params, (error, result) => {
-        if (error) {
-            console.log(error);
+    dynamoDb.query(params, function(err, data) {
+        if (err) {
+            console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
             res.status(400).json({ error: 'Could not get user' });
-        }
-        if (result.Item) {
-            const {userId, name} = result.Item;
-            res.json({ userId, name });
         } else {
-            res.status(404).json({ error: "User not found" });
+            console.log("Query succeeded.");
+            if (data.Items) {
+                data.Items.forEach(function (item) {
+                    console.log(" - ", item.user_id + ": " + item.ec_number);
+                });
+                res.status(200).json(data.Items);
+
+            } else {
+                res.status(404).json({ error: "User not found" });
+            }
         }
     });
+
 })
 
 
