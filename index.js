@@ -150,8 +150,6 @@ app.post('/invoices', function (req, res) {
             const ecNumber  = docData && docData.doc_number;
             const finalEcNumber = unixTimeStampActivityDate + '-' + ecNumber;
 
-            console.log('activityDate is ', activityDate, ' unixTimeStampActivityDate ', unixTimeStampActivityDate);
-            console.log('finalEcNumber is ', finalEcNumber);
 
 
             const params = {
@@ -160,19 +158,17 @@ app.post('/invoices', function (req, res) {
                 Item: {
                     id: id,
                     user_id: reqbody && reqbody.customer && reqbody.customer.code,
-                    type: invoiceData && invoiceData.type,
+                    invoice_type: invoiceData && invoiceData.type,
                     cg_number: reqbody && reqbody.subscription && reqbody.subscription.invoice  && reqbody.subscription.invoice.invoiceNumber,
                     ec_number: finalEcNumber,
                     trans_id: reqbody && reqbody.subscription && reqbody.subscription.invoice  && reqbody.subscription.invoice.transaction && reqbody.subscription.invoice.transaction.id,
                     doc: docData,
                     transaction: reqbody,
-                    activityDateTime: activityDate,
-                    unixTimeStampActivityDateTime: unixTimeStampActivityDate,
+                    activity_time: activityDate,
+                    time_stamp_activity_time: unixTimeStampActivityDate,
                     invoice: invoiceData,
                 },
             };
-
-            console.log('params 1', params);
 
             dynamoDb.put(params, (error) => {
                 if (error) {
@@ -206,18 +202,26 @@ app.get('/', function (req, res) {
 
 
 // Get User endpoint
-app.get('/invoices/:userId', function (req, res) {
+ app.get('/invoices/', function (req, res) {
+
+    const now = Date.now().toString();
+     console.log("req.query: ", req.query);
+
     const params = {
         TableName: USERS_TABLE,
-        KeyConditionExpression: "user_id = :id and ec_number between :startDate and :endDate",
+        KeyConditionExpression: "user_id = :id and ec_number between :start_date and :end_date",
         ExpressionAttributeValues: {
-            ":id": req.params.userId,
-            ":startDate": "33981",
-            ":endDate": "33984"
-        }
+            ":id": req.query.userId,
+            ":start_date": req.query.startDate || '0',
+            ":end_date": req.query.endDate || now,
+        },
+        ProjectionExpression: "user_id, invoice_type, cg_number, ec_number, trans_id, doc, activity_time, time_stamp_activity_time, invoice",
     }
 
-    dynamoDb.query(params, function(err, data) {
+
+     console.log("req.params 2 ", params);
+
+     dynamoDb.query(params, function(err, data) {
         if (err) {
             console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
             res.status(400).json({ error: 'Could not get user' });
@@ -237,5 +241,44 @@ app.get('/invoices/:userId', function (req, res) {
 
 })
 
+
+// Get Type endpoint
+app.get('/invoices-type/', function (req, res) {
+
+    const now = Date.now().toString();
+    console.log("req.query: ", req.query);
+
+    const params = {
+        TableName: TYPE_TABLE,
+        KeyConditionExpression: "invoice_type = :req_invoice_type and ec_number between :start_date and :end_date",
+        ExpressionAttributeValues: {
+            ":req_invoice_type": req.query.invoice_type,
+            ":start_date": req.query.startDate || '0',
+            ":end_date": req.query.endDate || now,
+        },
+        ProjectionExpression: "user_id, invoice_type, cg_number, ec_number, trans_id, doc, activity_time, time_stamp_activity_time, invoice",
+    }
+
+    console.log("req.params 2 ", params);
+
+    dynamoDb.query(params, function(err, data) {
+        if (err) {
+            console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+            res.status(400).json({ error: 'Could not get type' });
+        } else {
+            console.log("Query succeeded.");
+            if (data.Items) {
+                data.Items.forEach(function (item) {
+                    console.log(" - ", item.invoice_type + ": " + item.ec_number);
+                });
+                res.status(200).json(data.Items);
+
+            } else {
+                res.status(404).json({ error: "type not found" });
+            }
+        }
+    });
+
+})
 
 module.exports.handler = serverless(app);

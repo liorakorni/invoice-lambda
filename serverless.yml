@@ -2,7 +2,7 @@ service: invoice-application2
 
 custom:
   tableName: 'invoices-users-table-${self:provider.stage}'
-  invoiceTypeTableName: 'invoice-types-table-${self:provider.stage}'
+  invoiceTypeTableName: 'invoice-type-table-${self:provider.stage}'
   dynamodb:
     start:
       migrate: true
@@ -42,7 +42,27 @@ functions:
   getUser:
     handler: index.handler
     events:
-    - http: 'GET /invoices/{proxy+}'
+    - http:
+        path: /invoices
+        method: get
+        request:
+          parameters:
+            querystrings:
+              userId: true
+              startDate: false
+              endDate: false
+  getType:
+    handler: index.handler
+    events:
+    - http:
+        path: /invoices-type
+        method: get
+        request:
+          parameters:
+            querystrings:
+              invoice_type: true
+              startDate: false
+              endDate: false
   createInvoice:
     handler: index.handler
     events:
@@ -75,12 +95,12 @@ resources:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
-        - AttributeName: type
+        - AttributeName: invoice_type
           AttributeType: N
         - AttributeName: ec_number
           AttributeType: S
         KeySchema:
-        - AttributeName: type
+        - AttributeName: invoice_type
           KeyType: HASH
         - AttributeName: ec_number
           KeyType: RANGE
