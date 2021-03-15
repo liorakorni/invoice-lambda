@@ -60,7 +60,7 @@ functions:
         request:
           parameters:
             querystrings:
-              invoice_type: true
+              invoiceType: true
               startDate: false
               endDate: false
   createInvoice:

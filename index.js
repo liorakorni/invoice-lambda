@@ -252,7 +252,7 @@ app.get('/invoices-type/', function (req, res) {
         TableName: TYPE_TABLE,
         KeyConditionExpression: "invoice_type = :req_invoice_type and ec_number between :start_date and :end_date",
         ExpressionAttributeValues: {
-            ":req_invoice_type": req.query.invoice_type,
+            ":req_invoice_type": parseInt(req.query.invoiceType),
             ":start_date": req.query.startDate || '0',
             ":end_date": req.query.endDate || now,
         },
