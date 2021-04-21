@@ -99,5 +99,24 @@ function extractPaymentType(invoice,pay_types) {
     return (gwToken.indexOf('WIRE') >= 0)?pay_types.WIRE_TRANS:pay_types.CREDIT_CARD;
 }
 
+function validateSSOToken(extToken,uid,role){
+
+    try{
+
+        var timestamp  = moment().format("yyyy-MM-dd");
+        var strtosign = "{0}_{1}_{2}_{3}".replace('{0}',bc_sso_key).replace('{1}',uid).replace('{2}',role).replace('{3}',timestamp );
+        var intToken = md5(strtosign);
+
+        console.log('internal token timestamp',timestamp);
+
+        return intToken == extToken;
+
+    }catch (e) {
+
+        console.log('token match failed',e);
+        return false;
+    }
+
+}
 
 module.exports = cgDataToEZC;

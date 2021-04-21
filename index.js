@@ -2,6 +2,7 @@ const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const express = require('express');
 const moment = require('moment');
+const md5 = require('md5');
 
 const app = express();
 const AWS = require('aws-sdk');
@@ -10,7 +11,6 @@ const cgDataToEZC = require('./utils');
 
 const USERS_TABLE = process.env.USERS_TABLE;
 const TYPE_TABLE = process.env.TYPE_TABLE;
-
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const region = "us-east-1";
@@ -139,7 +139,6 @@ app.post('/invoices', function (req, res) {
         return;
     }
 
-
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
 
         if (!error && response.statusCode == 200) {
@@ -193,19 +192,30 @@ app.post('/invoices', function (req, res) {
             console.error(error, response);
         }
     });
-})
 
+})
 
 app.get('/', function (req, res) {
-    res.send('Hello World!')
-})
 
+    var uid = req.query.uid || null;
+    var token = req.query.token || null;
+    var role = req.query.role || null;
+,
+    if(uid != null){
+        var ssoresult = validateSSOToken(extToken,uid,role);
+        res.send('SSO Validation :' + ssoresult );
+    }
+
+    res.send('Hello World!');
+
+})
 
 // Get User endpoint
  app.get('/invoices/', function (req, res) {
 
     const now = Date.now().toString();
-     console.log("req.query: ", req.query);
+    console.log("req.query: ", req.query);
+
 
     const params = {
         TableName: USERS_TABLE,
@@ -217,7 +227,6 @@ app.get('/', function (req, res) {
         },
         ProjectionExpression: "user_id, invoice_type, cg_number, ec_number, trans_id, doc, activity_time, time_stamp_activity_time, invoice",
     }
-
 
      console.log("req.params 2 ", params);
 
@@ -240,7 +249,6 @@ app.get('/', function (req, res) {
     });
 
 })
-
 
 // Get Type endpoint
 app.get('/invoices-type/', function (req, res) {
