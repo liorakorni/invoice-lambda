@@ -239,6 +239,10 @@ app.get('/', function (req, res) {
                 data.Items.forEach(function (item) {
                     console.log(" - ", item.user_id + ": " + item.ec_number);
                 });
+                res.set({
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': true,
+                });
                 res.status(200).json(data.Items);
 
             } else {
@@ -277,6 +281,10 @@ app.get('/invoices-type/', function (req, res) {
             if (data.Items) {
                 data.Items.forEach(function (item) {
                     console.log(" - ", item.invoice_type + ": " + item.ec_number);
+                });
+                res.set({
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': true,
                 });
                 res.status(200).json(data.Items);
 
