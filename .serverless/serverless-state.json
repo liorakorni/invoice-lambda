@@ -125,12 +125,6 @@
               "LogGroupName": "/aws/lambda/invoice-application2-dev-createInvoice"
             }
           },
-          "CreateInvoicePdfLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/invoice-application2-dev-createInvoicePdf"
-            }
-          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -218,7 +212,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1615801890037-2021-03-15T09:51:30.037Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1618774531618-2021-04-18T19:35:31.618Z/invoice-application2.zip"
               },
               "FunctionName": "invoice-application2-dev-app",
               "Handler": "index.handler",
@@ -243,14 +237,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionS5QdiPQVhi3Y8P0BYyQMMZEfvGaJpkMrromZTa8k": {
+          "AppLambdaVersionUHQEcNRrm94uo9xdSoVrU9yAIPMzvyLu3PUtWz4FIN4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "DH/5PQ8ic7jIaNnU0gnEKKGZdCwXIyv2Bwh52VDaMPs="
+              "CodeSha256": "h6KILHYcjUaZYw6hbX5KQvPqpW3B+Q53+Bdr8p1EBms="
             }
           },
           "GetUserLambdaFunction": {
@@ -260,7 +254,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1615801890037-2021-03-15T09:51:30.037Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1618774531618-2021-04-18T19:35:31.618Z/invoice-application2.zip"
               },
               "FunctionName": "invoice-application2-dev-getUser",
               "Handler": "index.handler",
@@ -285,14 +279,14 @@
               "GetUserLogGroup"
             ]
           },
-          "GetUserLambdaVersionmbzPQQ0ceOCiSYBAu8wQmWvRLsxa199Ddvkfe5rB7NE": {
+          "GetUserLambdaVersionkgVBUEhH8MFCiQOMZMEjfSfgUDydwIbn4xftqpbvys": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUserLambdaFunction"
               },
-              "CodeSha256": "DH/5PQ8ic7jIaNnU0gnEKKGZdCwXIyv2Bwh52VDaMPs="
+              "CodeSha256": "h6KILHYcjUaZYw6hbX5KQvPqpW3B+Q53+Bdr8p1EBms="
             }
           },
           "GetTypeLambdaFunction": {
@@ -302,7 +296,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1615801890037-2021-03-15T09:51:30.037Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1618774531618-2021-04-18T19:35:31.618Z/invoice-application2.zip"
               },
               "FunctionName": "invoice-application2-dev-getType",
               "Handler": "index.handler",
@@ -327,14 +321,14 @@
               "GetTypeLogGroup"
             ]
           },
-          "GetTypeLambdaVersionr64r4iE2vGCbYBcMwkCMGHha5kb6IasEb40HBZ8e4": {
+          "GetTypeLambdaVersionJVy8l4mlS0DOggbQpxdJ0gtSKaqjtexInLa0EXVn9c": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetTypeLambdaFunction"
               },
-              "CodeSha256": "DH/5PQ8ic7jIaNnU0gnEKKGZdCwXIyv2Bwh52VDaMPs="
+              "CodeSha256": "h6KILHYcjUaZYw6hbX5KQvPqpW3B+Q53+Bdr8p1EBms="
             }
           },
           "CreateInvoiceLambdaFunction": {
@@ -344,7 +338,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1615801890037-2021-03-15T09:51:30.037Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1618774531618-2021-04-18T19:35:31.618Z/invoice-application2.zip"
               },
               "FunctionName": "invoice-application2-dev-createInvoice",
               "Handler": "index.handler",
@@ -369,56 +363,14 @@
               "CreateInvoiceLogGroup"
             ]
           },
-          "CreateInvoiceLambdaVersionMSL0LvBvgJKDpmAC2kWVGN8ko3nnQO7zc0iXb1O64": {
+          "CreateInvoiceLambdaVersionxNSIfzw2beBV0GU4XkmxQbk6eGONCN1usxUupU2doJs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateInvoiceLambdaFunction"
               },
-              "CodeSha256": "DH/5PQ8ic7jIaNnU0gnEKKGZdCwXIyv2Bwh52VDaMPs="
-            }
-          },
-          "CreateInvoicePdfLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/invoice-application2/dev/1615801890037-2021-03-15T09:51:30.037Z/invoice-application2.zip"
-              },
-              "FunctionName": "invoice-application2-dev-createInvoicePdf",
-              "Handler": "index.handler",
-              "MemorySize": 1024,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              },
-              "Runtime": "nodejs12.x",
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "USERS_TABLE": "invoices-users-table-dev",
-                  "TYPE_TABLE": "invoice-type-table-dev",
-                  "IS_OFFLINE": "true"
-                }
-              }
-            },
-            "DependsOn": [
-              "CreateInvoicePdfLogGroup"
-            ]
-          },
-          "CreateInvoicePdfLambdaVersionay8zaylszpha9xPT5KoRG3ZvV0NsVS7p9OnBZhEMY": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CreateInvoicePdfLambdaFunction"
-              },
-              "CodeSha256": "DH/5PQ8ic7jIaNnU0gnEKKGZdCwXIyv2Bwh52VDaMPs="
+              "CodeSha256": "h6KILHYcjUaZYw6hbX5KQvPqpW3B+Q53+Bdr8p1EBms="
             }
           },
           "ApiGatewayRestApi": {
@@ -478,16 +430,91 @@
               }
             }
           },
-          "ApiGatewayResourceInvoicesDashpdf": {
-            "Type": "AWS::ApiGateway::Resource",
+          "ApiGatewayMethodInvoicesOptions": {
+            "Type": "AWS::ApiGateway::Method",
             "Properties": {
-              "ParentId": {
-                "Fn::GetAtt": [
-                  "ApiGatewayRestApi",
-                  "RootResourceId"
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
                 ]
               },
-              "PathPart": "invoices-pdf",
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceInvoices"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodInvoicesDashtypeOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceInvoicesDashtype"
+              },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -719,50 +746,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayMethodInvoicesDashpdfPost": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "POST",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceInvoicesDashpdf"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": false,
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "CreateInvoicePdfLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            }
-          },
-          "ApiGatewayDeployment1615801883475": {
+          "ApiGatewayDeployment1618774522245": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -771,12 +755,13 @@
               "StageName": "dev"
             },
             "DependsOn": [
+              "ApiGatewayMethodInvoicesOptions",
+              "ApiGatewayMethodInvoicesDashtypeOptions",
               "ApiGatewayMethodAny",
               "ApiGatewayMethodProxyVarAny",
               "ApiGatewayMethodInvoicesGet",
               "ApiGatewayMethodInvoicesDashtypeGet",
-              "ApiGatewayMethodInvoicesPost",
-              "ApiGatewayMethodInvoicesDashpdfPost"
+              "ApiGatewayMethodInvoicesPost"
             ]
           },
           "AppLambdaPermissionApiGateway": {
@@ -927,43 +912,6 @@
               }
             }
           },
-          "CreateInvoicePdfLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "CreateInvoicePdfLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
-          },
           "UsersDynamoDBTable": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
@@ -1034,31 +982,25 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionS5QdiPQVhi3Y8P0BYyQMMZEfvGaJpkMrromZTa8k"
+              "Ref": "AppLambdaVersionUHQEcNRrm94uo9xdSoVrU9yAIPMzvyLu3PUtWz4FIN4"
             }
           },
           "GetUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserLambdaVersionmbzPQQ0ceOCiSYBAu8wQmWvRLsxa199Ddvkfe5rB7NE"
+              "Ref": "GetUserLambdaVersionkgVBUEhH8MFCiQOMZMEjfSfgUDydwIbn4xftqpbvys"
             }
           },
           "GetTypeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetTypeLambdaVersionr64r4iE2vGCbYBcMwkCMGHha5kb6IasEb40HBZ8e4"
+              "Ref": "GetTypeLambdaVersionJVy8l4mlS0DOggbQpxdJ0gtSKaqjtexInLa0EXVn9c"
             }
           },
           "CreateInvoiceLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateInvoiceLambdaVersionMSL0LvBvgJKDpmAC2kWVGN8ko3nnQO7zc0iXb1O64"
-            }
-          },
-          "CreateInvoicePdfLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CreateInvoicePdfLambdaVersionay8zaylszpha9xPT5KoRG3ZvV0NsVS7p9OnBZhEMY"
+              "Ref": "CreateInvoiceLambdaVersionxNSIfzw2beBV0GU4XkmxQbk6eGONCN1usxUupU2doJs"
             }
           },
           "ServiceEndpoint": {
@@ -1186,7 +1128,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionS5QdiPQVhi3Y8P0BYyQMMZEfvGaJpkMrromZTa8k"
+        "versionLogicalId": "AppLambdaVersionUHQEcNRrm94uo9xdSoVrU9yAIPMzvyLu3PUtWz4FIN4"
       },
       "getUser": {
         "handler": "index.handler",
@@ -1195,6 +1137,25 @@
             "http": {
               "path": "invoices",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "request": {
                 "parameters": {
                   "method.request.querystring.userId": true,
@@ -1212,7 +1173,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetUserLambdaVersionmbzPQQ0ceOCiSYBAu8wQmWvRLsxa199Ddvkfe5rB7NE"
+        "versionLogicalId": "GetUserLambdaVersionkgVBUEhH8MFCiQOMZMEjfSfgUDydwIbn4xftqpbvys"
       },
       "getType": {
         "handler": "index.handler",
@@ -1221,6 +1182,25 @@
             "http": {
               "path": "invoices-type",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "request": {
                 "parameters": {
                   "method.request.querystring.invoiceType": true,
@@ -1238,13 +1218,17 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetTypeLambdaVersionr64r4iE2vGCbYBcMwkCMGHha5kb6IasEb40HBZ8e4"
+        "versionLogicalId": "GetTypeLambdaVersionJVy8l4mlS0DOggbQpxdJ0gtSKaqjtexInLa0EXVn9c"
       },
       "createInvoice": {
         "handler": "index.handler",
         "events": [
           {
-            "http": "POST /invoices"
+            "http": {
+              "path": "invoices",
+              "method": "post",
+              "integration": "AWS_PROXY"
+            }
           }
         ],
         "name": "invoice-application2-dev-createInvoice",
@@ -1253,22 +1237,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CreateInvoiceLambdaVersionMSL0LvBvgJKDpmAC2kWVGN8ko3nnQO7zc0iXb1O64"
-      },
-      "createInvoicePdf": {
-        "handler": "index.handler",
-        "events": [
-          {
-            "http": "POST /invoices-pdf"
-          }
-        ],
-        "name": "invoice-application2-dev-createInvoicePdf",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "nodejs12.x",
-        "vpc": {},
-        "versionLogicalId": "CreateInvoicePdfLambdaVersionay8zaylszpha9xPT5KoRG3ZvV0NsVS7p9OnBZhEMY"
+        "versionLogicalId": "CreateInvoiceLambdaVersionxNSIfzw2beBV0GU4XkmxQbk6eGONCN1usxUupU2doJs"
       }
     },
     "resources": {
@@ -1396,7 +1365,7 @@
     "artifact": "/Users/liora.korni/dev/serverless/invoice/.serverless/invoice-application2.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/invoice-application2/dev/1615801890037-2021-03-15T09:51:30.037Z",
+    "artifactDirectoryName": "serverless/invoice-application2/dev/1618774531618-2021-04-18T19:35:31.618Z",
     "artifact": "invoice-application2.zip"
   }
 }

@@ -45,6 +45,7 @@ functions:
     - http:
         path: /invoices
         method: get
+        cors: true
         request:
           parameters:
             querystrings:
@@ -57,6 +58,7 @@ functions:
     - http:
         path: /invoices-type
         method: get
+        cors: true
         request:
           parameters:
             querystrings:
@@ -66,12 +68,9 @@ functions:
   createInvoice:
     handler: index.handler
     events:
-    - http: 'POST /invoices'
-  createInvoicePdf:
-    handler: index.handler
-    events:
-    - http: 'POST /invoices-pdf'
-
+    - http:
+        path: /invoices
+        method: post
 resources:
   Resources:
     UsersDynamoDBTable:
