@@ -1,4 +1,3 @@
-
 const api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345';
 const api_email = 'demo@ezcount.co.il';
 const developer_email = 'ran@broadcust.com';
@@ -8,6 +7,7 @@ const developer_phone = '0528549758';
 function cgDataToEZC(jsonData) {
 
     try {
+
         const pay_types = {WIRE_TRANS:4,CREDIT_CARD:3};
         const invoice_types = {voided:330,approved:320,declined:-100};
 
@@ -19,6 +19,10 @@ function cgDataToEZC(jsonData) {
         for (var i in charges) {
 
             var item = charges[i];
+
+            if(item.description == null){
+                item.description = 'billing item';
+            }
 
             if (item.type === 'recurring') {
                 items.push({details: jsonData.subscription.plan.name, amount: 1, price: item.eachAmount});
@@ -34,11 +38,13 @@ function cgDataToEZC(jsonData) {
             }
 
             if(item.type === 'custom') {
+
                 var amount = parseFloat(item.eachAmount) * parseInt(item.quantity);
                 if (amount < 0) {
                     item.eachAmount = amount;
                     item.quantity = 1;
                 }
+
                 items.push({details: item.description, amount: item.quantity, price: item.eachAmount});
                 running_total = running_total + amount;
                 continue;
@@ -46,23 +52,25 @@ function cgDataToEZC(jsonData) {
 
         }
 
-
         var inv_type = extractInvoiceType(invoice,invoice_types);
+        var customer_name = jsonData.customer.company == ''?'customer_name':jsonData.customer.company;
 
         var data = {
+
             api_key: api_key,
             api_email: api_email,
             developer_email: developer_email,
             developer_phone: developer_phone,
             type: inv_type,
             description: extractInvoiceDescription(inv_type,invoice_types,invoice,recurring),
-            customer_name: jsonData.customer.company,
+            customer_name: customer_name,
             item:items,
-            price_total: invoice.transaction.amount,
+            price_total: Math.abs(invoice.transaction.amount),
             payment: [{
                 payment_type: extractPaymentType(invoice,pay_types),
                 payment: invoice.transaction.amount,
             }],
+
         }
 
         return data;
