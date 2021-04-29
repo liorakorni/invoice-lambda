@@ -8,6 +8,7 @@ const app = express();
 const AWS = require('aws-sdk');
 const request = require('request');
 const cgDataToEZC = require('./utils');
+const validateSSOToken = require('./utils');
 
 const USERS_TABLE = process.env.USERS_TABLE;
 const TYPE_TABLE = process.env.TYPE_TABLE;
@@ -219,7 +220,6 @@ app.get('/', function (req, res) {
 
     const now = Date.now().toString();
     console.log("req.query: ", req.query);
-
 
     const params = {
         TableName: USERS_TABLE,
