@@ -199,7 +199,7 @@ app.get('/', function (req, res) {
     var uid = req.query.uid || null;
     var token = req.query.token || null;
     var role = req.query.role || null;
-,
+
     res.set({
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
