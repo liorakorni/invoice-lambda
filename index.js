@@ -200,6 +200,11 @@ app.get('/', function (req, res) {
     var token = req.query.token || null;
     var role = req.query.role || null;
 ,
+    res.set({
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+    });
+
     if(uid != null){
         var ssoresult = validateSSOToken(extToken,uid,role);
         res.send('SSO Validation :' + ssoresult );
