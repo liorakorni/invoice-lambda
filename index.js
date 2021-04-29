@@ -2,7 +2,6 @@ const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const express = require('express');
 const moment = require('moment');
-const md5 = require('md5');
 
 const app = express();
 const AWS = require('aws-sdk');
@@ -199,7 +198,6 @@ app.get('/', function (req, res) {
     var uid = req.query.uid || null;
     var token = req.query.token || null;
     var role = req.query.role || null;
-,
     if(uid != null){
         var ssoresult = validateSSOToken(extToken,uid,role);
         res.send('SSO Validation :' + ssoresult );
