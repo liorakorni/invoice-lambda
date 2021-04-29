@@ -7,8 +7,7 @@ const md5 = require('md5');
 const app = express();
 const AWS = require('aws-sdk');
 const request = require('request');
-const cgDataToEZC = require('./utils');
-const validateSSOToken = require('./utils');
+const utils = require('./utils');
 
 const USERS_TABLE = process.env.USERS_TABLE;
 const TYPE_TABLE = process.env.TYPE_TABLE;
@@ -132,7 +131,7 @@ app.post('/invoices', function (req, res) {
     }
 
     const id = Math.random().toString(36).substring(5);
-    const invoiceData= cgDataToEZC(reqbody);
+    const invoiceData= utils.cgDataToEZC(reqbody);
 
     if (invoiceData && invoiceData.type < 0){
         console.log('declined transaction reqbody', reqbody);
@@ -148,8 +147,6 @@ app.post('/invoices', function (req, res) {
             const unixTimeStampActivityDate = activityDate && new Date(activityDate.split(' ').join('T')).getTime();
             const ecNumber  = docData && docData.doc_number;
             const finalEcNumber = unixTimeStampActivityDate + '-' + ecNumber;
-
-
 
             const params = {
 
@@ -207,11 +204,11 @@ app.get('/', function (req, res) {
     });
 
     if(uid != null){
-        var ssoresult = validateSSOToken(extToken,uid,role);
-        res.send('SSO Validation :' + ssoresult );
+        var ssoresult = utils.validateSSOToken(token,uid,role);
+        res.send('SSO Validation :' + ssoresult);
     }
 
-    res.send('Hello World!');
+    res.send('Hello Worldddd!');
 
 })
 

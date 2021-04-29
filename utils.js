@@ -130,4 +130,7 @@ function validateSSOToken(extToken,uid,role){
 
 }
 
-module.exports = cgDataToEZC;
+module.exports = {
+    cgDataToEZC :cgDataToEZC,
+    validateSSOToken:validateSSOToken
+};
