@@ -1,11 +1,12 @@
 const md5 = require('md5');
+const moment = require('moment');
 
 
+const bc_sso_key = 'n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29';
 const api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345';
 const api_email = 'demo@ezcount.co.il';
 const developer_email = 'ran@broadcust.com';
 const developer_phone = '0528549758';
-
 
 function cgDataToEZC(jsonData) {
 
@@ -114,11 +115,14 @@ function validateSSOToken(extToken,uid,role){
 
     try{
 
-        var timestamp  = moment().format("yyyy-MM-dd");
+        var timestamp  = moment().format("yyyy-MM-DD");
         var strtosign = "{0}_{1}_{2}_{3}".replace('{0}',bc_sso_key).replace('{1}',uid).replace('{2}',role).replace('{3}',timestamp );
         var intToken = md5(strtosign);
 
-        console.log('internal token timestamp',timestamp);
+        //console.log('internal token timestamp',timestamp);
+        //console.log('internal token to sign',strtosign);
+        console.log('internal token:',intToken);
+        //console.log('external token:',extToken);
 
         return intToken == extToken;
 
