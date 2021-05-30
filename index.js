@@ -109,7 +109,6 @@ const data = {
     comment: "some general comment for the document",
 }
 
-
 // Create invoices endpoint
 app.post('/invoices', function (req, res) {
 
@@ -175,12 +174,18 @@ app.post('/invoices', function (req, res) {
 
             params.TableName = TYPE_TABLE
 
+            res.set({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true,
+            });
+
             dynamoDb.put(params, (error) => {
                 if (error) {
                     console.log(error);
                     res.status(400).json({ error: 'Could not insert invoice in type table' });
                 }
             });
+
             res.json({ id, reqbody });
 
 
