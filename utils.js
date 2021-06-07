@@ -16,9 +16,11 @@ function cgDataToEZC(jsonData) {
         const invoice_types = {voided:330,approved:320,declined:-100};
 
         var invoice = jsonData.subscription.invoice;
-        var charges = invoice.charges;
+        var charges = invoice.charges || invoice.Charges  ;
         var running_total = 0,recurring = false;
         var items = [];
+
+        console.log(charges);
 
         for (var i in charges) {
 
@@ -57,7 +59,7 @@ function cgDataToEZC(jsonData) {
         }
 
         var inv_type = extractInvoiceType(invoice,invoice_types);
-        var customer_name = jsonData.customer.company == ''?'customer_name':jsonData.customer.company;
+        var customer_name = (jsonData.customer.company == '' || jsonData.customer.company == null) ? (jsonData.customer.firstName + ' ' + jsonData.customer.lastName):jsonData.customer.company;
 
         var data = {
 
@@ -76,6 +78,8 @@ function cgDataToEZC(jsonData) {
             }],
 
         }
+
+        console.log(data);
 
         return data;
 
@@ -107,8 +111,13 @@ function extractInvoiceType(invoice,invoice_types) {
 }
 
 function extractPaymentType(invoice,pay_types) {
-    var gwToken = invoice.transaction.gatewayToken;
-    return (gwToken.indexOf('WIRE') >= 0)?pay_types.WIRE_TRANS:pay_types.CREDIT_CARD;
+
+    try {
+        var gwToken = invoice.transaction.gatewayToken;
+        return (gwToken.indexOf('WIRE') >= 0) ? pay_types.WIRE_TRANS : pay_types.CREDIT_CARD;
+    } catch (e) {
+        return null;
+    }
 }
 
 function validateSSOToken(extToken,uid,role){

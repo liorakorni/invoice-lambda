@@ -23,7 +23,7 @@ Install node v 12
 `>sls offline start`
 
 
-##### Commit Process
+##git status`### Commit Process
 `>git status`  
 
 `>git add package-lock.json | git add .`

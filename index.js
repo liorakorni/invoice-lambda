@@ -114,6 +114,11 @@ app.post('/invoices', function (req, res) {
 
     const reqbody = req.body;
 
+    res.set({
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+    });
+
     if(!reqbody || !reqbody.subscription || !reqbody.subscription.invoice )
     {
         console.log('empty transaction ',reqbody);
@@ -124,7 +129,7 @@ app.post('/invoices', function (req, res) {
 
     if(reqbody && reqbody.subscription && reqbody.subscription.invoice && parseInt(reqbody.subscription.invoice.transaction.amount) == 0)
     {
-        console.log('zero transaction amount');
+        //console.log('zero transaction amount');
         res.status(200).json({ msg: 'zero transaction amount', body: reqbody });
         return;
     }
@@ -138,6 +143,8 @@ app.post('/invoices', function (req, res) {
     }
 
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
+
+        console.log('transaction details',reqbody);
 
         if (!error && response.statusCode == 200) {
 
@@ -165,19 +172,24 @@ app.post('/invoices', function (req, res) {
                 },
             };
 
-            dynamoDb.put(params, (error) => {
+            console.log('db insert: ', params);
+
+            dynamoDb.put(params, (error,data) => {
+
+                console.log('in put function: ',error);
+
                 if (error) {
                     console.log(error);
                     res.status(400).json({ error: 'Could not insert invoice in users table' });
                 }
+
+                else  console.log('db data: ', data);
+
             });
 
-            params.TableName = TYPE_TABLE
+            console.log('finalize Insert Params');
 
-            res.set({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': true,
-            });
+            params.TableName = TYPE_TABLE;
 
             dynamoDb.put(params, (error) => {
                 if (error) {
@@ -186,7 +198,8 @@ app.post('/invoices', function (req, res) {
                 }
             });
 
-            res.json({ id, reqbody });
+
+            res.json({ id, docData });
 
 
         } else {

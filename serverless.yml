@@ -71,6 +71,7 @@ functions:
     - http:
         path: /invoices
         method: post
+        cors: true
 resources:
   Resources:
     UsersDynamoDBTable:
