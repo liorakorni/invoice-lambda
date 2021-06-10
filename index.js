@@ -139,12 +139,12 @@ app.post('/invoices', function (req, res) {
 
     if (invoiceData && invoiceData.type < 0){
         console.log('declined transaction reqbody', reqbody);
+        res.status(406).json({ msg: 'declined transaction ' });
         return;
     }
 
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
 
-        console.log('transaction details',reqbody);
 
         if (!error && response.statusCode == 200) {
 
@@ -172,38 +172,30 @@ app.post('/invoices', function (req, res) {
                 },
             };
 
-            console.log('db insert: ', params);
-
             dynamoDb.put(params, (error,data) => {
-
-                console.log('in put function: ',error);
-
                 if (error) {
-                    console.log(error);
+                    console.log('Could not insert invoice in users table', error);
                     res.status(400).json({ error: 'Could not insert invoice in users table' });
                 }
+                else  {
+                    console.log('user db data: ', data);
+                    params.TableName = TYPE_TABLE;
 
-                else  console.log('db data: ', data);
-
-            });
-
-            console.log('finalize Insert Params');
-
-            params.TableName = TYPE_TABLE;
-
-            dynamoDb.put(params, (error) => {
-                if (error) {
-                    console.log(error);
-                    res.status(400).json({ error: 'Could not insert invoice in type table' });
+                    dynamoDb.put(params, (error, data) => {
+                        if (error) {
+                            console.log('Could not insert invoice in type table', error);
+                            res.status(400).json({ error: 'Could not insert invoice in type table' });
+                        }
+                        else {
+                            console.log('type db data: ', data);
+                            res.json({ id, docData, finalEcNumber });
+                        }
+                    });
                 }
             });
 
-
-            res.json({ id, docData });
-
-
         } else {
-            console.error("Failed");
+            console.error("creating invoice failed");
             console.error(error, response);
         }
     });
@@ -212,9 +204,9 @@ app.post('/invoices', function (req, res) {
 
 app.get('/', function (req, res) {
 
-    var uid = req.query.uid || null;
-    var token = req.query.token || null;
-    var role = req.query.role || null;
+    const uid = req.query.uid || null;
+    const token = req.query.token || null;
+    const role = req.query.role || null;
 
     res.set({
         'Access-Control-Allow-Origin': '*',
@@ -222,7 +214,7 @@ app.get('/', function (req, res) {
     });
 
     if(uid != null){
-        var ssoresult = utils.validateSSOToken(token,uid,role);
+        const ssoresult = utils.validateSSOToken(token,uid,role);
         res.send('SSO Validation :' + ssoresult);
     }
 
@@ -247,7 +239,6 @@ app.get('/', function (req, res) {
         ProjectionExpression: "user_id, invoice_type, cg_number, ec_number, trans_id, doc, activity_time, time_stamp_activity_time, invoice",
     }
 
-     console.log("req.params 2 ", params);
 
      dynamoDb.query(params, function(err, data) {
         if (err) {

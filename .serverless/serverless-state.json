@@ -5,9 +5,10 @@
       "name": "invoice-application2"
     },
     "provider": {
+      "stage": "dev",
+      "variableSyntax": "\\${([^{}:]+?(?:\\(|:)(?:[^:{}][^{}]*?)?)}",
       "name": "aws",
       "runtime": "nodejs12.x",
-      "stage": "dev",
       "region": "us-east-1",
       "environment": {
         "USERS_TABLE": "invoices-users-table-dev",
@@ -41,7 +42,6 @@
           ]
         }
       ],
-      "variableSyntax": "\\${([^{}:]+?(?:\\(|:)(?:[^:{}][^{}]*?)?)}",
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
         "AWSTemplateFormatVersion": "2010-09-09",
@@ -87,21 +87,6 @@
                               "Ref": "ServerlessDeploymentBucket"
                             },
                             "/*"
-                          ]
-                        ]
-                      },
-                      {
-                        "Fn::Join": [
-                          "",
-                          [
-                            "arn:",
-                            {
-                              "Ref": "AWS::Partition"
-                            },
-                            ":s3:::",
-                            {
-                              "Ref": "ServerlessDeploymentBucket"
-                            }
                           ]
                         ]
                       }
@@ -227,12 +212,18 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1623051339437-2021-06-07T07:35:39.437Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1623360602871-2021-06-10T21:30:02.871Z/invoice-application2.zip"
               },
-              "Handler": "index.handler",
-              "Runtime": "nodejs12.x",
               "FunctionName": "invoice-application2-dev-app",
+              "Handler": "index.handler",
               "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs12.x",
               "Timeout": 6,
               "Environment": {
                 "Variables": {
@@ -240,17 +231,21 @@
                   "TYPE_TABLE": "invoice-type-table-dev",
                   "IS_OFFLINE": "true"
                 }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
               }
             },
             "DependsOn": [
               "AppLogGroup"
             ]
+          },
+          "AppLambdaVersionnoXeUwJGYcsdrPjfkZTEmO9AxkSbsawg9EhVajomLw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "AppLambdaFunction"
+              },
+              "CodeSha256": "cfK9kfnBVNRWsTYUb2BsWpI8dUs3RgUjY4db2CqMEO8="
+            }
           },
           "GetUserLambdaFunction": {
             "Type": "AWS::Lambda::Function",
@@ -259,12 +254,18 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1623051339437-2021-06-07T07:35:39.437Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1623360602871-2021-06-10T21:30:02.871Z/invoice-application2.zip"
               },
-              "Handler": "index.handler",
-              "Runtime": "nodejs12.x",
               "FunctionName": "invoice-application2-dev-getUser",
+              "Handler": "index.handler",
               "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs12.x",
               "Timeout": 6,
               "Environment": {
                 "Variables": {
@@ -272,17 +273,21 @@
                   "TYPE_TABLE": "invoice-type-table-dev",
                   "IS_OFFLINE": "true"
                 }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
               }
             },
             "DependsOn": [
               "GetUserLogGroup"
             ]
+          },
+          "GetUserLambdaVersionchXSzOVfWcqqMOTikwOZivbtX4CUtrQFWsEwIwTHSA": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUserLambdaFunction"
+              },
+              "CodeSha256": "cfK9kfnBVNRWsTYUb2BsWpI8dUs3RgUjY4db2CqMEO8="
+            }
           },
           "GetTypeLambdaFunction": {
             "Type": "AWS::Lambda::Function",
@@ -291,12 +296,18 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1623051339437-2021-06-07T07:35:39.437Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1623360602871-2021-06-10T21:30:02.871Z/invoice-application2.zip"
               },
-              "Handler": "index.handler",
-              "Runtime": "nodejs12.x",
               "FunctionName": "invoice-application2-dev-getType",
+              "Handler": "index.handler",
               "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs12.x",
               "Timeout": 6,
               "Environment": {
                 "Variables": {
@@ -304,17 +315,21 @@
                   "TYPE_TABLE": "invoice-type-table-dev",
                   "IS_OFFLINE": "true"
                 }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
               }
             },
             "DependsOn": [
               "GetTypeLogGroup"
             ]
+          },
+          "GetTypeLambdaVersionB0XsZUusg0F8mIopFyK1lQtHCDfjvfeLLpAXHnmP2SU": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetTypeLambdaFunction"
+              },
+              "CodeSha256": "cfK9kfnBVNRWsTYUb2BsWpI8dUs3RgUjY4db2CqMEO8="
+            }
           },
           "CreateInvoiceLambdaFunction": {
             "Type": "AWS::Lambda::Function",
@@ -323,12 +338,18 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/invoice-application2/dev/1623051339437-2021-06-07T07:35:39.437Z/invoice-application2.zip"
+                "S3Key": "serverless/invoice-application2/dev/1623360602871-2021-06-10T21:30:02.871Z/invoice-application2.zip"
               },
-              "Handler": "index.handler",
-              "Runtime": "nodejs12.x",
               "FunctionName": "invoice-application2-dev-createInvoice",
+              "Handler": "index.handler",
               "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs12.x",
               "Timeout": 6,
               "Environment": {
                 "Variables": {
@@ -336,56 +357,20 @@
                   "TYPE_TABLE": "invoice-type-table-dev",
                   "IS_OFFLINE": "true"
                 }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
               }
             },
             "DependsOn": [
               "CreateInvoiceLogGroup"
             ]
           },
-          "AppLambdaVersionqDthiWF4XCVPksjttH9g5BBxryyCdtJzowj8JDE86EM": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "AppLambdaFunction"
-              },
-              "CodeSha256": "xXWxYxEDLT8HeTRZaNoRR08/byP9H/S3hG+j3xwExII="
-            }
-          },
-          "GetUserLambdaVersionWnQiXe6Hfxw7Iyr8NolTraLgdFWlV95qundPsDDpFA": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetUserLambdaFunction"
-              },
-              "CodeSha256": "xXWxYxEDLT8HeTRZaNoRR08/byP9H/S3hG+j3xwExII="
-            }
-          },
-          "GetTypeLambdaVersion7hfy0JvvKyP5shBY6iWFdHLUVFz3Q6ApoOMjNUUwbg": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetTypeLambdaFunction"
-              },
-              "CodeSha256": "xXWxYxEDLT8HeTRZaNoRR08/byP9H/S3hG+j3xwExII="
-            }
-          },
-          "CreateInvoiceLambdaVersionYFUjHokYjCrAkZVcce3Vg2TZQFYM2gcyeY4DYgQc": {
+          "CreateInvoiceLambdaVersionMCjZ26atiumtxbQQGXOpi1L3eOOr1dax6TEJtcJk1U": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateInvoiceLambdaFunction"
               },
-              "CodeSha256": "xXWxYxEDLT8HeTRZaNoRR08/byP9H/S3hG+j3xwExII="
+              "CodeSha256": "cfK9kfnBVNRWsTYUb2BsWpI8dUs3RgUjY4db2CqMEO8="
             }
           },
           "ApiGatewayRestApi": {
@@ -761,7 +746,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1623051327227": {
+          "ApiGatewayDeployment1623360593459": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -992,45 +977,30 @@
           "ServerlessDeploymentBucketName": {
             "Value": {
               "Ref": "ServerlessDeploymentBucket"
-            },
-            "Export": {
-              "Name": "sls-invoice-application2-dev-ServerlessDeploymentBucketName"
             }
           },
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionqDthiWF4XCVPksjttH9g5BBxryyCdtJzowj8JDE86EM"
-            },
-            "Export": {
-              "Name": "sls-invoice-application2-dev-AppLambdaFunctionQualifiedArn"
+              "Ref": "AppLambdaVersionnoXeUwJGYcsdrPjfkZTEmO9AxkSbsawg9EhVajomLw"
             }
           },
           "GetUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserLambdaVersionWnQiXe6Hfxw7Iyr8NolTraLgdFWlV95qundPsDDpFA"
-            },
-            "Export": {
-              "Name": "sls-invoice-application2-dev-GetUserLambdaFunctionQualifiedArn"
+              "Ref": "GetUserLambdaVersionchXSzOVfWcqqMOTikwOZivbtX4CUtrQFWsEwIwTHSA"
             }
           },
           "GetTypeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetTypeLambdaVersion7hfy0JvvKyP5shBY6iWFdHLUVFz3Q6ApoOMjNUUwbg"
-            },
-            "Export": {
-              "Name": "sls-invoice-application2-dev-GetTypeLambdaFunctionQualifiedArn"
+              "Ref": "GetTypeLambdaVersionB0XsZUusg0F8mIopFyK1lQtHCDfjvfeLLpAXHnmP2SU"
             }
           },
           "CreateInvoiceLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateInvoiceLambdaVersionYFUjHokYjCrAkZVcce3Vg2TZQFYM2gcyeY4DYgQc"
-            },
-            "Export": {
-              "Name": "sls-invoice-application2-dev-CreateInvoiceLambdaFunctionQualifiedArn"
+              "Ref": "CreateInvoiceLambdaVersionMCjZ26atiumtxbQQGXOpi1L3eOOr1dax6TEJtcJk1U"
             }
           },
           "ServiceEndpoint": {
@@ -1054,9 +1024,6 @@
                   "/dev"
                 ]
               ]
-            },
-            "Export": {
-              "Name": "sls-invoice-application2-dev-ServiceEndpoint"
             }
           }
         }
@@ -1105,21 +1072,6 @@
                               "Ref": "ServerlessDeploymentBucket"
                             },
                             "/*"
-                          ]
-                        ]
-                      },
-                      {
-                        "Fn::Join": [
-                          "",
-                          [
-                            "arn:",
-                            {
-                              "Ref": "AWS::Partition"
-                            },
-                            ":s3:::",
-                            {
-                              "Ref": "ServerlessDeploymentBucket"
-                            }
                           ]
                         ]
                       }
@@ -1176,7 +1128,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionqDthiWF4XCVPksjttH9g5BBxryyCdtJzowj8JDE86EM"
+        "versionLogicalId": "AppLambdaVersionnoXeUwJGYcsdrPjfkZTEmO9AxkSbsawg9EhVajomLw"
       },
       "getUser": {
         "handler": "index.handler",
@@ -1221,7 +1173,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetUserLambdaVersionWnQiXe6Hfxw7Iyr8NolTraLgdFWlV95qundPsDDpFA"
+        "versionLogicalId": "GetUserLambdaVersionchXSzOVfWcqqMOTikwOZivbtX4CUtrQFWsEwIwTHSA"
       },
       "getType": {
         "handler": "index.handler",
@@ -1266,7 +1218,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetTypeLambdaVersion7hfy0JvvKyP5shBY6iWFdHLUVFz3Q6ApoOMjNUUwbg"
+        "versionLogicalId": "GetTypeLambdaVersionB0XsZUusg0F8mIopFyK1lQtHCDfjvfeLLpAXHnmP2SU"
       },
       "createInvoice": {
         "handler": "index.handler",
@@ -1304,7 +1256,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CreateInvoiceLambdaVersionYFUjHokYjCrAkZVcce3Vg2TZQFYM2gcyeY4DYgQc"
+        "versionLogicalId": "CreateInvoiceLambdaVersionMCjZ26atiumtxbQQGXOpi1L3eOOr1dax6TEJtcJk1U"
       }
     },
     "resources": {
@@ -1376,9 +1328,7 @@
     "serviceFilename": "serverless.yml",
     "layers": {},
     "initialServerlessConfig": {
-      "service": {
-        "$ref": "$[\"service\"][\"serviceObject\"]"
-      },
+      "service": "invoice-application2",
       "custom": {
         "$ref": "$[\"service\"][\"custom\"]"
       },
@@ -1386,7 +1336,42 @@
         "$ref": "$[\"service\"][\"plugins\"]"
       },
       "provider": {
-        "$ref": "$[\"service\"][\"provider\"]"
+        "name": "aws",
+        "runtime": "nodejs12.x",
+        "stage": "dev",
+        "region": "us-east-1",
+        "environment": {
+          "USERS_TABLE": "invoices-users-table-dev",
+          "TYPE_TABLE": "invoice-type-table-dev",
+          "IS_OFFLINE": true
+        },
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:Query",
+              "dynamodb:Scan",
+              "dynamodb:GetItem",
+              "dynamodb:PutItem",
+              "dynamodb:UpdateItem",
+              "dynamodb:DeleteItem"
+            ],
+            "Resource": [
+              {
+                "Fn::GetAtt": [
+                  "UsersDynamoDBTable",
+                  "Arn"
+                ]
+              },
+              {
+                "Fn::GetAtt": [
+                  "InvoiceTypeDynamoDBTable",
+                  "Arn"
+                ]
+              }
+            ]
+          }
+        ]
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -1396,10 +1381,10 @@
       }
     },
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "C:\\Users\\ranco\\Sandbox\\invoice-lambda\\.serverless\\invoice-application2.zip"
+    "artifact": "/Users/liora.korni/dev/serverless/invoice2/invoice-lambda/.serverless/invoice-application2.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/invoice-application2/dev/1623051339437-2021-06-07T07:35:39.437Z",
+    "artifactDirectoryName": "serverless/invoice-application2/dev/1623360602871-2021-06-10T21:30:02.871Z",
     "artifact": "invoice-application2.zip"
   }
 }
