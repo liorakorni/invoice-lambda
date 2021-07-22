@@ -170,9 +170,11 @@ app.post('/invoices', function (req, res) {
                     time_stamp_activity_time: unixTimeStampActivityDate,
                     invoice: invoiceData,
                 },
+
             };
 
             dynamoDb.put(params, (error,data) => {
+
                 if (error) {
                     console.log('Could not insert invoice in users table', error);
                     res.status(400).json({ error: 'Could not insert invoice in users table' });
@@ -199,6 +201,7 @@ app.post('/invoices', function (req, res) {
             console.error(error, response);
         }
     });
+
 
 })
 

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/index.js" line="215" />
+    <bookmark url="file://$PROJECT_DIR$/index.js" line="219" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e78984de-0854-471c-b229-2d7d3cf36cdb" name="Default Changelist" comment="Message">
+      <change afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.serverless/cloudformation-template-create-stack.json" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/cloudformation-template-create-stack.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.serverless/cloudformation-template-update-stack.json" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/cloudformation-template-update-stack.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.serverless/invoice-application2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/invoice-application2.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.serverless/serverless-state.json" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/serverless-state.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,65 +23,81 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1065937598">
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="js" value="74" />
-          <entry key="yml" value="11" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JavaScript" value="74" />
-          <entry key="YAML" value="11" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2361">
-              <caret line="110" selection-start-line="110" selection-end-line="110" />
+            <state relative-caret-position="127">
+              <caret line="108" column="21" lean-forward="true" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="36" />
               <folding>
                 <element signature="e#564#598#0" />
                 <element signature="e#672#742#0" />
-                <element signature="e#3202#3245#0" />
-                <element signature="e#3490#3664#0" />
-                <element signature="e#3491#3663#0" />
-                <element signature="e#3679#3810#0" />
-                <element signature="e#3680#3809#0" />
+                <element signature="e#3296#3339#0" />
+                <element signature="e#3584#3758#0" />
+                <element signature="e#3585#3757#0" />
+                <element signature="e#3773#3904#0" />
+                <element signature="e#3774#3903#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/serverless.yml">
+        <entry file="file://$PROJECT_DIR$/trans_sla.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            <state>
+              <folding>
+                <element signature="e#0#56812#0" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trans_sample.json">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
+            <state relative-caret-position="51">
               <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+            <state relative-caret-position="34">
+              <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+              <folding>
+                <element signature="n#!!block;n#cgDataToEZC#0" />
+                <element signature="n#!!block;n#extractInvoiceDescription#0" />
+                <element signature="n#!!block;n#extractInvoiceType#0" />
+                <element signature="n#!!block;n#extractPaymentType#0" />
+                <element signature="n#!!block;n#validateSSOToken#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trans_min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -87,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10530">
-              <caret line="715" column="14" selection-start-line="715" selection-start-column="14" selection-end-line="715" selection-end-column="14" />
+            <state relative-caret-position="379">
+              <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -96,7 +114,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="238">
               <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
             </state>
           </provider>
@@ -105,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package-lock.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62790">
-              <caret line="4186" column="19" selection-start-line="4186" selection-start-column="19" selection-end-line="4186" selection-end-column="19" />
+            <state relative-caret-position="81328">
+              <caret line="4784" column="22" selection-start-line="4784" selection-start-column="18" selection-end-line="4784" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -122,29 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>log</find>
-      <find>invoice_type</find>
-      <find>type</find>
-      <find>serverless-dynamodb-local</find>
-      <find>md5</find>
-      <find>Hell</find>
-      <find>const C</find>
-      <find>validateSSOToken</find>
-      <find>moment</find>
-      <find>bc_sso_key</find>
-      <find>developer_phone</find>
-      <find>angular.scop</find>
-      <find>cgDataToEZC</find>
-      <find>invoice</find>
-      <find>recurring</find>
-      <find>customer</find>
-      <find>COrs</find>
-      <find>pdf</find>
-      <find>USERS_TABLE</find>
-      <find>TYPE_TABLE</find>
-      <find>TableName</find>
-      <find>company</find>
-      <find>jsonData</find>
       <find>console.log(error);</find>
       <find>subscription</find>
       <find>customer_name</find>
@@ -152,14 +147,40 @@
       <find>declined</find>
       <find>docData</find>
       <find>var</find>
+      <find>ezcount_api_key</find>
+      <find>dev_master_key</find>
+      <find>api_email</find>
+      <find>running_total</find>
+      <find>console.</find>
+      <find>color-picker-bcg</find>
+      <find>cons</find>
+      <find>showFields.firstname</find>
+      <find>BusinessDisplayCtrl</find>
+      <find>Business.get</find>
+      <find>,</find>
+      <find>.get</find>
+      <find>myimages cleared</find>
+      <find>step=='picksource'</find>
+      <find>זיכוי</find>
+      <find>trans_sla</find>
+      <find>_sla</find>
+      <find>utils</find>
+      <find>json</find>
+      <find>validateSSOToken</find>
+      <find>'</find>
+      <find>USERS_TABLE</find>
+      <find>user db data</find>
     </findStrings>
+    <replaceStrings>
+      <replace>&quot;</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/index.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/trans_sla_onet.json" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/index.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -169,21 +190,19 @@
         <option value="$PROJECT_DIR$/trans_sla_onet.json" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/serverless.yml" />
+        <option value="$PROJECT_DIR$/node_modules/config.json.js" />
+        <option value="$PROJECT_DIR$/config.js" />
+        <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/utils.js" />
         <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/serverless.yml" />
+        <option value="$PROJECT_DIR$/trans_min.js" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="899" />
-    <option name="y" value="252" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1095" />
     <option name="height" value="1036" />
   </component>
@@ -193,6 +212,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -204,7 +224,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -217,6 +236,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
@@ -256,6 +276,14 @@
       <workItem from="1621160056133" duration="10843000" />
       <workItem from="1622010923164" duration="34056000" />
       <workItem from="1623045545627" duration="7779000" />
+      <workItem from="1624219598275" duration="670000" />
+      <workItem from="1624431406447" duration="594000" />
+      <workItem from="1624773895059" duration="10766000" />
+      <workItem from="1625736763843" duration="9762000" />
+      <workItem from="1625987829613" duration="12213000" />
+      <workItem from="1626336653916" duration="8208000" />
+      <workItem from="1626751280257" duration="3027000" />
+      <workItem from="1626843259702" duration="2206000" />
     </task>
     <task id="LOCAL-00001" summary="Message">
       <created>1611430728688</created>
@@ -268,24 +296,25 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127606000" />
+    <option name="totallyTimeSpent" value="175052000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24053724" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19616205" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32967034" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32894737" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" visible="true" weight="0.50877196" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" weight="0.4901099" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.37142858" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -312,42 +341,23 @@
     <option name="LAST_COMMIT_MESSAGE" value="Message" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/request/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/request/index.js" />
     <entry file="file://$PROJECT_DIR$/inputExample.json" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.json" />
-    <entry file="file://$PROJECT_DIR$/trans_sla.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="289" column="24" selection-start-line="289" selection-start-column="24" selection-end-line="289" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/pdf.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/@types/node/globals.d.ts" />
-    <entry file="file://$PROJECT_DIR$/node_modules/serverless-offline/dist/lambda/handler-runner/child-process-runner/ChildProcessRunner.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="6" selection-start-line="65" selection-start-column="6" selection-end-line="65" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/serverless-offline/dist/lambda/handler-runner/child-process-runner/ChildProcessRunner.js" />
     <entry file="file://$PROJECT_DIR$/trans_sla_onet.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8993">
           <caret line="529" column="41" selection-start-line="529" selection-start-column="41" selection-end-line="529" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serverless.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
         </state>
       </provider>
     </entry>
@@ -361,53 +371,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+    <entry file="file://$PROJECT_DIR$/node_modules/config.json.js" />
+    <entry file="file://$PROJECT_DIR$/trans_sla.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10530">
-          <caret line="715" column="14" selection-start-line="715" selection-start-column="14" selection-end-line="715" selection-end-column="14" />
+        <state>
+          <folding>
+            <element signature="e#0#56812#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/trans_sample.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62790">
-          <caret line="4186" column="19" selection-start-line="4186" selection-start-column="19" selection-end-line="4186" selection-end-column="19" />
+        <state relative-caret-position="81328">
+          <caret line="4784" column="22" selection-start-line="4784" selection-start-column="18" selection-end-line="4784" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+        <state relative-caret-position="238">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/serverless.yml">
+    <entry file="file://$PROJECT_DIR$/trans_min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="204">
+          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2361">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="127">
+          <caret line="108" column="21" lean-forward="true" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="36" />
           <folding>
             <element signature="e#564#598#0" />
             <element signature="e#672#742#0" />
-            <element signature="e#3202#3245#0" />
-            <element signature="e#3490#3664#0" />
-            <element signature="e#3491#3663#0" />
-            <element signature="e#3679#3810#0" />
-            <element signature="e#3680#3809#0" />
+            <element signature="e#3296#3339#0" />
+            <element signature="e#3584#3758#0" />
+            <element signature="e#3585#3757#0" />
+            <element signature="e#3773#3904#0" />
+            <element signature="e#3774#3903#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!block;n#cgDataToEZC#0" />
+            <element signature="n#!!block;n#extractInvoiceDescription#0" />
+            <element signature="n#!!block;n#extractInvoiceType#0" />
+            <element signature="n#!!block;n#extractPaymentType#0" />
+            <element signature="n#!!block;n#validateSSOToken#0" />
           </folding>
         </state>
       </provider>

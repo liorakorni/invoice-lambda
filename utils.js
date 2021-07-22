@@ -1,5 +1,6 @@
 const md5 = require('md5');
 const moment = require('moment');
+const config = require('./config');
 
 
 const bc_sso_key = 'n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29';
@@ -32,20 +33,21 @@ function cgDataToEZC(jsonData) {
 
             if (item.type === 'recurring') {
                 items.push({details: jsonData.subscription.plan.name, amount: 1, price: item.eachAmount});
-                running_total = running_total + parseFloat(item.eachAmount);
+                running_total = running_total + Math.abs(parseFloat(item.eachAmount));
                 recurring = true;
                 continue;
             }
 
             if (item.type === 'item') {
-                running_total = running_total + parseFloat(item.eachAmount) * parseInt(item.quantity);
+                running_total = running_total + Math.abs(parseFloat(item.eachAmount)) * Math.abs(parseInt(item.quantity));
                 items.push({details: item.description, amount:item.eachAmount,price:item.quantity});
                 continue;
             }
 
             if(item.type === 'custom') {
 
-                var amount = parseFloat(item.eachAmount) * parseInt(item.quantity);
+                var amount = Math.abs(parseFloat(item.eachAmount)) * Math.abs(parseInt(item.quantity));
+
                 if (amount < 0) {
                     item.eachAmount = amount;
                     item.quantity = 1;
@@ -74,7 +76,7 @@ function cgDataToEZC(jsonData) {
             price_total: Math.abs(invoice.transaction.amount),
             payment: [{
                 payment_type: extractPaymentType(invoice,pay_types),
-                payment: invoice.transaction.amount,
+                payment: Math.abs(invoice.transaction.amount),
             }],
 
         }
@@ -92,7 +94,7 @@ function cgDataToEZC(jsonData) {
 function extractInvoiceDescription(inv_type,invoice_types,invoice,recurring){
 
     if (invoice_types.voided === inv_type) {
-        return 'זיכוי עבור חשבונית - '   + invoice.invoiceNumber;
+        return ' חשבונית זיכוי';
     }
 
     if (recurring) {
@@ -141,6 +143,10 @@ function validateSSOToken(extToken,uid,role){
         return false;
     }
 
+}
+
+function loadConfig(){
+    require('./config.json');
 }
 
 module.exports = {

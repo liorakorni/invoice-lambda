@@ -1,0 +1,18 @@
+{
+    "production":{
+        "ezcount_api_key": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
+        "dev_master_key": "4146fe70-01bd-11e7-965d-04011c5ad201",
+        "developer_email": "ran@broadcust.com",
+        "developer_phone": "0528549758",
+        "api_email": "demo@ezcount.co.il",
+        "url": "https://demo.ezcount.co.il/api/createDoc"
+    },
+    "dev":{
+        "ezcount_api_key": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
+        "dev_master_key": "4146fe70-01bd-11e7-965d-04011c5ad201",
+        "developer_email": "ran@broadcust.com",
+        "developer_phone": "0528549758",
+        "api_email": "demo@ezcount.co.il",
+        "url": "https://demo.ezcount.co.il/api/createDoc"
+    }
+}
