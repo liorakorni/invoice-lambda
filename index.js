@@ -146,7 +146,7 @@ app.post('/invoices', function (req, res) {
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
 
 
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
 
             const docData = body;
             const activityDate = reqbody && reqbody.activityDatetime;
@@ -176,7 +176,7 @@ app.post('/invoices', function (req, res) {
             dynamoDb.put(params, (error,data) => {
 
                 if (error) {
-                    console.log('Could not insert invoice in users table', error);
+                    console.error('Could not insert invoice in users table', error);
                     res.status(400).json({ error: 'Could not insert invoice in users table' });
                 }
                 else  {
@@ -185,7 +185,7 @@ app.post('/invoices', function (req, res) {
 
                     dynamoDb.put(params, (error, data) => {
                         if (error) {
-                            console.log('Could not insert invoice in type table', error);
+                            console.error('Could not insert invoice in type table', error);
                             res.status(400).json({ error: 'Could not insert invoice in type table' });
                         }
                         else {
@@ -245,7 +245,7 @@ app.get('/', function (req, res) {
 
      dynamoDb.query(params, function(err, data) {
         if (err) {
-            console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+            console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
             res.status(400).json({ error: 'Could not get user' });
         } else {
             console.log("Query succeeded.");
@@ -260,6 +260,7 @@ app.get('/', function (req, res) {
                 res.status(200).json(data.Items);
 
             } else {
+                console.error("User not found check - TO BE REMOVED");
                 res.status(404).json({ error: "User not found" });
             }
         }
@@ -288,7 +289,7 @@ app.get('/invoices-type/', function (req, res) {
 
     dynamoDb.query(params, function(err, data) {
         if (err) {
-            console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+            console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
             res.status(400).json({ error: 'Could not get type' });
         } else {
             console.log("Query succeeded.");
