@@ -146,7 +146,7 @@ app.post('/invoices', function (req, res) {
     request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
 
 
-        if (!error && response.statusCode === 200) {
+        if (!error && response.statusCode == 200) {
 
             const docData = body;
             const activityDate = reqbody && reqbody.activityDatetime;

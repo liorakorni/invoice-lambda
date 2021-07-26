@@ -44,21 +44,6 @@
                       "/*"
                     ]
                   ]
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":s3:::",
-                      {
-                        "Ref": "ServerlessDeploymentBucket"
-                      }
-                    ]
-                  ]
                 }
               ],
               "Condition": {
@@ -204,12 +189,18 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/invoice-application2/dev/1624792518352-2021-06-27T11:15:18.352Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/dev/1627126485334-2021-07-24T11:34:45.334Z/invoice-application2.zip"
         },
-        "Handler": "index.handler",
-        "Runtime": "nodejs12.x",
         "FunctionName": "invoice-application2-dev-app",
+        "Handler": "index.handler",
         "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
         "Timeout": 6,
         "Environment": {
           "Variables": {
@@ -217,17 +208,21 @@
             "TYPE_TABLE": "invoice-type-table-dev",
             "IS_OFFLINE": "true"
           }
-        },
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
         }
       },
       "DependsOn": [
         "AppLogGroup"
       ]
+    },
+    "AppLambdaVersionj2xhT1Taxm2sc7tXvINwTfgVGSVXU3KSJFpsTYzM": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AppLambdaFunction"
+        },
+        "CodeSha256": "Pm3xxMgz5euXFXd/MYChTYL9l+pJbsbIkF/rEzbxbDw="
+      }
     },
     "GetUserLambdaFunction": {
       "Type": "AWS::Lambda::Function",
@@ -236,12 +231,18 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/invoice-application2/dev/1624792518352-2021-06-27T11:15:18.352Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/dev/1627126485334-2021-07-24T11:34:45.334Z/invoice-application2.zip"
         },
-        "Handler": "index.handler",
-        "Runtime": "nodejs12.x",
         "FunctionName": "invoice-application2-dev-getUser",
+        "Handler": "index.handler",
         "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
         "Timeout": 6,
         "Environment": {
           "Variables": {
@@ -249,17 +250,21 @@
             "TYPE_TABLE": "invoice-type-table-dev",
             "IS_OFFLINE": "true"
           }
-        },
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
         }
       },
       "DependsOn": [
         "GetUserLogGroup"
       ]
+    },
+    "GetUserLambdaVersione3DXbeMDCLgM5P3jeZtiAIWPbWFsWWmg1wtYxQsSg": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "GetUserLambdaFunction"
+        },
+        "CodeSha256": "Pm3xxMgz5euXFXd/MYChTYL9l+pJbsbIkF/rEzbxbDw="
+      }
     },
     "GetTypeLambdaFunction": {
       "Type": "AWS::Lambda::Function",
@@ -268,12 +273,18 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/invoice-application2/dev/1624792518352-2021-06-27T11:15:18.352Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/dev/1627126485334-2021-07-24T11:34:45.334Z/invoice-application2.zip"
         },
-        "Handler": "index.handler",
-        "Runtime": "nodejs12.x",
         "FunctionName": "invoice-application2-dev-getType",
+        "Handler": "index.handler",
         "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
         "Timeout": 6,
         "Environment": {
           "Variables": {
@@ -281,17 +292,21 @@
             "TYPE_TABLE": "invoice-type-table-dev",
             "IS_OFFLINE": "true"
           }
-        },
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
         }
       },
       "DependsOn": [
         "GetTypeLogGroup"
       ]
+    },
+    "GetTypeLambdaVersionAblaMTQo3H4H7YA6LrHhKULmJbkNvKFDMHdN1nOWs": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "GetTypeLambdaFunction"
+        },
+        "CodeSha256": "Pm3xxMgz5euXFXd/MYChTYL9l+pJbsbIkF/rEzbxbDw="
+      }
     },
     "CreateInvoiceLambdaFunction": {
       "Type": "AWS::Lambda::Function",
@@ -300,12 +315,18 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/invoice-application2/dev/1624792518352-2021-06-27T11:15:18.352Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/dev/1627126485334-2021-07-24T11:34:45.334Z/invoice-application2.zip"
         },
-        "Handler": "index.handler",
-        "Runtime": "nodejs12.x",
         "FunctionName": "invoice-application2-dev-createInvoice",
+        "Handler": "index.handler",
         "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
         "Timeout": 6,
         "Environment": {
           "Variables": {
@@ -313,56 +334,20 @@
             "TYPE_TABLE": "invoice-type-table-dev",
             "IS_OFFLINE": "true"
           }
-        },
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
         }
       },
       "DependsOn": [
         "CreateInvoiceLogGroup"
       ]
     },
-    "AppLambdaVersionHfb9Sd3yuXMKY8a1ehX86gfdSj3aTRpcYc8GFddo": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "AppLambdaFunction"
-        },
-        "CodeSha256": "zr8y+KWTJ+JU5TKYfiyoD/iAxsf9erghaQ8mnFApRqI="
-      }
-    },
-    "GetUserLambdaVersioniP8uE9yhY385jt99TJQtjcHD4MJcLnqBCj5bTNFfhTI": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "GetUserLambdaFunction"
-        },
-        "CodeSha256": "zr8y+KWTJ+JU5TKYfiyoD/iAxsf9erghaQ8mnFApRqI="
-      }
-    },
-    "GetTypeLambdaVersionRVG3wWCjuGPW2J4KvmcbxijprArNsScqVbTV6aINy4": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "GetTypeLambdaFunction"
-        },
-        "CodeSha256": "zr8y+KWTJ+JU5TKYfiyoD/iAxsf9erghaQ8mnFApRqI="
-      }
-    },
-    "CreateInvoiceLambdaVersionBiPSQrLEq7KdblqRRgi8JvyLxwHtEWMnoJhORtMEM": {
+    "CreateInvoiceLambdaVersionBG7uWALTVEpGztknttxLIKX3Qfbc7RVQqiyDpV8fLY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateInvoiceLambdaFunction"
         },
-        "CodeSha256": "zr8y+KWTJ+JU5TKYfiyoD/iAxsf9erghaQ8mnFApRqI="
+        "CodeSha256": "Pm3xxMgz5euXFXd/MYChTYL9l+pJbsbIkF/rEzbxbDw="
       }
     },
     "ApiGatewayRestApi": {
@@ -738,7 +723,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1624792511277": {
+    "ApiGatewayDeployment1627126478425": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -969,45 +954,30 @@
     "ServerlessDeploymentBucketName": {
       "Value": {
         "Ref": "ServerlessDeploymentBucket"
-      },
-      "Export": {
-        "Name": "sls-invoice-application2-dev-ServerlessDeploymentBucketName"
       }
     },
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionHfb9Sd3yuXMKY8a1ehX86gfdSj3aTRpcYc8GFddo"
-      },
-      "Export": {
-        "Name": "sls-invoice-application2-dev-AppLambdaFunctionQualifiedArn"
+        "Ref": "AppLambdaVersionj2xhT1Taxm2sc7tXvINwTfgVGSVXU3KSJFpsTYzM"
       }
     },
     "GetUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUserLambdaVersioniP8uE9yhY385jt99TJQtjcHD4MJcLnqBCj5bTNFfhTI"
-      },
-      "Export": {
-        "Name": "sls-invoice-application2-dev-GetUserLambdaFunctionQualifiedArn"
+        "Ref": "GetUserLambdaVersione3DXbeMDCLgM5P3jeZtiAIWPbWFsWWmg1wtYxQsSg"
       }
     },
     "GetTypeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetTypeLambdaVersionRVG3wWCjuGPW2J4KvmcbxijprArNsScqVbTV6aINy4"
-      },
-      "Export": {
-        "Name": "sls-invoice-application2-dev-GetTypeLambdaFunctionQualifiedArn"
+        "Ref": "GetTypeLambdaVersionAblaMTQo3H4H7YA6LrHhKULmJbkNvKFDMHdN1nOWs"
       }
     },
     "CreateInvoiceLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateInvoiceLambdaVersionBiPSQrLEq7KdblqRRgi8JvyLxwHtEWMnoJhORtMEM"
-      },
-      "Export": {
-        "Name": "sls-invoice-application2-dev-CreateInvoiceLambdaFunctionQualifiedArn"
+        "Ref": "CreateInvoiceLambdaVersionBG7uWALTVEpGztknttxLIKX3Qfbc7RVQqiyDpV8fLY"
       }
     },
     "ServiceEndpoint": {
@@ -1031,9 +1001,6 @@
             "/dev"
           ]
         ]
-      },
-      "Export": {
-        "Name": "sls-invoice-application2-dev-ServiceEndpoint"
       }
     }
   }
