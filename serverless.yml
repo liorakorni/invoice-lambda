@@ -1,8 +1,8 @@
 service: invoice-application2
 
 custom:
-  tableName: 'invoices-users-table-${self:provider.stage}'
-  invoiceTypeTableName: 'invoice-type-table-${self:provider.stage}'
+  tableName: 'invoices-users-table-${opt:stage, self:provider.stage}'
+  invoiceTypeTableName: 'invoice-type-table-${opt:stage, self:provider.stage}'
   dynamodb:
     start:
       migrate: true
@@ -20,9 +20,17 @@ provider:
     USERS_TABLE: ${self:custom.tableName}
     TYPE_TABLE: ${self:custom.invoiceTypeTableName}
     IS_OFFLINE: true
+    EZCOUNT_API_KEY: ${file(./config.${opt:stage, 'dev'}.json):ezcount_api_key}
+    DEV_MASTER_KEY: ${file(./config.${opt:stage, 'dev'}.json):dev_master_key}
+    DEVELOPER_EMAIL: ${file(./config.${opt:stage, 'dev'}.json):developer_email}
+    DEVELOPER_PHONE: ${file(./config.${opt:stage, 'dev'}.json):developer_phone}
+    API_EMAIL: ${file(./config.${opt:stage, 'dev'}.json):api_email}
+    URL: ${file(./config.${opt:stage, 'dev'}.json):url}
+    BC_SSO_KEY: ${file(./config.${opt:stage, 'dev'}.json):bc_sso_key}
+
   iamRoleStatements:
     - Effect: Allow
-      Action:
+      Action: 
       - dynamodb:Query
       - dynamodb:Scan
       - dynamodb:GetItem

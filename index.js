@@ -11,6 +11,12 @@ const utils = require('./utils');
 
 const USERS_TABLE = process.env.USERS_TABLE;
 const TYPE_TABLE = process.env.TYPE_TABLE;
+const EZCOUNT_API_KEY = process.env.EZCOUNT_API_KEY;
+const DEV_MASTER_KEY = process.env.DEV_MASTER_KEY;
+const DEVELOPER_EMAIL = process.env.DEVELOPER_EMAIL;
+const DEVELOPER_PHONE = process.env.DEVELOPER_PHONE;
+const API_EMAIL = process.env.API_EMAIL;
+const URL = process.env.URL;
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const region = "us-east-1";
@@ -64,24 +70,24 @@ let   decodedBinarySecret;
 app.use(bodyParser.json({ strict: false }));
 
 // register to demo.ezcount.co.il to get your own test keys
-const ezcount_api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345'
-const api_email = 'demo@ezcount.co.il';
-const developer_email = 'ran@broadcust.com';
-const developer_phone = '0528549758';
+// const ezcount_api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345'
+// const api_email = 'demo@ezcount.co.il';
+// const developer_email = 'ran@broadcust.com';
+// const developer_phone = '0528549758';
+// const url = 'https://demo.ezcount.co.il/api/createDoc';
 
 
 // before deploying to production, please contact support and ask for your own unique dev_master_ke
 const dev_master_key = '4146fe70-01bd-11e7-965d-04011c5ad201';
 
-const url = 'https://demo.ezcount.co.il/api/createDoc';
 
 const data = {
     // CUSTOMER credentials
-    api_key: ezcount_api_key,
-    api_email: api_email,
+    api_key: EZCOUNT_API_KEY,
+    api_email: API_EMAIL,
     // developer data
-    developer_email: developer_email,
-    developer_phone: developer_phone,
+    developer_email: DEVELOPER_EMAIL,
+    developer_phone: DEVELOPER_PHONE,
     // developer identifier and permissions key
     // dev_master_key:dev_master_key,
     // invoice reciept
@@ -143,7 +149,7 @@ app.post('/invoices', function (req, res) {
         return;
     }
 
-    request.post(url, { form: invoiceData, json: true }, function(error, response, body) {
+    request.post(URL, { form: invoiceData, json: true }, function(error, response, body) {
 
 
         if (!error && response.statusCode == 200) {
@@ -229,7 +235,9 @@ app.get('/', function (req, res) {
  app.get('/invoices/', function (req, res) {
 
     const now = Date.now().toString();
-    console.log("req.query: ", req.query);
+     console.log("req.query: ", req.query);
+     console.log("DEVELOPER_PHONE ", DEVELOPER_PHONE);
+
 
     const params = {
         TableName: USERS_TABLE,

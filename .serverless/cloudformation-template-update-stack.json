@@ -59,25 +59,25 @@
     "AppLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/invoice-application2-dev-app"
+        "LogGroupName": "/aws/lambda/invoice-application2-prod-app"
       }
     },
     "GetUserLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/invoice-application2-dev-getUser"
+        "LogGroupName": "/aws/lambda/invoice-application2-prod-getUser"
       }
     },
     "GetTypeLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/invoice-application2-dev-getType"
+        "LogGroupName": "/aws/lambda/invoice-application2-prod-getType"
       }
     },
     "CreateInvoiceLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/invoice-application2-dev-createInvoice"
+        "LogGroupName": "/aws/lambda/invoice-application2-prod-createInvoice"
       }
     },
     "IamRoleLambdaExecution": {
@@ -106,7 +106,7 @@
                 "-",
                 [
                   "invoice-application2",
-                  "dev",
+                  "prod",
                   "lambda"
                 ]
               ]
@@ -122,7 +122,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/invoice-application2-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/invoice-application2-prod*:*"
                     }
                   ]
                 },
@@ -133,7 +133,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/invoice-application2-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/invoice-application2-prod*:*:*"
                     }
                   ]
                 },
@@ -172,7 +172,7 @@
             "-",
             [
               "invoice-application2",
-              "dev",
+              "prod",
               {
                 "Ref": "AWS::Region"
               },
@@ -189,9 +189,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/invoice-application2/dev/1627126485334-2021-07-24T11:34:45.334Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/prod/1629306943112-2021-08-18T17:15:43.112Z/invoice-application2.zip"
         },
-        "FunctionName": "invoice-application2-dev-app",
+        "FunctionName": "invoice-application2-prod-app",
         "Handler": "index.handler",
         "MemorySize": 1024,
         "Role": {
@@ -204,9 +204,16 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "USERS_TABLE": "invoices-users-table-dev",
-            "TYPE_TABLE": "invoice-type-table-dev",
-            "IS_OFFLINE": "true"
+            "USERS_TABLE": "invoices-users-table-prod",
+            "TYPE_TABLE": "invoice-type-table-prod",
+            "IS_OFFLINE": "true",
+            "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
+            "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
+            "DEVELOPER_EMAIL": "ran@broadcust.com",
+            "DEVELOPER_PHONE": "0521111111",
+            "API_EMAIL": "demo@ezcount.co.il",
+            "URL": "https://demo.ezcount.co.il/api/createDoc",
+            "BC_SSO_KEY": "n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29"
           }
         }
       },
@@ -214,14 +221,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionj2xhT1Taxm2sc7tXvINwTfgVGSVXU3KSJFpsTYzM": {
+    "AppLambdaVersionGkt7t9UoheKANK9LiXpZ7nQafJqOz55abpyagpjf68I": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "Pm3xxMgz5euXFXd/MYChTYL9l+pJbsbIkF/rEzbxbDw="
+        "CodeSha256": "J6YH2ceCzn4+2b9CoayZPWWAVPm6EFKv9x/DUCDVmfQ="
       }
     },
     "GetUserLambdaFunction": {
@@ -231,9 +238,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/invoice-application2/dev/1627126485334-2021-07-24T11:34:45.334Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/prod/1629306943112-2021-08-18T17:15:43.112Z/invoice-application2.zip"
         },
-        "FunctionName": "invoice-application2-dev-getUser",
+        "FunctionName": "invoice-application2-prod-getUser",
         "Handler": "index.handler",
         "MemorySize": 1024,
         "Role": {
@@ -246,9 +253,16 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "USERS_TABLE": "invoices-users-table-dev",
-            "TYPE_TABLE": "invoice-type-table-dev",
-            "IS_OFFLINE": "true"
+            "USERS_TABLE": "invoices-users-table-prod",
+            "TYPE_TABLE": "invoice-type-table-prod",
+            "IS_OFFLINE": "true",
+            "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
+            "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
+            "DEVELOPER_EMAIL": "ran@broadcust.com",
+            "DEVELOPER_PHONE": "0521111111",
+            "API_EMAIL": "demo@ezcount.co.il",
+            "URL": "https://demo.ezcount.co.il/api/createDoc",
+            "BC_SSO_KEY": "n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29"
           }
         }
       },
@@ -256,14 +270,14 @@
         "GetUserLogGroup"
       ]
     },
-    "GetUserLambdaVersione3DXbeMDCLgM5P3jeZtiAIWPbWFsWWmg1wtYxQsSg": {
+    "GetUserLambdaVersionvoecRTOnJjEIcqVjgKJWLy1r5EXqSKgxc5I8KGw4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetUserLambdaFunction"
         },
-        "CodeSha256": "Pm3xxMgz5euXFXd/MYChTYL9l+pJbsbIkF/rEzbxbDw="
+        "CodeSha256": "J6YH2ceCzn4+2b9CoayZPWWAVPm6EFKv9x/DUCDVmfQ="
       }
     },
     "GetTypeLambdaFunction": {
@@ -273,9 +287,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/invoice-application2/dev/1627126485334-2021-07-24T11:34:45.334Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/prod/1629306943112-2021-08-18T17:15:43.112Z/invoice-application2.zip"
         },
-        "FunctionName": "invoice-application2-dev-getType",
+        "FunctionName": "invoice-application2-prod-getType",
         "Handler": "index.handler",
         "MemorySize": 1024,
         "Role": {
@@ -288,9 +302,16 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "USERS_TABLE": "invoices-users-table-dev",
-            "TYPE_TABLE": "invoice-type-table-dev",
-            "IS_OFFLINE": "true"
+            "USERS_TABLE": "invoices-users-table-prod",
+            "TYPE_TABLE": "invoice-type-table-prod",
+            "IS_OFFLINE": "true",
+            "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
+            "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
+            "DEVELOPER_EMAIL": "ran@broadcust.com",
+            "DEVELOPER_PHONE": "0521111111",
+            "API_EMAIL": "demo@ezcount.co.il",
+            "URL": "https://demo.ezcount.co.il/api/createDoc",
+            "BC_SSO_KEY": "n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29"
           }
         }
       },
@@ -298,14 +319,14 @@
         "GetTypeLogGroup"
       ]
     },
-    "GetTypeLambdaVersionAblaMTQo3H4H7YA6LrHhKULmJbkNvKFDMHdN1nOWs": {
+    "GetTypeLambdaVersionQorO8ABQrA63TJwtCHBrGFaxYKIlmr1xxvaYXmFE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetTypeLambdaFunction"
         },
-        "CodeSha256": "Pm3xxMgz5euXFXd/MYChTYL9l+pJbsbIkF/rEzbxbDw="
+        "CodeSha256": "J6YH2ceCzn4+2b9CoayZPWWAVPm6EFKv9x/DUCDVmfQ="
       }
     },
     "CreateInvoiceLambdaFunction": {
@@ -315,9 +336,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/invoice-application2/dev/1627126485334-2021-07-24T11:34:45.334Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/prod/1629306943112-2021-08-18T17:15:43.112Z/invoice-application2.zip"
         },
-        "FunctionName": "invoice-application2-dev-createInvoice",
+        "FunctionName": "invoice-application2-prod-createInvoice",
         "Handler": "index.handler",
         "MemorySize": 1024,
         "Role": {
@@ -330,9 +351,16 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "USERS_TABLE": "invoices-users-table-dev",
-            "TYPE_TABLE": "invoice-type-table-dev",
-            "IS_OFFLINE": "true"
+            "USERS_TABLE": "invoices-users-table-prod",
+            "TYPE_TABLE": "invoice-type-table-prod",
+            "IS_OFFLINE": "true",
+            "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
+            "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
+            "DEVELOPER_EMAIL": "ran@broadcust.com",
+            "DEVELOPER_PHONE": "0521111111",
+            "API_EMAIL": "demo@ezcount.co.il",
+            "URL": "https://demo.ezcount.co.il/api/createDoc",
+            "BC_SSO_KEY": "n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29"
           }
         }
       },
@@ -340,20 +368,20 @@
         "CreateInvoiceLogGroup"
       ]
     },
-    "CreateInvoiceLambdaVersionBG7uWALTVEpGztknttxLIKX3Qfbc7RVQqiyDpV8fLY": {
+    "CreateInvoiceLambdaVersionDiJQaOshRK7j5oomooCl3vWj1fwYNJC6H6js3EAVyw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateInvoiceLambdaFunction"
         },
-        "CodeSha256": "Pm3xxMgz5euXFXd/MYChTYL9l+pJbsbIkF/rEzbxbDw="
+        "CodeSha256": "J6YH2ceCzn4+2b9CoayZPWWAVPm6EFKv9x/DUCDVmfQ="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-invoice-application2",
+        "Name": "prod-invoice-application2",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -723,13 +751,13 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1627126478425": {
+    "ApiGatewayDeployment1629306935436": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         },
-        "StageName": "dev"
+        "StageName": "prod"
       },
       "DependsOn": [
         "ApiGatewayMethodInvoicesOptions",
@@ -916,7 +944,7 @@
           "ReadCapacityUnits": 1,
           "WriteCapacityUnits": 1
         },
-        "TableName": "invoices-users-table-dev"
+        "TableName": "invoices-users-table-prod"
       }
     },
     "InvoiceTypeDynamoDBTable": {
@@ -946,7 +974,7 @@
           "ReadCapacityUnits": 1,
           "WriteCapacityUnits": 1
         },
-        "TableName": "invoice-type-table-dev"
+        "TableName": "invoice-type-table-prod"
       }
     }
   },
@@ -959,25 +987,25 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionj2xhT1Taxm2sc7tXvINwTfgVGSVXU3KSJFpsTYzM"
+        "Ref": "AppLambdaVersionGkt7t9UoheKANK9LiXpZ7nQafJqOz55abpyagpjf68I"
       }
     },
     "GetUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUserLambdaVersione3DXbeMDCLgM5P3jeZtiAIWPbWFsWWmg1wtYxQsSg"
+        "Ref": "GetUserLambdaVersionvoecRTOnJjEIcqVjgKJWLy1r5EXqSKgxc5I8KGw4"
       }
     },
     "GetTypeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetTypeLambdaVersionAblaMTQo3H4H7YA6LrHhKULmJbkNvKFDMHdN1nOWs"
+        "Ref": "GetTypeLambdaVersionQorO8ABQrA63TJwtCHBrGFaxYKIlmr1xxvaYXmFE"
       }
     },
     "CreateInvoiceLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateInvoiceLambdaVersionBG7uWALTVEpGztknttxLIKX3Qfbc7RVQqiyDpV8fLY"
+        "Ref": "CreateInvoiceLambdaVersionDiJQaOshRK7j5oomooCl3vWj1fwYNJC6H6js3EAVyw"
       }
     },
     "ServiceEndpoint": {
@@ -998,7 +1026,7 @@
             {
               "Ref": "AWS::URLSuffix"
             },
-            "/dev"
+            "/prod"
           ]
         ]
       }

@@ -1,13 +1,20 @@
 const md5 = require('md5');
 const moment = require('moment');
-const config = require('./config');
+// const config = require('./config.dev');
 
 
-const bc_sso_key = 'n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29';
-const api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345';
-const api_email = 'demo@ezcount.co.il';
-const developer_email = 'ran@broadcust.com';
-const developer_phone = '0528549758';
+// const bc_sso_key = 'n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29';
+// const api_key = '519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345';
+// const api_email = 'demo@ezcount.co.il';
+// const developer_email = 'ran@broadcust.com';
+// const developer_phone = '0528549758';
+
+const EZCOUNT_API_KEY = process.env.EZCOUNT_API_KEY;
+const DEVELOPER_EMAIL = process.env.DEVELOPER_EMAIL;
+const DEVELOPER_PHONE = process.env.DEVELOPER_PHONE;
+const API_EMAIL = process.env.API_EMAIL;
+const BC_SSO_KEY = process.env.BC_SSO_KEY;
+
 
 function cgDataToEZC(jsonData) {
 
@@ -65,10 +72,10 @@ function cgDataToEZC(jsonData) {
 
         var data = {
 
-            api_key: api_key,
-            api_email: api_email,
-            developer_email: developer_email,
-            developer_phone: developer_phone,
+            api_key: EZCOUNT_API_KEY,
+            api_email: API_EMAIL,
+            developer_email: DEVELOPER_EMAIL,
+            developer_phone: DEVELOPER_PHONE,
             type: inv_type,
             description: extractInvoiceDescription(inv_type,invoice_types,invoice,recurring),
             customer_name: customer_name,
@@ -127,7 +134,7 @@ function validateSSOToken(extToken,uid,role){
     try{
 
         var timestamp  = moment().format("yyyy-MM-DD");
-        var strtosign = "{0}_{1}_{2}_{3}".replace('{0}',bc_sso_key).replace('{1}',uid).replace('{2}',role).replace('{3}',timestamp );
+        var strtosign = "{0}_{1}_{2}_{3}".replace('{0}',BC_SSO_KEY).replace('{1}',uid).replace('{2}',role).replace('{3}',timestamp );
         var intToken = md5(strtosign);
 
         //console.log('internal token timestamp',timestamp);
@@ -146,7 +153,7 @@ function validateSSOToken(extToken,uid,role){
 }
 
 function loadConfig(){
-    require('./config.json');
+    require('./config.dev.json');
 }
 
 module.exports = {
