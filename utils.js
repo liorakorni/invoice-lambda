@@ -112,9 +112,15 @@ function extractInvoiceDescription(inv_type,invoice_types,invoice,recurring){
 }
 
 function extractInvoiceType(invoice,invoice_types) {
-    try{
+    try {
+
+        if(invoice.transaction.amount < 0){
+            return invoice_types['voided']
+        }
+
         return invoice_types[invoice.transaction.response];
-    }catch (e) {
+
+    } catch (e) {
         return invoice_types['approved'];
     }
 }
