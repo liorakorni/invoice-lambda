@@ -103,6 +103,12 @@
                     },
                     {
                       "Fn::GetAtt": [
+                        "UsersDataDynamoDBTable",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
                         "InvoiceTypeDynamoDBTable",
                         "Arn"
                       ]
@@ -134,7 +140,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-          "S3Key": "serverless/invoice-application2/dev/1738000479212-2025-01-27T17:54:39.212Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/dev/1738437958684-2025-02-01T19:25:58.684Z/invoice-application2.zip"
         },
         "Handler": "index.handler",
         "Runtime": "nodejs22.x",
@@ -144,6 +150,7 @@
         "Environment": {
           "Variables": {
             "USERS_TABLE": "invoices-users-table-dev",
+            "USERS_DATA_TABLE": "users-data-table-dev",
             "TYPE_TABLE": "invoice-type-table-dev",
             "IS_OFFLINE": "true",
             "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
@@ -171,7 +178,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-          "S3Key": "serverless/invoice-application2/dev/1738000479212-2025-01-27T17:54:39.212Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/dev/1738437958684-2025-02-01T19:25:58.684Z/invoice-application2.zip"
         },
         "Handler": "index.handler",
         "Runtime": "nodejs22.x",
@@ -181,6 +188,7 @@
         "Environment": {
           "Variables": {
             "USERS_TABLE": "invoices-users-table-dev",
+            "USERS_DATA_TABLE": "users-data-table-dev",
             "TYPE_TABLE": "invoice-type-table-dev",
             "IS_OFFLINE": "true",
             "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
@@ -208,7 +216,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-          "S3Key": "serverless/invoice-application2/dev/1738000479212-2025-01-27T17:54:39.212Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/dev/1738437958684-2025-02-01T19:25:58.684Z/invoice-application2.zip"
         },
         "Handler": "index.handler",
         "Runtime": "nodejs22.x",
@@ -218,6 +226,7 @@
         "Environment": {
           "Variables": {
             "USERS_TABLE": "invoices-users-table-dev",
+            "USERS_DATA_TABLE": "users-data-table-dev",
             "TYPE_TABLE": "invoice-type-table-dev",
             "IS_OFFLINE": "true",
             "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
@@ -245,7 +254,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-          "S3Key": "serverless/invoice-application2/dev/1738000479212-2025-01-27T17:54:39.212Z/invoice-application2.zip"
+          "S3Key": "serverless/invoice-application2/dev/1738437958684-2025-02-01T19:25:58.684Z/invoice-application2.zip"
         },
         "Handler": "index.handler",
         "Runtime": "nodejs22.x",
@@ -255,6 +264,7 @@
         "Environment": {
           "Variables": {
             "USERS_TABLE": "invoices-users-table-dev",
+            "USERS_DATA_TABLE": "users-data-table-dev",
             "TYPE_TABLE": "invoice-type-table-dev",
             "IS_OFFLINE": "true",
             "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
@@ -277,44 +287,44 @@
         "CreateInvoiceLogGroup"
       ]
     },
-    "AppLambdaVersionNXtT3jRCKP94IOJJaloBb5xZjrw46907k6BnRsCU8": {
+    "AppLambdaVersionXvjlLeKGaPN5wk4rEVsAhhaHIWQ3xCDBYYfQNOAN4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "XlX5yv09ESubZY7dHaM0PunO0z0es43HFhROi7YoKbo="
+        "CodeSha256": "PbzNg9f10FClHIGioL1VxYk6/9EEZCsADX7GcwsYCUI="
       }
     },
-    "GetUserLambdaVersionSC2jd6aADRT2jE2vFzUUz4mz5DQuKFgSk2F1Pg": {
+    "GetUserLambdaVersionyOUkner8h9sEUkrklwZA6P3DIC81Hg3rEvLtP5bWs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetUserLambdaFunction"
         },
-        "CodeSha256": "XlX5yv09ESubZY7dHaM0PunO0z0es43HFhROi7YoKbo="
+        "CodeSha256": "PbzNg9f10FClHIGioL1VxYk6/9EEZCsADX7GcwsYCUI="
       }
     },
-    "GetTypeLambdaVersionWRiKtEzo4s94r578G9FZFjFnpCkvmgY82A1XVmHPZKs": {
+    "GetTypeLambdaVersionaz8L5KzSFkAKe18dW9IRmQcRUIgjkNST4mFYzajS2WM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetTypeLambdaFunction"
         },
-        "CodeSha256": "XlX5yv09ESubZY7dHaM0PunO0z0es43HFhROi7YoKbo="
+        "CodeSha256": "PbzNg9f10FClHIGioL1VxYk6/9EEZCsADX7GcwsYCUI="
       }
     },
-    "CreateInvoiceLambdaVersion8RtroukXv0K0GHK2tB8LLVNkccsaoy9WR85uk68zPNs": {
+    "CreateInvoiceLambdaVersionqeWheP8LUIVpxamX3wsvkgCU8MmmKivGgPSEYBpA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateInvoiceLambdaFunction"
         },
-        "CodeSha256": "XlX5yv09ESubZY7dHaM0PunO0z0es43HFhROi7YoKbo="
+        "CodeSha256": "PbzNg9f10FClHIGioL1VxYk6/9EEZCsADX7GcwsYCUI="
       }
     },
     "ApiGatewayRestApi": {
@@ -722,7 +732,7 @@
         "Name": "invoice-application2-dev | Validate request body and querystring parameters"
       }
     },
-    "ApiGatewayDeployment1738000469574": {
+    "ApiGatewayDeployment1738437939064": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -918,6 +928,28 @@
         "TableName": "invoices-users-table-dev"
       }
     },
+    "UsersDataDynamoDBTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "user_id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "user_id",
+            "KeyType": "HASH"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 1,
+          "WriteCapacityUnits": 1
+        },
+        "TableName": "users-data-table-dev"
+      }
+    },
     "InvoiceTypeDynamoDBTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
@@ -959,7 +991,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionNXtT3jRCKP94IOJJaloBb5xZjrw46907k6BnRsCU8"
+        "Ref": "AppLambdaVersionXvjlLeKGaPN5wk4rEVsAhhaHIWQ3xCDBYYfQNOAN4"
       },
       "Export": {
         "Name": "sls-invoice-application2-dev-AppLambdaFunctionQualifiedArn"
@@ -968,7 +1000,7 @@
     "GetUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUserLambdaVersionSC2jd6aADRT2jE2vFzUUz4mz5DQuKFgSk2F1Pg"
+        "Ref": "GetUserLambdaVersionyOUkner8h9sEUkrklwZA6P3DIC81Hg3rEvLtP5bWs"
       },
       "Export": {
         "Name": "sls-invoice-application2-dev-GetUserLambdaFunctionQualifiedArn"
@@ -977,7 +1009,7 @@
     "GetTypeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetTypeLambdaVersionWRiKtEzo4s94r578G9FZFjFnpCkvmgY82A1XVmHPZKs"
+        "Ref": "GetTypeLambdaVersionaz8L5KzSFkAKe18dW9IRmQcRUIgjkNST4mFYzajS2WM"
       },
       "Export": {
         "Name": "sls-invoice-application2-dev-GetTypeLambdaFunctionQualifiedArn"
@@ -986,7 +1018,7 @@
     "CreateInvoiceLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateInvoiceLambdaVersion8RtroukXv0K0GHK2tB8LLVNkccsaoy9WR85uk68zPNs"
+        "Ref": "CreateInvoiceLambdaVersionqeWheP8LUIVpxamX3wsvkgCU8MmmKivGgPSEYBpA"
       },
       "Export": {
         "Name": "sls-invoice-application2-dev-CreateInvoiceLambdaFunctionQualifiedArn"
