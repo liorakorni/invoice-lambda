@@ -10,6 +10,7 @@ const request = require('request');
 const utils = require('./utils');
 
 const USERS_TABLE = process.env.USERS_TABLE;
+const USERS_DATA_TABLE = process.env.USERS_DATA_TABLE;
 const TYPE_TABLE = process.env.TYPE_TABLE;
 const EZCOUNT_API_KEY = process.env.EZCOUNT_API_KEY;
 const DEV_MASTER_KEY = process.env.DEV_MASTER_KEY;
@@ -201,6 +202,25 @@ app.post('/invoices', function (req, res) {
                     });
                 }
             });
+
+            const user_params = {
+                  TableName: USERS_DATA_TABLE,
+                  Item: {
+                    user_id: "12345",
+                    user_data: {
+                      name: "Alice",
+                      age: 25,
+                      preferences: {
+                        theme: "dark",
+                        notifications: true,
+                      },
+                    },
+                  },
+                };
+
+                dynamoDb.put(user_params).promise()
+                  .then(() => console.log("User Data inserted successfully"))
+                  .catch(err => console.error("Error inserting user data:", err));
 
         } else {
             console.error("creating invoice failed");
