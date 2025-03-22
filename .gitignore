@@ -1,6 +1,7 @@
 node_modules/
 idea/
 serverless/
+.serverless/
 .dynamodb/
 .serverless/
 .idea/workspace.xml
