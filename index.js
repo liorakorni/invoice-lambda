@@ -116,10 +116,41 @@ const data = {
     comment: "some general comment for the document",
 }
 
+
+
 // Create invoices endpoint
+
+app.post('/generate_cell', function (req, res)
+{
+    const eventHeaders = req?.headers;
+    const eventOrigin = eventHeaders?.origin;
+    console.log("generate_cell eventOrigin is:", eventOrigin);
+
+     if (eventOrigin && !eventOrigin.endsWith("broadcust.co.il")) {
+            const response = {
+                 statusCode: 403,
+                 body: JSON.stringify({ error: "Invalid Origin" })
+            };
+            console.log("origin is not allowed:", eventOrigin);
+            return response;
+    }
+})
+
+app.post('/pme_listener', function (req, res)
+{
+    const eventHeaders = req?.headers;
+    const eventOrigin = eventHeaders?.origin;
+    console.log("pme_listener eventOrigin is:", eventOrigin);
+
+})
+
 app.post('/invoices', function (req, res) {
 
     const reqbody = req.body;
+    const eventHeaders = req?.headers;
+    const eventOrigin = eventHeaders?.origin;
+    console.log("invoices eventOrigin is:", eventOrigin);
+
 
     res.set({
         'Access-Control-Allow-Origin': '*',
