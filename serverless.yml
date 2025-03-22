@@ -83,14 +83,14 @@ functions:
         path: /invoices
         method: post
         cors: true
-  createCell:
+  generateCell:
     handler: index.handler
     events:
     - http:
         path: /generate_cell
         method: post
         cors: true
-  createCell2:
+  pmeListener:
     handler: index.handler
     events:
     - http:
