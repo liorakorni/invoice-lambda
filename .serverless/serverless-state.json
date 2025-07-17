@@ -13,6 +13,7 @@
         "USERS_TABLE": "invoices-users-table-dev",
         "USERS_DATA_TABLE": "users-data-table-dev",
         "TYPE_TABLE": "invoice-type-table-dev",
+        "PAYME_TABLE": "payme-transactions-table-dev",
         "IS_OFFLINE": "true",
         "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
         "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
@@ -51,6 +52,12 @@
                 "InvoiceTypeDynamoDBTable",
                 "Arn"
               ]
+            },
+            {
+              "Fn::GetAtt": [
+                "PaymeTransactionsDynamoDBTable",
+                "Arn"
+              ]
             }
           ]
         }
@@ -60,6 +67,75 @@
         "AWSTemplateFormatVersion": "2010-09-09",
         "Description": "The AWS CloudFormation template for this Serverless application",
         "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ServerlessDeploymentBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "s3:*",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            }
+                          ]
+                        ]
+                      }
+                    ],
+                    "Condition": {
+                      "Bool": {
+                        "aws:SecureTransport": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
           "AppLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
@@ -94,6 +170,12 @@
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/invoice-application2-dev-pmeListener"
+            }
+          },
+          "GetPmeStatusLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/invoice-application2-dev-getPmeStatus"
             }
           },
           "IamRoleLambdaExecution": {
@@ -181,8 +263,10 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-                "S3Key": "serverless/invoice-application2/dev/1742673567864-2025-03-22T19:59:27.864Z/invoice-application2.zip"
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs22.x",
@@ -194,6 +278,7 @@
                   "USERS_TABLE": "invoices-users-table-dev",
                   "USERS_DATA_TABLE": "users-data-table-dev",
                   "TYPE_TABLE": "invoice-type-table-dev",
+                  "PAYME_TABLE": "payme-transactions-table-dev",
                   "IS_OFFLINE": "true",
                   "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
                   "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
@@ -219,8 +304,10 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-                "S3Key": "serverless/invoice-application2/dev/1742673567864-2025-03-22T19:59:27.864Z/invoice-application2.zip"
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs22.x",
@@ -232,6 +319,7 @@
                   "USERS_TABLE": "invoices-users-table-dev",
                   "USERS_DATA_TABLE": "users-data-table-dev",
                   "TYPE_TABLE": "invoice-type-table-dev",
+                  "PAYME_TABLE": "payme-transactions-table-dev",
                   "IS_OFFLINE": "true",
                   "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
                   "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
@@ -257,8 +345,10 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-                "S3Key": "serverless/invoice-application2/dev/1742673567864-2025-03-22T19:59:27.864Z/invoice-application2.zip"
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs22.x",
@@ -270,6 +360,7 @@
                   "USERS_TABLE": "invoices-users-table-dev",
                   "USERS_DATA_TABLE": "users-data-table-dev",
                   "TYPE_TABLE": "invoice-type-table-dev",
+                  "PAYME_TABLE": "payme-transactions-table-dev",
                   "IS_OFFLINE": "true",
                   "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
                   "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
@@ -295,8 +386,10 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-                "S3Key": "serverless/invoice-application2/dev/1742673567864-2025-03-22T19:59:27.864Z/invoice-application2.zip"
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs22.x",
@@ -308,6 +401,7 @@
                   "USERS_TABLE": "invoices-users-table-dev",
                   "USERS_DATA_TABLE": "users-data-table-dev",
                   "TYPE_TABLE": "invoice-type-table-dev",
+                  "PAYME_TABLE": "payme-transactions-table-dev",
                   "IS_OFFLINE": "true",
                   "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
                   "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
@@ -333,8 +427,10 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-                "S3Key": "serverless/invoice-application2/dev/1742673567864-2025-03-22T19:59:27.864Z/invoice-application2.zip"
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs22.x",
@@ -346,6 +442,7 @@
                   "USERS_TABLE": "invoices-users-table-dev",
                   "USERS_DATA_TABLE": "users-data-table-dev",
                   "TYPE_TABLE": "invoice-type-table-dev",
+                  "PAYME_TABLE": "payme-transactions-table-dev",
                   "IS_OFFLINE": "true",
                   "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
                   "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
@@ -371,8 +468,10 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-us-east-1-b707af47-ecca",
-                "S3Key": "serverless/invoice-application2/dev/1742673567864-2025-03-22T19:59:27.864Z/invoice-application2.zip"
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z/invoice-application2.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs22.x",
@@ -384,6 +483,7 @@
                   "USERS_TABLE": "invoices-users-table-dev",
                   "USERS_DATA_TABLE": "users-data-table-dev",
                   "TYPE_TABLE": "invoice-type-table-dev",
+                  "PAYME_TABLE": "payme-transactions-table-dev",
                   "IS_OFFLINE": "true",
                   "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
                   "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
@@ -405,64 +505,115 @@
               "PmeListenerLogGroup"
             ]
           },
-          "AppLambdaVersionaizjUEJxkDZmxSkMSOtHvDtETfAAoBaZzIV0Y2gSQ": {
+          "GetPmeStatusLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z/invoice-application2.zip"
+              },
+              "Handler": "index.handler",
+              "Runtime": "nodejs22.x",
+              "FunctionName": "invoice-application2-dev-getPmeStatus",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USERS_TABLE": "invoices-users-table-dev",
+                  "USERS_DATA_TABLE": "users-data-table-dev",
+                  "TYPE_TABLE": "invoice-type-table-dev",
+                  "PAYME_TABLE": "payme-transactions-table-dev",
+                  "IS_OFFLINE": "true",
+                  "EZCOUNT_API_KEY": "519e9e82846fc9288a8046fbc642af7ac0838d7462f6be9ab1ab95eae22e9345",
+                  "DEV_MASTER_KEY": "4146fe70-01bd-11e7-965d-04011c5ad201",
+                  "DEVELOPER_EMAIL": "ran@broadcust.com",
+                  "DEVELOPER_PHONE": "0528549758",
+                  "API_EMAIL": "demo@ezcount.co.il",
+                  "URL": "https://demo.ezcount.co.il/api/createDoc",
+                  "BC_SSO_KEY": "n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetPmeStatusLogGroup"
+            ]
+          },
+          "AppLambdaVersion5Me4rv8wmJJFswZIGthhZzR9P0Xb4OcdNZWgCupak8c": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "0y8F1xekq+dbgOCpvGO0mpU3zaI9uwWht8B0MfySvJw="
+              "CodeSha256": "Tekj9BtHzZw+FwYzRudkOekenaBTgjda5qbYcsusT5E="
             }
           },
-          "GetUserLambdaVersionpKhzsJ1bgdAZMYf9NtuhcHCQNWnZTkW9Q4O0f1Exwo": {
+          "GetUserLambdaVersionrWA0BtuUuVBrc6QZyMpw2Q05dYAVl2eZhdNt2JdRA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUserLambdaFunction"
               },
-              "CodeSha256": "0y8F1xekq+dbgOCpvGO0mpU3zaI9uwWht8B0MfySvJw="
+              "CodeSha256": "Tekj9BtHzZw+FwYzRudkOekenaBTgjda5qbYcsusT5E="
             }
           },
-          "GetTypeLambdaVersionLSzopFcdvVlF5qseA8QfZV0Xz8sj6XsWW24sbOKU": {
+          "GetTypeLambdaVersionuH1mlIILWNLIWeHua31inm7cfV9UG7hw77PYRWzcwh4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetTypeLambdaFunction"
               },
-              "CodeSha256": "0y8F1xekq+dbgOCpvGO0mpU3zaI9uwWht8B0MfySvJw="
+              "CodeSha256": "Tekj9BtHzZw+FwYzRudkOekenaBTgjda5qbYcsusT5E="
             }
           },
-          "CreateInvoiceLambdaVersionkDzFzjwSyfhvbJiEbuvJveLejJ3pcl8Zi6zW9LvUsUs": {
+          "CreateInvoiceLambdaVersionurMsGnNXxSqf0D5ciL4hTtneoQYWJkfq6DdhoXWfxzU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateInvoiceLambdaFunction"
               },
-              "CodeSha256": "0y8F1xekq+dbgOCpvGO0mpU3zaI9uwWht8B0MfySvJw="
+              "CodeSha256": "Tekj9BtHzZw+FwYzRudkOekenaBTgjda5qbYcsusT5E="
             }
           },
-          "GenerateCellLambdaVersion3bPCImVPfrrG0WK8rdJ7J6pgKIl049cCEMrykGFslU": {
+          "GenerateCellLambdaVersion0WgX6xOAtGpEAAMvAWKNuTSZwA1g5mwgyM5X6eU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GenerateCellLambdaFunction"
               },
-              "CodeSha256": "0y8F1xekq+dbgOCpvGO0mpU3zaI9uwWht8B0MfySvJw="
+              "CodeSha256": "Tekj9BtHzZw+FwYzRudkOekenaBTgjda5qbYcsusT5E="
             }
           },
-          "PmeListenerLambdaVersionrHULjXww3d4DzwK93WAPxoFFFypucyFhOE57GyD4": {
+          "PmeListenerLambdaVersionDue3HDsxrhmo5NvoJBZHKF1jY7BOMwWhrtpF2o": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PmeListenerLambdaFunction"
               },
-              "CodeSha256": "0y8F1xekq+dbgOCpvGO0mpU3zaI9uwWht8B0MfySvJw="
+              "CodeSha256": "Tekj9BtHzZw+FwYzRudkOekenaBTgjda5qbYcsusT5E="
+            }
+          },
+          "GetPmeStatusLambdaVersioneU4s6k6x7NVn6uoFvsBGL9XQo5bLhquKPbttuNw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetPmeStatusLambdaFunction"
+              },
+              "CodeSha256": "Tekj9BtHzZw+FwYzRudkOekenaBTgjda5qbYcsusT5E="
             }
           },
           "ApiGatewayRestApi": {
@@ -522,7 +673,7 @@
               }
             }
           },
-          "ApiGatewayResourceGeneratecell": {
+          "ApiGatewayResourceGenerateDashcell": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
@@ -531,13 +682,13 @@
                   "RootResourceId"
                 ]
               },
-              "PathPart": "generate_cell",
+              "PathPart": "generate-cell",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayResourcePmelistener": {
+          "ApiGatewayResourcePmeDashlistener": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
@@ -546,7 +697,22 @@
                   "RootResourceId"
                 ]
               },
-              "PathPart": "pme_listener",
+              "PathPart": "pme-listener",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceGetDashpmeDashstatus": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "get-pme-status",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -642,7 +808,7 @@
               }
             }
           },
-          "ApiGatewayMethodGeneratecellOptions": {
+          "ApiGatewayMethodGenerateDashcellOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "AuthorizationType": "NONE",
@@ -680,14 +846,14 @@
                 ]
               },
               "ResourceId": {
-                "Ref": "ApiGatewayResourceGeneratecell"
+                "Ref": "ApiGatewayResourceGenerateDashcell"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayMethodPmelistenerOptions": {
+          "ApiGatewayMethodPmeDashlistenerOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "AuthorizationType": "NONE",
@@ -725,7 +891,52 @@
                 ]
               },
               "ResourceId": {
-                "Ref": "ApiGatewayResourcePmelistener"
+                "Ref": "ApiGatewayResourcePmeDashlistener"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodGetDashpmeDashstatusOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceGetDashpmeDashstatus"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -979,13 +1190,13 @@
               "CreateInvoiceLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayMethodGeneratecellPost": {
+          "ApiGatewayMethodGenerateDashcellPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "POST",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceGeneratecell"
+                "Ref": "ApiGatewayResourceGenerateDashcell"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -1025,13 +1236,13 @@
               "GenerateCellLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayMethodPmelistenerPost": {
+          "ApiGatewayMethodPmeDashlistenerPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "POST",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourcePmelistener"
+                "Ref": "ApiGatewayResourcePmeDashlistener"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -1071,6 +1282,52 @@
               "PmeListenerLambdaPermissionApiGateway"
             ]
           },
+          "ApiGatewayMethodGetDashpmeDashstatusGet": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "GET",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceGetDashpmeDashstatus"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "GetPmeStatusLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "GetPmeStatusLambdaPermissionApiGateway"
+            ]
+          },
           "ApiGatewayInvoiceapplication2RequestValidator": {
             "Type": "AWS::ApiGateway::RequestValidator",
             "Properties": {
@@ -1082,7 +1339,7 @@
               "Name": "invoice-application2-dev | Validate request body and querystring parameters"
             }
           },
-          "ApiGatewayDeployment1742673558200": {
+          "ApiGatewayDeployment1750886865555": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1093,15 +1350,17 @@
             "DependsOn": [
               "ApiGatewayMethodInvoicesOptions",
               "ApiGatewayMethodInvoicesDashtypeOptions",
-              "ApiGatewayMethodGeneratecellOptions",
-              "ApiGatewayMethodPmelistenerOptions",
+              "ApiGatewayMethodGenerateDashcellOptions",
+              "ApiGatewayMethodPmeDashlistenerOptions",
+              "ApiGatewayMethodGetDashpmeDashstatusOptions",
               "ApiGatewayMethodAny",
               "ApiGatewayMethodProxyVarAny",
               "ApiGatewayMethodInvoicesGet",
               "ApiGatewayMethodInvoicesDashtypeGet",
               "ApiGatewayMethodInvoicesPost",
-              "ApiGatewayMethodGeneratecellPost",
-              "ApiGatewayMethodPmelistenerPost"
+              "ApiGatewayMethodGenerateDashcellPost",
+              "ApiGatewayMethodPmeDashlistenerPost",
+              "ApiGatewayMethodGetDashpmeDashstatusGet"
             ]
           },
           "AppLambdaPermissionApiGateway": {
@@ -1326,6 +1585,43 @@
               }
             }
           },
+          "GetPmeStatusLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetPmeStatusLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
           "UsersDynamoDBTable": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
@@ -1407,11 +1703,77 @@
               },
               "TableName": "invoice-type-table-dev"
             }
+          },
+          "PaymeTransactionsDynamoDBTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "sale_id",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "user_id",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "timestamp",
+                  "AttributeType": "N"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "sale_id",
+                  "KeyType": "HASH"
+                }
+              ],
+              "GlobalSecondaryIndexes": [
+                {
+                  "IndexName": "user_id-index",
+                  "KeySchema": [
+                    {
+                      "AttributeName": "user_id",
+                      "KeyType": "HASH"
+                    }
+                  ],
+                  "Projection": {
+                    "ProjectionType": "ALL"
+                  },
+                  "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 1,
+                    "WriteCapacityUnits": 1
+                  }
+                },
+                {
+                  "IndexName": "timestamp-index",
+                  "KeySchema": [
+                    {
+                      "AttributeName": "timestamp",
+                      "KeyType": "HASH"
+                    }
+                  ],
+                  "Projection": {
+                    "ProjectionType": "ALL"
+                  },
+                  "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 1,
+                    "WriteCapacityUnits": 1
+                  }
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              },
+              "TableName": "payme-transactions-table-dev"
+            }
           }
         },
         "Outputs": {
           "ServerlessDeploymentBucketName": {
-            "Value": "serverless-framework-deployments-us-east-1-b707af47-ecca",
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            },
             "Export": {
               "Name": "sls-invoice-application2-dev-ServerlessDeploymentBucketName"
             }
@@ -1419,7 +1781,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionaizjUEJxkDZmxSkMSOtHvDtETfAAoBaZzIV0Y2gSQ"
+              "Ref": "AppLambdaVersion5Me4rv8wmJJFswZIGthhZzR9P0Xb4OcdNZWgCupak8c"
             },
             "Export": {
               "Name": "sls-invoice-application2-dev-AppLambdaFunctionQualifiedArn"
@@ -1428,7 +1790,7 @@
           "GetUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserLambdaVersionpKhzsJ1bgdAZMYf9NtuhcHCQNWnZTkW9Q4O0f1Exwo"
+              "Ref": "GetUserLambdaVersionrWA0BtuUuVBrc6QZyMpw2Q05dYAVl2eZhdNt2JdRA"
             },
             "Export": {
               "Name": "sls-invoice-application2-dev-GetUserLambdaFunctionQualifiedArn"
@@ -1437,7 +1799,7 @@
           "GetTypeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetTypeLambdaVersionLSzopFcdvVlF5qseA8QfZV0Xz8sj6XsWW24sbOKU"
+              "Ref": "GetTypeLambdaVersionuH1mlIILWNLIWeHua31inm7cfV9UG7hw77PYRWzcwh4"
             },
             "Export": {
               "Name": "sls-invoice-application2-dev-GetTypeLambdaFunctionQualifiedArn"
@@ -1446,7 +1808,7 @@
           "CreateInvoiceLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateInvoiceLambdaVersionkDzFzjwSyfhvbJiEbuvJveLejJ3pcl8Zi6zW9LvUsUs"
+              "Ref": "CreateInvoiceLambdaVersionurMsGnNXxSqf0D5ciL4hTtneoQYWJkfq6DdhoXWfxzU"
             },
             "Export": {
               "Name": "sls-invoice-application2-dev-CreateInvoiceLambdaFunctionQualifiedArn"
@@ -1455,7 +1817,7 @@
           "GenerateCellLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GenerateCellLambdaVersion3bPCImVPfrrG0WK8rdJ7J6pgKIl049cCEMrykGFslU"
+              "Ref": "GenerateCellLambdaVersion0WgX6xOAtGpEAAMvAWKNuTSZwA1g5mwgyM5X6eU"
             },
             "Export": {
               "Name": "sls-invoice-application2-dev-GenerateCellLambdaFunctionQualifiedArn"
@@ -1464,10 +1826,19 @@
           "PmeListenerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PmeListenerLambdaVersionrHULjXww3d4DzwK93WAPxoFFFypucyFhOE57GyD4"
+              "Ref": "PmeListenerLambdaVersionDue3HDsxrhmo5NvoJBZHKF1jY7BOMwWhrtpF2o"
             },
             "Export": {
               "Name": "sls-invoice-application2-dev-PmeListenerLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetPmeStatusLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetPmeStatusLambdaVersioneU4s6k6x7NVn6uoFvsBGL9XQo5bLhquKPbttuNw"
+            },
+            "Export": {
+              "Name": "sls-invoice-application2-dev-GetPmeStatusLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -1498,12 +1869,95 @@
           }
         }
       },
+      "coreCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ServerlessDeploymentBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "s3:*",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            }
+                          ]
+                        ]
+                      }
+                    ],
+                    "Condition": {
+                      "Bool": {
+                        "aws:SecureTransport": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          }
+        }
+      },
       "vpc": {}
     },
     "custom": {
       "tableName": "invoices-users-table-dev",
       "usersDataTableName": "users-data-table-dev",
       "invoiceTypeTableName": "invoice-type-table-dev",
+      "paymeTransTableName": "payme-transactions-table-dev",
       "dynamodb": {
         "start": {
           "migrate": true
@@ -1532,7 +1986,7 @@
         "timeout": 6,
         "runtime": "nodejs22.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionaizjUEJxkDZmxSkMSOtHvDtETfAAoBaZzIV0Y2gSQ"
+        "versionLogicalId": "AppLambdaVersion5Me4rv8wmJJFswZIGthhZzR9P0Xb4OcdNZWgCupak8c"
       },
       "getUser": {
         "handler": "index.handler",
@@ -1575,7 +2029,7 @@
         "timeout": 6,
         "runtime": "nodejs22.x",
         "vpc": {},
-        "versionLogicalId": "GetUserLambdaVersionpKhzsJ1bgdAZMYf9NtuhcHCQNWnZTkW9Q4O0f1Exwo"
+        "versionLogicalId": "GetUserLambdaVersionrWA0BtuUuVBrc6QZyMpw2Q05dYAVl2eZhdNt2JdRA"
       },
       "getType": {
         "handler": "index.handler",
@@ -1618,7 +2072,7 @@
         "timeout": 6,
         "runtime": "nodejs22.x",
         "vpc": {},
-        "versionLogicalId": "GetTypeLambdaVersionLSzopFcdvVlF5qseA8QfZV0Xz8sj6XsWW24sbOKU"
+        "versionLogicalId": "GetTypeLambdaVersionuH1mlIILWNLIWeHua31inm7cfV9UG7hw77PYRWzcwh4"
       },
       "createInvoice": {
         "handler": "index.handler",
@@ -1654,14 +2108,14 @@
         "timeout": 6,
         "runtime": "nodejs22.x",
         "vpc": {},
-        "versionLogicalId": "CreateInvoiceLambdaVersionkDzFzjwSyfhvbJiEbuvJveLejJ3pcl8Zi6zW9LvUsUs"
+        "versionLogicalId": "CreateInvoiceLambdaVersionurMsGnNXxSqf0D5ciL4hTtneoQYWJkfq6DdhoXWfxzU"
       },
       "generateCell": {
         "handler": "index.handler",
         "events": [
           {
             "http": {
-              "path": "generate_cell",
+              "path": "generate-cell",
               "method": "post",
               "cors": {
                 "origin": "*",
@@ -1690,14 +2144,14 @@
         "timeout": 6,
         "runtime": "nodejs22.x",
         "vpc": {},
-        "versionLogicalId": "GenerateCellLambdaVersion3bPCImVPfrrG0WK8rdJ7J6pgKIl049cCEMrykGFslU"
+        "versionLogicalId": "GenerateCellLambdaVersion0WgX6xOAtGpEAAMvAWKNuTSZwA1g5mwgyM5X6eU"
       },
       "pmeListener": {
         "handler": "index.handler",
         "events": [
           {
             "http": {
-              "path": "pme_listener",
+              "path": "pme-listener",
               "method": "post",
               "cors": {
                 "origin": "*",
@@ -1726,7 +2180,43 @@
         "timeout": 6,
         "runtime": "nodejs22.x",
         "vpc": {},
-        "versionLogicalId": "PmeListenerLambdaVersionrHULjXww3d4DzwK93WAPxoFFFypucyFhOE57GyD4"
+        "versionLogicalId": "PmeListenerLambdaVersionDue3HDsxrhmo5NvoJBZHKF1jY7BOMwWhrtpF2o"
+      },
+      "getPmeStatus": {
+        "handler": "index.handler",
+        "events": [
+          {
+            "http": {
+              "path": "get-pme-status",
+              "method": "get",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent",
+                  "X-Amzn-Trace-Id"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "invoice-application2-dev-getPmeStatus",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs22.x",
+        "vpc": {},
+        "versionLogicalId": "GetPmeStatusLambdaVersioneU4s6k6x7NVn6uoFvsBGL9XQo5bLhquKPbttuNw"
       }
     },
     "resources": {
@@ -1812,12 +2302,76 @@
             },
             "TableName": "invoice-type-table-dev"
           }
+        },
+        "PaymeTransactionsDynamoDBTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "sale_id",
+                "AttributeType": "S"
+              },
+              {
+                "AttributeName": "user_id",
+                "AttributeType": "S"
+              },
+              {
+                "AttributeName": "timestamp",
+                "AttributeType": "N"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "sale_id",
+                "KeyType": "HASH"
+              }
+            ],
+            "GlobalSecondaryIndexes": [
+              {
+                "IndexName": "user_id-index",
+                "KeySchema": [
+                  {
+                    "AttributeName": "user_id",
+                    "KeyType": "HASH"
+                  }
+                ],
+                "Projection": {
+                  "ProjectionType": "ALL"
+                },
+                "ProvisionedThroughput": {
+                  "ReadCapacityUnits": 1,
+                  "WriteCapacityUnits": 1
+                }
+              },
+              {
+                "IndexName": "timestamp-index",
+                "KeySchema": [
+                  {
+                    "AttributeName": "timestamp",
+                    "KeyType": "HASH"
+                  }
+                ],
+                "Projection": {
+                  "ProjectionType": "ALL"
+                },
+                "ProvisionedThroughput": {
+                  "ReadCapacityUnits": 1,
+                  "WriteCapacityUnits": 1
+                }
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            },
+            "TableName": "payme-transactions-table-dev"
+          }
         }
       },
       "Outputs": {}
     },
     "configValidationMode": "warn",
-    "serviceFilename": "serverless",
+    "serviceFilename": "serverless.yml",
     "initialServerlessConfig": {
       "service": "invoice-application2",
       "custom": {
@@ -1825,6 +2379,13 @@
       },
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
+      },
+      "package": {
+        "individually": false,
+        "excludeDevDependencies": true,
+        "artifactsS3KeyDirname": "serverless/invoice-application2/dev/code-artifacts",
+        "artifact": "C:\\Sandbox\\invoice-lambda\\.serverless\\invoice-application2.zip",
+        "artifactDirectoryName": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z"
       },
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
@@ -1836,13 +2397,13 @@
         "$ref": "$[\"service\"][\"resources\"]"
       }
     },
-    "appId": null,
-    "orgId": null,
     "layers": {},
-    "artifact": "/Users/liora.korni/Documents/repos/invoice-lambda/.serverless/invoice-application2.zip"
+    "isDashboardMonitoringPreconfigured": false,
+    "artifact": "C:\\Sandbox\\invoice-lambda\\.serverless\\invoice-application2.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/invoice-application2/dev/1742673567864-2025-03-22T19:59:27.864Z",
+    "individually": false,
+    "artifactDirectoryName": "serverless/invoice-application2/dev/1750886876868-2025-06-25T21:27:56.868Z",
     "artifact": "invoice-application2.zip"
   }
 }

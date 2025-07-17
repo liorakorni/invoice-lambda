@@ -4,6 +4,7 @@ custom:
   tableName: 'invoices-users-table-${opt:stage, self:provider.stage}'
   usersDataTableName: 'users-data-table-${opt:stage, self:provider.stage}'
   invoiceTypeTableName: 'invoice-type-table-${opt:stage, self:provider.stage}'
+  paymeTransTableName: 'payme-transactions-table-${opt:stage, self:provider.stage}'
   dynamodb:
     start:
       migrate: true
@@ -11,6 +12,10 @@ custom:
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
+
+package:
+  individually: false
+  excludeDevDependencies: true
 
 provider:
   name: aws
@@ -21,6 +26,7 @@ provider:
     USERS_TABLE: ${self:custom.tableName}
     USERS_DATA_TABLE: ${self:custom.usersDataTableName}
     TYPE_TABLE: ${self:custom.invoiceTypeTableName}
+    PAYME_TABLE: ${self:custom.paymeTransTableName}
     IS_OFFLINE: true
     EZCOUNT_API_KEY: ${file(./config.${opt:stage, 'dev'}.json):ezcount_api_key}
     DEV_MASTER_KEY: ${file(./config.${opt:stage, 'dev'}.json):dev_master_key}
@@ -32,86 +38,94 @@ provider:
 
   iamRoleStatements:
     - Effect: Allow
-      Action: 
-      - dynamodb:Query
-      - dynamodb:Scan
-      - dynamodb:GetItem
-      - dynamodb:PutItem
-      - dynamodb:UpdateItem
-      - dynamodb:DeleteItem
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
       Resource:
-      - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
-      - { "Fn::GetAtt": ["UsersDataDynamoDBTable", "Arn" ] }
-      - { "Fn::GetAtt": ["InvoiceTypeDynamoDBTable", "Arn" ] }
+        - { "Fn::GetAtt": [ "UsersDynamoDBTable", "Arn" ] }
+        - { "Fn::GetAtt": [ "UsersDataDynamoDBTable", "Arn" ] }
+        - { "Fn::GetAtt": [ "InvoiceTypeDynamoDBTable", "Arn" ] }
+        - { "Fn::GetAtt": [ "PaymeTransactionsDynamoDBTable", "Arn" ] }
 
 functions:
   app:
     handler: index.handler
     events:
-    - http: ANY /
-    - http: 'ANY /{proxy+}'
+      - http: ANY /
+      - http: 'ANY /{proxy+}'
   getUser:
     handler: index.handler
     events:
-    - http:
-        path: /invoices
-        method: get
-        cors: true
-        request:
-          parameters:
-            querystrings:
-              userId: true
-              startDate: false
-              endDate: false
+      - http:
+          path: /invoices
+          method: get
+          cors: true
+          request:
+            parameters:
+              querystrings:
+                userId: true
+                startDate: false
+                endDate: false
   getType:
     handler: index.handler
     events:
-    - http:
-        path: /invoices-type
-        method: get
-        cors: true
-        request:
-          parameters:
-            querystrings:
-              invoiceType: true
-              startDate: false
-              endDate: false
+      - http:
+          path: /invoices-type
+          method: get
+          cors: true
+          request:
+            parameters:
+              querystrings:
+                invoiceType: true
+                startDate: false
+                endDate: false
   createInvoice:
     handler: index.handler
     events:
-    - http:
-        path: /invoices
-        method: post
-        cors: true
+      - http:
+          path: /invoices
+          method: post
+          cors: true
   generateCell:
     handler: index.handler
     events:
-    - http:
-        path: /generate_cell
-        method: post
-        cors: true
+      - http:
+          path: /generate-cell
+          method: post
+          cors: true
   pmeListener:
     handler: index.handler
     events:
-    - http:
-        path: /pme_listener
-        method: post
-        cors: true
+      - http:
+          path: /pme-listener
+          method: post
+          cors: true
+  getPmeStatus:
+          handler: index.handler
+          events:
+            - http:
+                path: /get-pme-status
+                method: get
+                cors: true
 resources:
   Resources:
     UsersDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
-        - AttributeName: user_id
-          AttributeType: S
-        - AttributeName: ec_number
-          AttributeType: S
+          - AttributeName: user_id
+            AttributeType: S
+          - AttributeName: ec_number
+            AttributeType: S
         KeySchema:
-        - AttributeName: user_id
-          KeyType: HASH
-        - AttributeName: ec_number
-          KeyType: RANGE
+          - AttributeName: user_id
+            KeyType: HASH
+          - AttributeName: ec_number
+            KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
@@ -120,11 +134,11 @@ resources:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
-        - AttributeName: user_id
-          AttributeType: S
+          - AttributeName: user_id
+            AttributeType: S
         KeySchema:
-        - AttributeName: user_id
-          KeyType: HASH
+          - AttributeName: user_id
+            KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
@@ -133,16 +147,52 @@ resources:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
-        - AttributeName: invoice_type
-          AttributeType: N
-        - AttributeName: ec_number
-          AttributeType: S
+          - AttributeName: invoice_type
+            AttributeType: N
+          - AttributeName: ec_number
+            AttributeType: S
         KeySchema:
-        - AttributeName: invoice_type
-          KeyType: HASH
-        - AttributeName: ec_number
-          KeyType: RANGE
+          - AttributeName: invoice_type
+            KeyType: HASH
+          - AttributeName: ec_number
+            KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:custom.invoiceTypeTableName}
+    PaymeTransactionsDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: sale_id
+            AttributeType: S
+          - AttributeName: user_id
+            AttributeType: S
+          - AttributeName: timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: sale_id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: user_id-index
+            KeySchema:
+              - AttributeName: user_id
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+          - IndexName: timestamp-index
+            KeySchema:
+              - AttributeName: timestamp
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.paymeTransTableName}
