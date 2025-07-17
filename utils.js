@@ -15,7 +15,6 @@ const DEVELOPER_PHONE = process.env.DEVELOPER_PHONE;
 const API_EMAIL = process.env.API_EMAIL;
 const BC_SSO_KEY = process.env.BC_SSO_KEY;
 
-
 function cgDataToEZC(jsonData) {
 
     try {
@@ -158,11 +157,34 @@ function validateSSOToken(extToken,uid,role){
 
 }
 
+function parseRequestBody(req) {
+    try {
+        if (typeof req.body === 'object' && req.body !== null && !Buffer.isBuffer(req.body)) {
+            return req.body;
+        }
+
+        if (Buffer.isBuffer(req.body)) {
+            return JSON.parse(req.body.toString());
+        }
+
+        if (typeof req.body === 'string') {
+            return JSON.parse(req.body);
+        }
+
+        throw new Error('Unsupported request body format');
+
+    } catch (err) {
+        console.error('Failed to parse request body:', err.message);
+        return null;
+    }
+}
+
 function loadConfig(){
     require('./config.dev.json');
 }
 
 module.exports = {
     cgDataToEZC :cgDataToEZC,
-    validateSSOToken:validateSSOToken
+    validateSSOToken:validateSSOToken,
+    parseRequestBody:parseRequestBody
 };
