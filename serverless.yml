@@ -5,6 +5,9 @@ custom:
   usersDataTableName: 'users-data-table-${opt:stage, self:provider.stage}'
   invoiceTypeTableName: 'invoice-type-table-${opt:stage, self:provider.stage}'
   paymeTransTableName: 'payme-transactions-table-${opt:stage, self:provider.stage}'
+  defaultStage: dev
+  currentStage: ${opt:stage, self:custom.defaultStage} # 'dev' is default unless overriden by --stage flag
+
   dynamodb:
     start:
       migrate: true
@@ -20,7 +23,7 @@ package:
 provider:
   name: aws
   runtime: nodejs22.x
-  stage: dev
+  stage: ${self:custom.currentStage}
   region: us-east-1
   environment:
     USERS_TABLE: ${self:custom.tableName}
