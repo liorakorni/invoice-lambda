@@ -6,3 +6,4 @@ serverless/
 .dynamodb/
 .serverless/
 .idea/workspace.xml
+config.*.json

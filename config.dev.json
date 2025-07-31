@@ -5,5 +5,8 @@
     "developer_phone": "0528549758",
     "api_email": "demo@ezcount.co.il",
     "url": "https://demo.ezcount.co.il/api/createDoc",
-    "bc_sso_key":"n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29"
+    "bc_sso_key":"n0b46bab0-44cc-11e5-a9cb-a1ddc9390e29",
+    "payme_api_key": "MPL17380-54534GSJ-QO5MJ0LC-5AXCW0IZ",
+    "payme_callback_url": "https://61b29m2alf.execute-api.us-east-1.amazonaws.com/dev/pme-listener",
+    "payme_url": "https://sandbox.payme.io/api/"
 }

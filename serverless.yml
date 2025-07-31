@@ -38,6 +38,9 @@ provider:
     API_EMAIL: ${file(./config.${opt:stage, 'dev'}.json):api_email}
     URL: ${file(./config.${opt:stage, 'dev'}.json):url}
     BC_SSO_KEY: ${file(./config.${opt:stage, 'dev'}.json):bc_sso_key}
+    PAYME_URL: ${file(./config.${opt:stage, 'dev'}.json):payme_url}
+    PAYME_CALLBACK_URL: ${file(./config.${opt:stage, 'dev'}.json):payme_api_key}
+    PAYME_API_KEY: ${file(./config.${opt:stage, 'dev'}.json):payme_api_key}
 
   iamRoleStatements:
     - Effect: Allow

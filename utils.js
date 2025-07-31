@@ -179,10 +179,6 @@ function parseRequestBody(req) {
     }
 }
 
-function loadConfig(){
-    require('./config.dev.json');
-}
-
 module.exports = {
     cgDataToEZC :cgDataToEZC,
     validateSSOToken:validateSSOToken,

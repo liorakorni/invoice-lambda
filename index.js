@@ -14,22 +14,20 @@ const USERS_DATA_TABLE = process.env.USERS_DATA_TABLE;
 const TYPE_TABLE = process.env.TYPE_TABLE;
 const PAYME_TABLE = process.env.PAYME_TABLE;
 const EZCOUNT_API_KEY = process.env.EZCOUNT_API_KEY;
-const DEV_MASTER_KEY = process.env.DEV_MASTER_KEY;
 const DEVELOPER_EMAIL = process.env.DEVELOPER_EMAIL;
 const DEVELOPER_PHONE = process.env.DEVELOPER_PHONE;
 const API_EMAIL = process.env.API_EMAIL;
 const URL = process.env.URL;
 
+const PAYME_BASE_URL = process.env.PAYME_URL;
+const PAYME_CALLBACK_URL = process.env.PAYME_CALLBACK_URL;
+const PAYME_API_KEY = process.env.PAYME_API_KEY;
+
+
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const region = "us-east-1";
+
 const secretName = "ezcount_api_key";
-
-const ENVIRNMENTS = {
-    SANDBOX: 'https://sandbox.payme.io/api/',
-    LIVE: 'https://live.payme.io/api/',
-};
-
-const PAYME_BASE_URL = ENVIRNMENTS.SANDBOX;
 
 let secret;
 let decodedBinarySecret;
@@ -127,8 +125,7 @@ const data = {
 
 app.post('/generate-cell', function (req, res) {
 
-    const PAYME_API_KEY = 'MPL17380-54534GSJ-QO5MJ0LC-5AXCW0IZ'; // move to env in prod
-    const CALLBACK_URL = 'https://61b29m2alf.execute-api.us-east-1.amazonaws.com/dev/pme-listener';
+    const CALLBACK_URL = PAYME_CALLBACK_URL;
 
     const headers = req?.headers;
     const origin = headers?.origin;
@@ -152,7 +149,7 @@ app.post('/generate-cell', function (req, res) {
         return res.status(403).json({ msg: 'Origin not allowed', origin });
     }
 
-    const {buyer_social_id, language, buyer_name, buyer_email, buyer_key, sale_price, currency, product_name, meta_data_jwt,user_id} = body;
+    const {buyer_social_id, language, buyer_name, buyer_email, buyer_key, sale_price, currency, sale_type, installments, product_name, meta_data_jwt,user_id} = body;
 
     if (!sale_price || !currency || !product_name) {
         return res.status(400).json({
@@ -168,7 +165,8 @@ app.post('/generate-cell', function (req, res) {
         sale_price,
         currency,
         product_name,
-        sale_type: "sale",
+        sale_type,
+        installments,
         sale_payment_method: "credit-card",
         sale_callback_url: CALLBACK_URL
     };
@@ -266,8 +264,6 @@ app.post('/generate-cell', function (req, res) {
         });
     });
     });
-
-});
 
 const querystring = require('querystring');
 
