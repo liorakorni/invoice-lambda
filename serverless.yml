@@ -1,12 +1,9 @@
 service: invoice-application2
 
 custom:
-  tableName: 'invoices-users-table-${opt:stage, self:provider.stage}'
-  usersDataTableName: 'users-data-table-${opt:stage, self:provider.stage}'
-  invoiceTypeTableName: 'invoice-type-table-${opt:stage, self:provider.stage}'
   paymeTransTableName: 'payme-transactions-table-${opt:stage, self:provider.stage}'
   defaultStage: dev
-  currentStage: ${opt:stage, self:custom.defaultStage} # 'dev' is default unless overriden by --stage flag
+  currentStage: ${opt:stage, self:custom.defaultStage}
 
   dynamodb:
     start:
@@ -26,18 +23,8 @@ provider:
   stage: ${self:custom.currentStage}
   region: us-east-1
   environment:
-    USERS_TABLE: ${self:custom.tableName}
-    USERS_DATA_TABLE: ${self:custom.usersDataTableName}
-    TYPE_TABLE: ${self:custom.invoiceTypeTableName}
     PAYME_TABLE: ${self:custom.paymeTransTableName}
     IS_OFFLINE: true
-    EZCOUNT_API_KEY: ${file(./config.${opt:stage, 'dev'}.json):ezcount_api_key}
-    DEV_MASTER_KEY: ${file(./config.${opt:stage, 'dev'}.json):dev_master_key}
-    DEVELOPER_EMAIL: ${file(./config.${opt:stage, 'dev'}.json):developer_email}
-    DEVELOPER_PHONE: ${file(./config.${opt:stage, 'dev'}.json):developer_phone}
-    API_EMAIL: ${file(./config.${opt:stage, 'dev'}.json):api_email}
-    URL: ${file(./config.${opt:stage, 'dev'}.json):url}
-    BC_SSO_KEY: ${file(./config.${opt:stage, 'dev'}.json):bc_sso_key}
     PAYME_URL: ${file(./config.${opt:stage, 'dev'}.json):payme_url}
     PAYME_CALLBACK_URL: ${file(./config.${opt:stage, 'dev'}.json):payme_api_key}
     PAYME_API_KEY: ${file(./config.${opt:stage, 'dev'}.json):payme_api_key}
@@ -52,50 +39,9 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        - { "Fn::GetAtt": [ "UsersDynamoDBTable", "Arn" ] }
-        - { "Fn::GetAtt": [ "UsersDataDynamoDBTable", "Arn" ] }
-        - { "Fn::GetAtt": [ "InvoiceTypeDynamoDBTable", "Arn" ] }
         - { "Fn::GetAtt": [ "PaymeTransactionsDynamoDBTable", "Arn" ] }
 
 functions:
-  app:
-    handler: index.handler
-    events:
-      - http: ANY /
-      - http: 'ANY /{proxy+}'
-  getUser:
-    handler: index.handler
-    events:
-      - http:
-          path: /invoices
-          method: get
-          cors: true
-          request:
-            parameters:
-              querystrings:
-                userId: true
-                startDate: false
-                endDate: false
-  getType:
-    handler: index.handler
-    events:
-      - http:
-          path: /invoices-type
-          method: get
-          cors: true
-          request:
-            parameters:
-              querystrings:
-                invoiceType: true
-                startDate: false
-                endDate: false
-  createInvoice:
-    handler: index.handler
-    events:
-      - http:
-          path: /invoices
-          method: post
-          cors: true
   generateCell:
     handler: index.handler
     events:
@@ -111,61 +57,15 @@ functions:
           method: post
           cors: true
   getPmeStatus:
-          handler: index.handler
-          events:
-            - http:
-                path: /get-pme-status
-                method: get
-                cors: true
+    handler: index.handler
+    events:
+      - http:
+          path: /get-pme-status
+          method: get
+          cors: true
+
 resources:
   Resources:
-    UsersDynamoDBTable:
-      Type: 'AWS::DynamoDB::Table'
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: user_id
-            AttributeType: S
-          - AttributeName: ec_number
-            AttributeType: S
-        KeySchema:
-          - AttributeName: user_id
-            KeyType: HASH
-          - AttributeName: ec_number
-            KeyType: RANGE
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        TableName: ${self:custom.tableName}
-    UsersDataDynamoDBTable:
-      Type: 'AWS::DynamoDB::Table'
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: user_id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: user_id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        TableName: ${self:custom.usersDataTableName}
-    InvoiceTypeDynamoDBTable:
-      Type: 'AWS::DynamoDB::Table'
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: invoice_type
-            AttributeType: N
-          - AttributeName: ec_number
-            AttributeType: S
-        KeySchema:
-          - AttributeName: invoice_type
-            KeyType: HASH
-          - AttributeName: ec_number
-            KeyType: RANGE
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        TableName: ${self:custom.invoiceTypeTableName}
     PaymeTransactionsDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
